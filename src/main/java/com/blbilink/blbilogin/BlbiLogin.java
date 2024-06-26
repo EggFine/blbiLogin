@@ -40,6 +40,7 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         }
     }
     @EventHandler
+    //
     public void onPlayerInteract(PlayerInteractEvent e){
         if(noLoginPlayerList.contains(e.getPlayer().getName()) || e.getAction()==Action.LEFT_CLICK_AIR){
             this.getLogger().info("玩家 " + e.getPlayer().getName() + "成功登录, 已解除封锁.");
