@@ -1,0 +1,4 @@
+name: blbiLogin
+version: '${version}'
+main: com.blbilink.blbilogin.BlbiLogin
+api-version: '1.21'
