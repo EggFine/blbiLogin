@@ -8,9 +8,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 
 public class Load {
-    FileConfiguration config;
-    File configFile;
-    FileConfiguration languageConfig;
+    private FileConfiguration config;
+    private File configFile;
+    private FileConfiguration languageConfig;
     public void loadConfig(BlbiLogin plugin){
         // 获取或创建配置文件
         // 每次运行插件导出一次配置文件模板

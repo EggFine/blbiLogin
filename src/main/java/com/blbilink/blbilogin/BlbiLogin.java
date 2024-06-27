@@ -19,7 +19,7 @@ import java.util.List;
 public final class BlbiLogin extends JavaPlugin implements Listener {
 
     public static BlbiLogin plugin;
-    private final List<String> noLoginPlayerList = new ArrayList<String>();
+    private final List<String> noLoginPlayerList = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -75,4 +75,3 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         }
     }
 }
-//
