@@ -2,3 +2,8 @@ name: blbiLogin
 version: '${version}'
 main: com.blbilink.blbilogin.BlbiLogin
 api-version: '1.21'
+commands:
+  login:
+    description: "使玩家进行登录"
+    usage: /login <password>
+    aliases: [l]

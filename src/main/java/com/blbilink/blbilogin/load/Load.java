@@ -11,7 +11,12 @@ public class Load {
     private FileConfiguration config;
     private File configFile;
     private FileConfiguration languageConfig;
-    public void loadConfig(BlbiLogin plugin){
+    private BlbiLogin plugin;
+
+    public Load(BlbiLogin plugin) {
+        this.plugin = plugin;
+    }
+    public void loadConfig(){
         // 获取或创建配置文件
         // 每次运行插件导出一次配置文件模板
         //plugin.saveResource("config.yml", true);
@@ -32,7 +37,7 @@ public class Load {
         // 加载配置
         config = YamlConfiguration.loadConfiguration(configFile);
     }
-    public void loadLanguage(BlbiLogin plugin){
+    public void loadLanguage(){
         // 加载语言文件
         String language = config.getString("language", "zh_CN") ;
         String languageFileName = language + ".yaml";

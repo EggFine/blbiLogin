@@ -1,1 +1,3 @@
 msgEnable: "波比登录系统已注入。"
+msgPlayerJoin: "检测到玩家 %player% 进入服务器, 已封锁玩家移动."
+msgNoLoginTryMove: "未登录玩家 %player% 尝试移动，已进行回弹."
