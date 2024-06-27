@@ -7,3 +7,7 @@ commands:
     description: "使玩家进行登录"
     usage: /login <password>
     aliases: [l]
+  register:
+    description: "使玩家进行注册"
+    usage: /register <password>
+    aliases: [ reg ]

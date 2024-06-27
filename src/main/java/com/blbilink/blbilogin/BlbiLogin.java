@@ -16,7 +16,7 @@ import java.util.List;
 public final class BlbiLogin extends JavaPlugin implements Listener {
 
     public static BlbiLogin plugin;
-    private final List<String> noLoginPlayerList = new ArrayList<>();
+    public final List<String> noLoginPlayerList = new ArrayList<>();
     private Load load;
     private Sqlite sqlite;
 
@@ -38,8 +38,11 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         sqlite = new Sqlite();
 
         getCommand("login").setExecutor(new Commands());
+        getCommand("register").setExecutor(new Commands());
     }
-
+    public Sqlite getSqlite() {
+        return sqlite;
+    }
     @Override
     public void onDisable() {
         // Plugin shutdown logic
@@ -64,21 +67,21 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         }
     }
 
-    @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent e) {
-        if (noLoginPlayerList.contains(e.getPlayer().getName()) && e.getAction() == Action.LEFT_CLICK_AIR) {
-            this.getLogger().info("玩家 " + e.getPlayer().getName() + "成功登录, 已解除封锁.");
-            noLoginPlayerList.remove(e.getPlayer().getName());
-        }
-    }
+//    @EventHandler
+//    public void onPlayerInteract(PlayerInteractEvent e) {
+//        if (noLoginPlayerList.contains(e.getPlayer().getName()) && e.getAction() == Action.LEFT_CLICK_AIR) {
+//            this.getLogger().info("玩家 " + e.getPlayer().getName() + "成功登录, 已解除封锁.");
+//            noLoginPlayerList.remove(e.getPlayer().getName());
+//        }
+//    }
 
-    @EventHandler
-    public void onPlayerCommandSend(PlayerCommandPreprocessEvent e) {
-        e.getPlayer().sendMessage("您已处于登录状态");
-        if (noLoginPlayerList.contains(e.getPlayer().getName()) && e.getMessage().startsWith("/l")) {
-
-        } else {
-            e.getPlayer().sendMessage("您已处于登录状态");
-        }
-    }
+//    @EventHandler
+//    public void onPlayerCommandSend(PlayerCommandPreprocessEvent e) {
+//        e.getPlayer().sendMessage("您已处于登录状态");
+//        if (noLoginPlayerList.contains(e.getPlayer().getName()) && e.getMessage().startsWith("/l")) {
+//
+//        } else {
+//            e.getPlayer().sendMessage("您已处于登录状态");
+//        }
+//    }
 }

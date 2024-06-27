@@ -1,6 +1,12 @@
 #blbiLogin的配置文件
 
-# 警告: 配置文件版本号, 无特殊情况不要修改!!! [Warning: Do not edit this string!!!]
+# 警告: 配置文件版本号, 无特殊情况不要修改!!! [Warning: Do not edit this!!!]
 version: 1.0
-# 插件语言文件 [Language]
+
+# 插件语言文件
+# Plugin Language ! Chinese Only have, you can create en_US.yaml in /languages folder and translate by self !
 language: zh_CN
+
+# 使用 Sqlite 方式存储玩家数据 (!重要! 目前版本仅支持这一种存储方式, 请勿修改!)
+# use Sqlite (!important! this type is only can use for now!)
+useSqlite: true
