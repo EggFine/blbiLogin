@@ -16,3 +16,26 @@
 | /login <密码>     | /l <密码>   | 玩家登录                 |                            |
 | /blbilogin <参数> | none        | 插件主命令<br /><reload> | none<br />blbilogin.reload |
 
+### 配置文件
+
+```yaml
+#blbiLogin的配置文件
+
+# 警告: 配置文件版本号, 无特殊情况不要修改!!! [Warning: Do not edit this!!!]
+version: 1.0
+
+prefix: "§8[§fblbi§bLogin§8] §f"
+
+# 插件语言文件
+# Use Language. ! important ! We default to having zh_CN and en_US language files. For other languages, you can create your own yaml files in the /languages directory
+language: zh_CN
+
+# 使用 Sqlite 方式存储玩家数据 (!重要! 目前版本仅支持这一种存储方式, 请勿修改!)
+# use Sqlite (!important! this type is only can use for now!)
+useSqlite: true
+
+# 禁止未登录玩家移动
+# No Login Player Can't Move
+noLoginPlayerCantMove: true
+```
+
