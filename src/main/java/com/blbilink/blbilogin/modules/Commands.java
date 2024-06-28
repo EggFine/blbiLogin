@@ -1,6 +1,7 @@
 package com.blbilink.blbilogin.modules;
 // 导入命令注册包
-
+import org.bukkit.plugin.java.JavaPlugin;
+import com.blbilink.blbilogin.load.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,8 +12,10 @@ import org.jetbrains.annotations.NotNull;
 import static com.blbilink.blbilogin.BlbiLogin.plugin;
 
 public class Commands implements CommandExecutor {
+    public static Commands commands;
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+
         if (!(sender instanceof Player)) {
             sender.sendMessage("只有玩家可以使用此命令！");
             return true;
@@ -54,7 +57,8 @@ public class Commands implements CommandExecutor {
             }
 
             if (plugin.getSqlite().checkPassword(uuid, password)) {
-                player.sendMessage("登录成功！");
+                String msgLoginSuccess = Load.getMessage("msgLoginSuccess", "登录成功, %player% 欢迎回来.").replace("%player%", player.getName());
+                player.sendMessage(msgLoginSuccess);
                 plugin.noLoginPlayerList.remove(player.getName());
                 return true;
             } else {

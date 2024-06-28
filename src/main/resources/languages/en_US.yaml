@@ -1,0 +1,9 @@
+Language: "English (en_US)"
+
+loadedLanguage: "Loaded language file: %s"
+
+logEnable: "BlbiLogin system has been enabled."
+logPlayerJoin: "Detected player %player% joining the server, player movement has been blocked."
+logNoLoginTryMove: "Unlogged player %player% tried to move, has been bounced back."
+
+msgLoginSuccess: "Login successful, welcome back %player%."

@@ -11,3 +11,6 @@ commands:
     description: "使玩家进行注册"
     usage: /register <password>
     aliases: [ reg ]
+  blbilogin:
+    description: "插件主命令"
+    usage: /blbilogin <args>

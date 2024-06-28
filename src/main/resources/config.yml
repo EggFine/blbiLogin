@@ -4,9 +4,13 @@
 version: 1.0
 
 # 插件语言文件
-# Plugin Language ! Chinese Only have, you can create en_US.yaml in /languages folder and translate by self !
+# Use Language. ! important ! We default to having zh_CN and en_US language files. For other languages, you can create your own yaml files in the /languages directory
 language: zh_CN
 
 # 使用 Sqlite 方式存储玩家数据 (!重要! 目前版本仅支持这一种存储方式, 请勿修改!)
 # use Sqlite (!important! this type is only can use for now!)
 useSqlite: true
+
+# 禁止未登录玩家移动
+# No Login Player Can't Move
+noLoginPlayerCantMove: true

@@ -14,11 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class BlbiLogin extends JavaPlugin implements Listener {
-
-    public static BlbiLogin plugin;
     public final List<String> noLoginPlayerList = new ArrayList<>();
-    private Load load;
     private Sqlite sqlite;
+    public static BlbiLogin plugin;
 
     @Override
     public void onEnable() {
@@ -26,14 +24,12 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         saveDefaultConfig();
         getConfig().options().copyDefaults(false);
         // Plugin startup logic
-        this.getLogger().info("波比登录系统开始注入。");
+        getLogger().info("波比登录系统开始注入。");
         // 注册Bukkit事件监听器
         Bukkit.getPluginManager().registerEvents(this, this);
-
         // 初始化插件
-        load = new Load(this);
-        load.loadConfig();
-        load.loadLanguage();
+        Load.loadConfig(this);
+        Load.loadLanguage(this);
         // 初始化sqlite数据库
         sqlite = new Sqlite();
 
@@ -51,7 +47,7 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         if (!noLoginPlayerList.contains(e.getPlayer().getName())) {
-            String msgPlayerLogin = load.getMessage("msgPlayerJoin", "检测到玩家 %player% 进入服务器, 已封锁玩家移动.").replace("%player%", e.getPlayer().getName());
+            String msgPlayerLogin = Load.getMessage("logPlayerJoin", "检测到玩家 %player% 进入服务器, 已封锁玩家移动.").replace("%player%", e.getPlayer().getName());
             this.getLogger().info(msgPlayerLogin);
             noLoginPlayerList.add(e.getPlayer().getName());
 
@@ -61,7 +57,7 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
         if (noLoginPlayerList.contains(e.getPlayer().getName())) {
-            String msgNoLoginTryMove = load.getMessage("msgNoLoginTryMove", "未登录玩家 %player% 尝试移动，已进行回弹.").replace("%player%", e.getPlayer().getName());
+            String msgNoLoginTryMove = Load.getMessage("logNoLoginTryMove", "未登录玩家 %player% 尝试移动，已进行回弹.").replace("%player%", e.getPlayer().getName());
             this.getLogger().info(msgNoLoginTryMove);
             e.setCancelled(true);
         }
