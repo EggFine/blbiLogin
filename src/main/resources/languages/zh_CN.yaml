@@ -7,3 +7,5 @@ logPlayerJoin: "检测到玩家 %player% 进入服务器, 已封锁玩家移动.
 logNoLoginTryMove: "未登录玩家 %player% 尝试移动，已进行回弹."
 
 msgLoginSuccess: "登录成功, %player% 欢迎回来."
+msgNoPermission: "§f你当前§c没有权限§f执行该操作."
+msgReloaded: "§f配置文件及语言文件的§a重载已经完成."

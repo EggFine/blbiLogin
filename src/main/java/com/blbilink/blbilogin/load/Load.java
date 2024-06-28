@@ -21,13 +21,16 @@ public class Load {
         configFile = new File(plugin.getDataFolder(), "config.yml");
         config = YamlConfiguration.loadConfiguration(configFile);
 
-        Configvar.Language  = config.getString("language", "zh_CN") ;
+        Configvar.language  = config.getString("language", "zh_CN") ;
         loadLanguage(plugin);
-        plugin.getLogger().info(String.format(getMessage("loadedLanguage","已加载语言文件: %s"),Configvar.Language) + " | " + getMessage("Language","简体中文 (Simplified Chinese)"));
+        plugin.getLogger().info(String.format(getMessage("loadedLanguage","已加载语言文件: %s",null),Configvar.language) + " | " + getMessage("Language","简体中文 (Simplified Chinese)",null));
+
+        Configvar.prefix = config.getString("prefix", "§8[§fblbi§bLogin§8] ") ;
+        Configvar.noLoginPlayerCantMove = config.getBoolean("noLoginPlayerCantMove", true) ;
     }
 
     public static void loadLanguage(BlbiLogin plugin){
-        String languageFileName = Configvar.Language + ".yaml";
+        String languageFileName = Configvar.language + ".yaml";
         File languageFolder = new File(plugin.getDataFolder(), "languages");
         if (!languageFolder.exists()) {
             languageFolder.mkdirs();
@@ -45,8 +48,8 @@ public class Load {
                 // 插件内没有指定的语言文件，使用默认的 zh_CN.yaml
                 plugin.getLogger().warning("指定的语言文件 '" + languageFileName + "' 不存在，尝试使用默认的 zh_CN.yaml");
                 plugin.getLogger().warning("The specified language file '" + languageFileName + "' does not exist, try using the default zh_CN.yaml");
-                Configvar.Language = "zh_CN";
-                languageFileName = Configvar.Language + ".yaml";
+                Configvar.language = "zh_CN";
+                languageFileName = Configvar.language + ".yaml";
                 languageFile = new File(languageFolder, languageFileName);
                 if (!languageFile.exists()) {
                     // 如果默认语言文件也不存在，从插件资源中提取
@@ -58,8 +61,16 @@ public class Load {
         languageConfig = YamlConfiguration.loadConfiguration(languageFile);
     }
 
-    public static String getMessage(String path, String defaultValue) {
-        return languageConfig.getString(path, defaultValue);
+    public static String getMessage(String path, String defaultValue, String player) {
+        String str;
+        str = languageConfig.getString(path, defaultValue);
+        str = str.replace("&", "§");
+        if (player != null) {
+            str = str.replace("%player%", player);
+        }else{
+            str = Configvar.prefix + str;
+        }
+        return str;
     }
 }
 

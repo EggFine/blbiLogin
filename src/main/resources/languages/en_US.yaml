@@ -7,3 +7,5 @@ logPlayerJoin: "Detected player %player% joining the server, player movement has
 logNoLoginTryMove: "Unlogged player %player% tried to move, has been bounced back."
 
 msgLoginSuccess: "Login successful, welcome back %player%."
+msgNoPermission: "§fYou §cdon't have permission §fto use this command."
+msgReloaded: "§fConfiguration file and language file §areloading completed."

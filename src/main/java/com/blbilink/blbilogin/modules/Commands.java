@@ -57,7 +57,7 @@ public class Commands implements CommandExecutor {
             }
 
             if (plugin.getSqlite().checkPassword(uuid, password)) {
-                String msgLoginSuccess = Load.getMessage("msgLoginSuccess", "登录成功, %player% 欢迎回来.").replace("%player%", player.getName());
+                String msgLoginSuccess = Load.getMessage("msgLoginSuccess", "登录成功, %player% 欢迎回来.",player.getName());
                 player.sendMessage(msgLoginSuccess);
                 plugin.noLoginPlayerList.remove(player.getName());
                 return true;
@@ -71,10 +71,10 @@ public class Commands implements CommandExecutor {
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 if (player.hasPermission("blbilogin.reload")) {
                     Load.loadConfig(plugin);
-                    player.sendMessage("波比登录系统配置文件已重载。");
+                    player.sendMessage(Load.getMessage("msgReloaded", "§8[§fblbi§bLogin§8] §f配置文件及语言文件的§a重载已经完成.",player.getName()));
                     return true;
                 } else {
-                    player.sendMessage("您没有权限使用此命令！");
+                    player.sendMessage(Load.getMessage("msgNoPermission", "§8[§fblbi§bLogin§8] §f你当前§c没有权限§f执行该操作.",player.getName()));
                     return true;
                 }
             }

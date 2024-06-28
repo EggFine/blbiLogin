@@ -5,6 +5,7 @@ import com.blbilink.blbilogin.modules.*;
 // 导入 Bukkit 配置文件包
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.*;
@@ -45,10 +46,10 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         // Plugin shutdown logic
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOW)
     public void onPlayerJoin(PlayerJoinEvent e) {
         if (!noLoginPlayerList.contains(e.getPlayer().getName())) {
-            String msgPlayerLogin = Load.getMessage("logPlayerJoin", "检测到玩家 %player% 进入服务器, 已封锁玩家移动.").replace("%player%", e.getPlayer().getName());
+            String msgPlayerLogin = Load.getMessage("logPlayerJoin", "检测到玩家 %player% 进入服务器, 已封锁玩家移动.",e.getPlayer().getName());
             this.getLogger().info(msgPlayerLogin);
             noLoginPlayerList.add(e.getPlayer().getName());
 
@@ -57,8 +58,8 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if (noLoginPlayerList.contains(e.getPlayer().getName())) {
-            String msgNoLoginTryMove = Load.getMessage("logNoLoginTryMove", "未登录玩家 %player% 尝试移动，已进行回弹.").replace("%player%", e.getPlayer().getName());
+        if (noLoginPlayerList.contains(e.getPlayer().getName()) && Configvar.noLoginPlayerCantMove) {
+            String msgNoLoginTryMove = Load.getMessage("logNoLoginTryMove", "未登录玩家 %player% 尝试移动，已进行回弹.",e.getPlayer().getName());
             this.getLogger().info(msgNoLoginTryMove);
             e.setCancelled(true);
         }
