@@ -67,6 +67,18 @@ public class Commands implements CommandExecutor {
             }
         }
 
+        if (command.getName().equalsIgnoreCase("blbilogin")) {
+            if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+                if (player.hasPermission("blbilogin.reload")) {
+                    Load.loadConfig(plugin);
+                    player.sendMessage("波比登录系统配置文件已重载。");
+                    return true;
+                } else {
+                    player.sendMessage("您没有权限使用此命令！");
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

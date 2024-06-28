@@ -35,6 +35,7 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
 
         getCommand("login").setExecutor(new Commands());
         getCommand("register").setExecutor(new Commands());
+        getCommand("blbilogin").setExecutor(new Commands());
     }
     public Sqlite getSqlite() {
         return sqlite;
