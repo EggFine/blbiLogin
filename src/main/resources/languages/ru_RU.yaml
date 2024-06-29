@@ -1,0 +1,23 @@
+Language: "Русский (ru_RU)"
+
+loadedLanguage: "Загружен языковой файл: %s"
+
+logEnable: "BlbiLogin был включён."
+logPlayerJoin: "Обнаружен игрок %player% присоединяющийся к серверу, движение заблокировано."
+logNoLoginTryMove: "Неавторизированный игрок %player% попытался переместится и был откинул обратно."
+
+msgLoginSuccess: "Успешный вход, с возвращением, %player%."
+msgRegisterSuccess: "Успешная регистрация, привет, %player%."
+msgAlreadyRegistered: "Вы уже зарегистрированы."
+msgNoPermission: "§fУ вас §cнету разрешения §fиспользовать эту команду."
+msgReloaded: "§fФайл конфигурации и языка §aуспешно перезагружены."
+
+# Убедитесь, что функция включена в config.yml, чтобы изменить следующее содержимое
+noLoginPlayerSendMessage: "Вы в настоящее время§c не вошли в систему§f, операции могут быть ограничены, используйте /login <пароль> для входа в систему"
+noLoginPlayerSendTitle: "Добро пожаловать, используйте §fblbi§bLogin"
+noLoginPlayerSendSubTitle: "Пожалуйста, используйте §6/login <пароль>§f для входа в игру"
+noLoginPlayerSendActionBar: "Вы в настоящее время§c не вошли в игру§f, операции могут быть ограничены, используйте /login <пароль> для входа в игру"
+
+# Убедитесь, что функция включена, в файле config.yml, чтобы изменить следующее содержимое
+successLoginSendTitle: "§aУспешный вход"
+successLoginSendSubTitle: "С возвращением: §a%player%"
