@@ -32,6 +32,8 @@ public class Load {
         Configvar.noLoginPlayerCantUseCommand = config.getBoolean("noLoginPlayerCantUseCommand", true) ;
         Configvar.noLoginPlayerAllowUseCommand = config.getStringList("noLoginPlayerAllowUseCommand") ;
         Configvar.noLoginPlayerCantBreak = config.getBoolean("noLoginPlayerCantBreak", true) ;
+        Configvar.noLoginPlayerCantHurt = config.getBoolean("noLoginPlayerCantHurt", true) ;
+        Configvar.noLoginPlayerParticle = config.getBoolean("noLoginPlayerParticle", true) ;
 
         Configvar.noLoginPlayerSendMessage = config.getBoolean("noLoginPlayerSendMessage", true) ;
         Configvar.noLoginPlayerSendTitle = config.getBoolean("noLoginPlayerSendTitle", true) ;

@@ -5,7 +5,7 @@
 | 项       | 值                            |
 | -------- | ----------------------------- |
 | 插件名   | 波比登录 [blbiLogin]          |
-| 最新版本 | Alpha 1.3                     |
+| 最新版本 | Beta 1.4                      |
 | 最低要求 | Minecraft ≥ 1.21 && Java ≥ 21 |
 
 ### 基本命令
@@ -47,6 +47,11 @@ noLoginPlayerAllowUseCommand:
 # 禁止未登录玩家挖掘方块
 # No Login Player Can't Break Blocks
 noLoginPlayerCantBreak: true
+# 禁止未登录玩家受到伤害
+# No Login Player is invincible
+noLoginPlayerCantHurt: true
+noLoginPlayerParticle: true
+
 
 # 玩家未登录时循环发送消息，具体消息请在语言文件内修改
 # Show Message or Title or SubTitle or ActionBar for No Login Players ( can all be true), please modify in your language file.
@@ -61,6 +66,7 @@ noLoginPlayerSendActionBar: true
 # Show Title and SubTitle for Login Success Players ( can all be true), please modify in your language file.
 successLoginSendTitle: true
 successLoginSendSubTitle: true
+
 
 ```
 

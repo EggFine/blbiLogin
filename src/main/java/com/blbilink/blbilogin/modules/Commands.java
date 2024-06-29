@@ -69,6 +69,10 @@ public class Commands implements CommandExecutor {
                     }
                 }
                 player.getPlayer().playSound(player.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+                if(!player.isOp()){
+                    player.setAllowFlight(false);
+                }
+                player.setFlying(false);
                 plugin.noLoginPlayerList.remove(player.getName());
                 return true;
             } else {

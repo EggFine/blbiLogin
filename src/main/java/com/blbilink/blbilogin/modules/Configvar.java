@@ -10,6 +10,8 @@ public class Configvar {
     public static boolean noLoginPlayerCantUseCommand;
     public static List noLoginPlayerAllowUseCommand;
     public static boolean noLoginPlayerCantBreak;
+    public static boolean noLoginPlayerCantHurt;
+    public static boolean noLoginPlayerParticle;
 
     public static boolean noLoginPlayerSendMessage;
     public static boolean noLoginPlayerSendTitle;
