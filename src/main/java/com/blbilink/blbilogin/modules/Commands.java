@@ -1,5 +1,6 @@
 package com.blbilink.blbilogin.modules;
 // 导入命令注册包
+import org.bukkit.Sound;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.blbilink.blbilogin.load.*;
 import org.bukkit.Bukkit;
@@ -59,6 +60,15 @@ public class Commands implements CommandExecutor {
             if (plugin.getSqlite().checkPassword(uuid, password)) {
                 String msgLoginSuccess = Load.getMessage("msgLoginSuccess", "登录成功, %player% 欢迎回来.",player.getName(),true);
                 player.sendMessage(msgLoginSuccess);
+                if (Configvar.successLoginSendTitle || Configvar.successLoginSendSubTitle){
+                    if(Configvar.successLoginSendTitle){
+                        player.sendTitle(Load.getMessage("successLoginSendTitle", "§a§l登录成功",player.getName(),false), null, 20, 100, 20);
+                    }
+                    if(Configvar.successLoginSendSubTitle){
+                        player.sendTitle(null,Load.getMessage("successLoginSendSubTitle", "欢迎回来: §a%player%",player.getName(),false),20,100,20);
+                    }
+                }
+                player.getPlayer().playSound(player.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                 plugin.noLoginPlayerList.remove(player.getName());
                 return true;
             } else {

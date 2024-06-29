@@ -17,3 +17,7 @@ noLoginPlayerSendMessage: "您当前§c未登录§f, 操作可能受限, 使用 
 noLoginPlayerSendTitle: "§l欢迎使用§fblbi§bLogin"
 noLoginPlayerSendSubTitle: "请使用 §6/login <密码>§f 登录游戏"
 noLoginPlayerSendActionBar: "您当前§c未登录§f, 操作可能受限, 使用 /login <密码> 进行登录"
+
+# 修改下面的内容前请确保 config.yml 中的对应功能已开启
+successLoginSendTitle: "§a§l登录成功"
+successLoginSendSubTitle: "欢迎回来: §a%player%"

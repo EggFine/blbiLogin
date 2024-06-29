@@ -5,7 +5,7 @@
 | 项       | 值                            |
 | -------- | ----------------------------- |
 | 插件名   | 波比登录 [blbiLogin]          |
-| 最新版本 | Alpha 1.0                     |
+| 最新版本 | Alpha 1.3                     |
 | 最低要求 | Minecraft ≥ 1.21 && Java ≥ 21 |
 
 ### 基本命令
@@ -22,7 +22,7 @@
 #blbiLogin的配置文件
 
 # 警告: 配置文件版本号, 无特殊情况不要修改!!! [Warning: Do not edit this!!!]
-version: 1.0
+version: 1.3
 
 prefix: "§8[§fblbi§bLogin§8] §f"
 
@@ -37,5 +37,30 @@ useSqlite: true
 # 禁止未登录玩家移动
 # No Login Player Can't Move
 noLoginPlayerCantMove: true
+# 禁止未登录玩家使用指令
+# No Login Player Can't Use Command
+noLoginPlayerCantUseCommand: true
+# 允许未登录玩家使用的命令（仅在noLoginPlayerCantUseCommand = true时生效）
+# What command can be used by unlogged players (only effective when noLoginPlayerCantUseCommand = true)
+noLoginPlayerAllowUseCommand:
+  - "/example"
+# 禁止未登录玩家挖掘方块
+# No Login Player Can't Break Blocks
+noLoginPlayerCantBreak: true
+
+# 玩家未登录时循环发送消息，具体消息请在语言文件内修改
+# Show Message or Title or SubTitle or ActionBar for No Login Players ( can all be true), please modify in your language file.
+# 其中发送消息和发送ActionBar带有音效
+# noLoginPlayerSendMessage and noLoginPlayerSendActionBar will play sound :p very good!!!
+noLoginPlayerSendMessage: true
+noLoginPlayerSendTitle: true
+noLoginPlayerSendSubTitle: true
+noLoginPlayerSendActionBar: true
+
+# 玩家登录成功时发送标题和副标题，具体消息请在语言文件内修改
+# Show Title and SubTitle for Login Success Players ( can all be true), please modify in your language file.
+successLoginSendTitle: true
+successLoginSendSubTitle: true
+
 ```
 

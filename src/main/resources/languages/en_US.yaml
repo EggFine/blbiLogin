@@ -17,3 +17,7 @@ noLoginPlayerSendMessage: "You are currently§c not logged in§f, operations may
 noLoginPlayerSendTitle: "Welcome use §fblbi§bLogin"
 noLoginPlayerSendSubTitle: "Please use §6/login <password>§f to log in to the game"
 noLoginPlayerSendActionBar: "You are currently§c not logged in§f, operations may be restricted, use /login <password> to log in"
+
+# Please make sure that the function is enabled in config.yml to modify the following content
+successLoginSendTitle: "§aLogin Success"
+successLoginSendSubTitle: "Welcome back: §a%player%"

@@ -31,11 +31,15 @@ public class Load {
         Configvar.noLoginPlayerCantMove = config.getBoolean("noLoginPlayerCantMove", true) ;
         Configvar.noLoginPlayerCantUseCommand = config.getBoolean("noLoginPlayerCantUseCommand", true) ;
         Configvar.noLoginPlayerAllowUseCommand = config.getStringList("noLoginPlayerAllowUseCommand") ;
+        Configvar.noLoginPlayerCantBreak = config.getBoolean("noLoginPlayerCantBreak", true) ;
 
         Configvar.noLoginPlayerSendMessage = config.getBoolean("noLoginPlayerSendMessage", true) ;
         Configvar.noLoginPlayerSendTitle = config.getBoolean("noLoginPlayerSendTitle", true) ;
         Configvar.noLoginPlayerSendSubTitle = config.getBoolean("noLoginPlayerSendSubTitle", true) ;
         Configvar.noLoginPlayerSendActionBar = config.getBoolean("noLoginPlayerSendActionBar", true) ;
+
+        Configvar.successLoginSendTitle = config.getBoolean("successLoginSendTitle", true) ;
+        Configvar.successLoginSendSubTitle = config.getBoolean("successLoginSendSubTitle", true) ;
     }
 
     public static void loadLanguage(BlbiLogin plugin){
