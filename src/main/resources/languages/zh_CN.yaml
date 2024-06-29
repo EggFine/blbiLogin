@@ -7,5 +7,13 @@ logPlayerJoin: "检测到玩家 %player% 进入服务器, 已封锁玩家移动.
 logNoLoginTryMove: "未登录玩家 %player% 尝试移动，已进行回弹."
 
 msgLoginSuccess: "登录成功, %player% 欢迎回来."
+msgRegisterSuccess: "注册成功, 欢迎新玩家 %player%."
+msgAlreadyRegister: "已经注册过啦, 无需重复注册."
 msgNoPermission: "§f你当前§c没有权限§f执行该操作."
 msgReloaded: "§f配置文件及语言文件的§a重载已经完成."
+
+# 修改下面的内容前请确保 config.yml 中的对应功能已开启
+noLoginPlayerSendMessage: "您当前§c未登录§f, 操作可能受限, 使用 /login <密码> 进行登录"
+noLoginPlayerSendTitle: "§l欢迎使用§fblbi§bLogin"
+noLoginPlayerSendSubTitle: "请使用 §6/login <密码>§f 登录游戏"
+noLoginPlayerSendActionBar: "您当前§c未登录§f, 操作可能受限, 使用 /login <密码> 进行登录"

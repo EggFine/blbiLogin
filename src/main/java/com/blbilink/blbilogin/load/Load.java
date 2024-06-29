@@ -5,6 +5,8 @@ import com.blbilink.blbilogin.BlbiLogin;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.InputStream;
 
@@ -23,10 +25,17 @@ public class Load {
 
         Configvar.language  = config.getString("language", "zh_CN") ;
         loadLanguage(plugin);
-        plugin.getLogger().info(String.format(getMessage("loadedLanguage","已加载语言文件: %s",null),Configvar.language) + " | " + getMessage("Language","简体中文 (Simplified Chinese)",null));
-
+        plugin.getLogger().info(String.format(getMessage("loadedLanguage","已加载语言文件: %s",null,false),Configvar.language) + " | " + getMessage("Language","简体中文 (Simplified Chinese)",null,false));
         Configvar.prefix = config.getString("prefix", "§8[§fblbi§bLogin§8] ") ;
+
         Configvar.noLoginPlayerCantMove = config.getBoolean("noLoginPlayerCantMove", true) ;
+        Configvar.noLoginPlayerCantUseCommand = config.getBoolean("noLoginPlayerCantUseCommand", true) ;
+        Configvar.noLoginPlayerAllowUseCommand = config.getStringList("noLoginPlayerAllowUseCommand") ;
+
+        Configvar.noLoginPlayerSendMessage = config.getBoolean("noLoginPlayerSendMessage", true) ;
+        Configvar.noLoginPlayerSendTitle = config.getBoolean("noLoginPlayerSendTitle", true) ;
+        Configvar.noLoginPlayerSendSubTitle = config.getBoolean("noLoginPlayerSendSubTitle", true) ;
+        Configvar.noLoginPlayerSendActionBar = config.getBoolean("noLoginPlayerSendActionBar", true) ;
     }
 
     public static void loadLanguage(BlbiLogin plugin){
@@ -61,15 +70,12 @@ public class Load {
         languageConfig = YamlConfiguration.loadConfiguration(languageFile);
     }
 
-    public static String getMessage(String path, String defaultValue, String player) {
-        String str;
-        str = languageConfig.getString(path, defaultValue);
-        str = str.replace("&", "§");
+    public static String getMessage(String path, String defaultValue,@Nullable String player,boolean addPrefix) {
+        String str = languageConfig.getString(path, defaultValue).replace("&", "§");
         if (player != null) {
             str = str.replace("%player%", player);
-        }else{
-            str = Configvar.prefix + str;
         }
+        if (addPrefix) str = Configvar.prefix + str;
         return str;
     }
 }

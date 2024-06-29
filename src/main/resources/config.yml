@@ -16,3 +16,20 @@ useSqlite: true
 # 禁止未登录玩家移动
 # No Login Player Can't Move
 noLoginPlayerCantMove: true
+# 禁止未登录玩家使用指令
+# No Login Player Can't Use Command
+noLoginPlayerCantUseCommand: true
+
+# 玩家未登录时循环发送消息，具体消息请在语言文件内修改
+# Show Message or Title or SubTitle or ActionBar for No Login Players ( can all be true), please modify in your language file.
+# 其中发送消息和发送ActionBar带有音效
+# noLoginPlayerSendMessage and noLoginPlayerSendActionBar will play sound :p very good!!!
+noLoginPlayerSendMessage: true
+noLoginPlayerSendTitle: true
+noLoginPlayerSendSubTitle: true
+noLoginPlayerSendActionBar: true
+
+# 允许未登录玩家使用的命令（仅在noLoginPlayerCantUseCommand = true时生效）
+# What command can be used by unlogged players (only effective when noLoginPlayerCantUseCommand = true)
+noLoginPlayerAllowUseCommand:
+  - "/example"

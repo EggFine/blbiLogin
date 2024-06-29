@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.blbilink'
-version = '1.0-SNAPSHOT'
+version = '1.2-Alpha'
 
 repositories {
     mavenCentral()

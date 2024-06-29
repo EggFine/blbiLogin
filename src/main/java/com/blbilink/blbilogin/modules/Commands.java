@@ -29,12 +29,12 @@ public class Commands implements CommandExecutor {
                 String password = args[0];
 
                 if (plugin.getSqlite().playerExists(uuid)) {
-                    player.sendMessage("您已经注册过了！");
+                    player.sendMessage(Load.getMessage("msgAlreadyRegistered", "已经注册过啦, 无需重复注册.",player.getName(),true));
                     return true;
                 }
 
                 plugin.getSqlite().registerPlayer(uuid, player.getName(), password);
-                player.sendMessage("注册成功！");
+                player.sendMessage(Load.getMessage("msgRegisterSuccess", "注册成功, 欢迎新玩家 %player%.",player.getName(),true));
                 return true;
 
             }
@@ -57,7 +57,7 @@ public class Commands implements CommandExecutor {
             }
 
             if (plugin.getSqlite().checkPassword(uuid, password)) {
-                String msgLoginSuccess = Load.getMessage("msgLoginSuccess", "登录成功, %player% 欢迎回来.",player.getName());
+                String msgLoginSuccess = Load.getMessage("msgLoginSuccess", "登录成功, %player% 欢迎回来.",player.getName(),true);
                 player.sendMessage(msgLoginSuccess);
                 plugin.noLoginPlayerList.remove(player.getName());
                 return true;
@@ -71,10 +71,10 @@ public class Commands implements CommandExecutor {
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 if (player.hasPermission("blbilogin.reload")) {
                     Load.loadConfig(plugin);
-                    player.sendMessage(Load.getMessage("msgReloaded", "§8[§fblbi§bLogin§8] §f配置文件及语言文件的§a重载已经完成.",player.getName()));
+                    player.sendMessage(Load.getMessage("msgReloaded", "§f配置文件及语言文件的§a重载已经完成.",player.getName(),true));
                     return true;
                 } else {
-                    player.sendMessage(Load.getMessage("msgNoPermission", "§8[§fblbi§bLogin§8] §f你当前§c没有权限§f执行该操作.",player.getName()));
+                    player.sendMessage(Load.getMessage("msgNoPermission", "§f你当前§c没有权限§f执行该操作.",player.getName(),true));
                     return true;
                 }
             }
