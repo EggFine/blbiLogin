@@ -11,6 +11,8 @@ msgRegisterSuccess: "Register successful, welcome new player %player%."
 msgAlreadyRegistered: "You have already registered."
 msgNoPermission: "§fYou §cdon't have permission §fto use this command."
 msgReloaded: "§fConfiguration file and language file §areloading completed."
+msgLoginPasswordWrong: "The entered §cpassword is incorrect§f, please check and try again."
+msgPlayerNotRegister: "You have not registered yet, please use §6/register <password> §fto register first."
 
 # Please make sure that the function is enabled in config.yml to modify the following content
 noLoginPlayerSendMessage: "You are currently§c not logged in§f, operations may be restricted, use /login <password> to log in"

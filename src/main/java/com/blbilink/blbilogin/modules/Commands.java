@@ -53,7 +53,7 @@ public class Commands implements CommandExecutor {
             String password = args[0];
 
             if (!plugin.getSqlite().playerExists(uuid)) {
-                player.sendMessage("您还没有注册！");
+                player.sendMessage(Load.getMessage("msgPlayerNotRegister", "你还没有注册, 请先使用 §6/register <password> §f进行注册.",player.getName(),true));
                 return true;
             }
 
@@ -76,7 +76,7 @@ public class Commands implements CommandExecutor {
                 plugin.noLoginPlayerList.remove(player.getName());
                 return true;
             } else {
-                player.sendMessage("密码错误！");
+                player.sendMessage(Load.getMessage("msgLoginPasswordWrong", "输入的§c密码有误§f, 请检查后重试",player.getName(),true));
                 return true;
             }
         }

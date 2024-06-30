@@ -37,7 +37,6 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(this, this);
         // 初始化插件
         Load.loadConfig(this);
-        Load.loadLanguage(this);
         // 初始化sqlite数据库
         sqlite = new Sqlite();
 
