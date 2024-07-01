@@ -1,9 +1,8 @@
-package com.blbilink.blbilogin.modules;
-// 导入命令注册包
+package com.blbilink.blbilogin.modules.commands;
+
+import com.blbilink.blbilogin.load.Load;
+import com.blbilink.blbilogin.modules.Configvar;
 import org.bukkit.Sound;
-import org.bukkit.plugin.java.JavaPlugin;
-import com.blbilink.blbilogin.load.*;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,37 +11,15 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.blbilink.blbilogin.BlbiLogin.plugin;
 
-public class Commands implements CommandExecutor {
-    public static Commands commands;
+public class Login implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-
         if (!(sender instanceof Player)) {
             sender.sendMessage("只有玩家可以使用此命令！");
             return true;
         }
-
         Player player = (Player) sender;
         String uuid = player.getUniqueId().toString();
-
-        if (command.getName().equalsIgnoreCase("register")) {
-            if (args.length == 1) {
-                String password = args[0];
-
-                if (plugin.getSqlite().playerExists(uuid)) {
-                    player.sendMessage(Load.getMessage("msgAlreadyRegistered", "已经注册过啦, 无需重复注册.",player.getName(),true));
-                    return true;
-                }
-
-                plugin.getSqlite().registerPlayer(uuid, player.getName(), password);
-                player.sendMessage(Load.getMessage("msgRegisterSuccess", "注册成功, 欢迎新玩家 %player%.",player.getName(),true));
-                return true;
-
-            }
-            player.sendMessage("用法: /register <密码>");
-            return true;
-
-        }
 
         if (command.getName().equalsIgnoreCase("login")) {
             if (args.length != 1) {
@@ -73,24 +50,11 @@ public class Commands implements CommandExecutor {
                     player.setAllowFlight(false);
                 }
                 player.setFlying(false);
-                plugin.noLoginPlayerList.remove(player.getName());
+                Configvar.noLoginPlayerList.remove(player.getName());
                 return true;
             } else {
                 player.sendMessage(Load.getMessage("msgLoginPasswordWrong", "输入的§c密码有误§f, 请检查后重试",player.getName(),true));
                 return true;
-            }
-        }
-
-        if (command.getName().equalsIgnoreCase("blbilogin")) {
-            if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-                if (player.hasPermission("blbilogin.reload")) {
-                    Load.loadConfig(plugin);
-                    player.sendMessage(Load.getMessage("msgReloaded", "§f配置文件及语言文件的§a重载已经完成.",player.getName(),true));
-                    return true;
-                } else {
-                    player.sendMessage(Load.getMessage("msgNoPermission", "§f你当前§c没有权限§f执行该操作.",player.getName(),true));
-                    return true;
-                }
             }
         }
         return false;

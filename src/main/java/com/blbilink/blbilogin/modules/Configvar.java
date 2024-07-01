@@ -1,5 +1,6 @@
 package com.blbilink.blbilogin.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Configvar {
@@ -20,4 +21,6 @@ public class Configvar {
 
     public static boolean successLoginSendTitle;
     public static boolean successLoginSendSubTitle;
+
+    public static List<String> noLoginPlayerList = new ArrayList<>();
 }
