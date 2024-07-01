@@ -55,6 +55,9 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
             String msgPlayerLogin = Load.getMessage("logPlayerJoin", "检测到玩家 %player% 进入服务器, 已封锁玩家移动.",e.getPlayer().getName(),false);
             this.getLogger().info(msgPlayerLogin);
             noLoginPlayerList.add(e.getPlayer().getName());
+
+
+
 //            Player player = e.getPlayer();
 //            if(CheckOnline.isPlayerPremium(player)){
 //                player.sendMessage("欢迎正版玩家！");
