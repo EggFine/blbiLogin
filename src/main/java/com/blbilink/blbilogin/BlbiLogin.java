@@ -3,23 +3,19 @@ package com.blbilink.blbilogin;
 import com.blbilink.blbilogin.load.*;
 import com.blbilink.blbilogin.modules.*;
 // 导入 Bukkit 配置文件包
-import net.kyori.adventure.title.TitlePart;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 // 导入数组列表包
-import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public final class BlbiLogin extends JavaPlugin implements Listener {
     public final List<String> noLoginPlayerList = new ArrayList<>();
@@ -37,6 +33,7 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(this, this);
         // 初始化插件
         Load.loadConfig(this);
+        // CheckOnline.initialize(this);
         // 初始化sqlite数据库
         sqlite = new Sqlite();
 
@@ -58,6 +55,23 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
             String msgPlayerLogin = Load.getMessage("logPlayerJoin", "检测到玩家 %player% 进入服务器, 已封锁玩家移动.",e.getPlayer().getName(),false);
             this.getLogger().info(msgPlayerLogin);
             noLoginPlayerList.add(e.getPlayer().getName());
+//            Player player = e.getPlayer();
+//            if(CheckOnline.isPlayerPremium(player)){
+//                player.sendMessage("欢迎正版玩家！");
+//            }else{
+//                player.sendMessage("您正在使用离线账户游戏。");
+//                noLoginPlayerList.add(e.getPlayer().getName());
+//            }
+//            CheckOnline.checkPremiumStatus(player).thenAccept(isPremium -> {
+//                if (isPremium) {
+//                    // 玩家拥有正版账户，可以在这里执行相应的操作
+//                    player.sendMessage("欢迎正版玩家！");
+//                } else {
+//                    // 玩家没有正版账户
+//                    player.sendMessage("您正在使用离线账户游戏。");
+//                    noLoginPlayerList.add(e.getPlayer().getName());
+//                }
+//            });
 
         }
         if(Configvar.noLoginPlayerSendActionBar || Configvar.noLoginPlayerSendTitle || Configvar.noLoginPlayerSendSubTitle || Configvar.noLoginPlayerSendMessage){

@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.blbilink'
-version = '1.7'
+version = '1.8.2'
 
 repositories {
     mavenCentral()
@@ -18,8 +18,9 @@ repositories {
 }
 
 dependencies {
-    compileOnly "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
+    compileOnly "io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT"
     implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
+    implementation fileTree(dir: 'libs', include: '*.jar')
 }
 
 def targetJavaVersion = 21
