@@ -39,6 +39,22 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
         // Plugin startup logic
+        // 打印 Logo
+        String logo = "\n\n\n\n\n"
+                + Configvar.logo
+                + "\n                        " + getPluginMeta().getVersion() + "  Loading...\n";
+        logo = logo + "\n主要开发人员(Main Author): ";
+
+        for (String author : Configvar.mainAuthor) {
+            logo = logo + author + " ";
+        }
+        logo = logo + "\n\n次要开发人员(Sub Author): \n";
+        for (String author : Configvar.subAuthor) {
+            logo = logo + author + " ";
+        }
+        logo = logo + "\n\n\n\n\n";
+
+        getLogger().info(logo);
         getLogger().info("波比登录系统开始注入。");
         // 注册Bukkit事件监听器
         Bukkit.getPluginManager().registerEvents(this, this);

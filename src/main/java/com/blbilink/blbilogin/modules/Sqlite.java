@@ -56,4 +56,16 @@ public class Sqlite {
         }
         return false;
     }
+
+    public boolean resetPassword(String uuid, String newPassword) {
+        try (PreparedStatement statement = connection.prepareStatement("UPDATE players SET password = ? WHERE uuid = ?")) {
+            statement.setString(1, newPassword);
+            statement.setString(2, uuid);
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
