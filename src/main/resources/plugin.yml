@@ -15,3 +15,9 @@ commands:
   blbilogin:
     description: "插件主命令"
     usage: /blbilogin <args>
+  resetpassword:
+    description: "重置密码"
+    aliases:
+      - resetpasswd
+      - resetpass
+      - resetpw

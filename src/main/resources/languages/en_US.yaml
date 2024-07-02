@@ -1,3 +1,4 @@
+version: 1.8.3
 Language: "English (en_US)"
 
 loadedLanguage: "Loaded language file: %s"
@@ -19,6 +20,13 @@ noLoginPlayerSendMessage: "You are currently§c not logged in§f, operations may
 noLoginPlayerSendTitle: "Welcome use §fblbi§bLogin"
 noLoginPlayerSendSubTitle: "Please use §6/login <password>§f to log in to the game"
 noLoginPlayerSendActionBar: "You are currently§c not logged in§f, operations may be restricted, use /login <password> to log in"
+
+# Please make sure that the function is enabled in config.yml to modify the following content
+noRegisterPlayerSendMessage: "You are currently §cnot registered§f, actions may be limited, use /register <password> to register"
+noRegisterPlayerSendTitle: "Welcome use §fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "Please use §6/register <password>§f to register the game"
+noRegisterPlayerSendActionBar: "You are currently §cnot registered§f, actions may be limited, use /register <password> to register"
+
 
 # Please make sure that the function is enabled in config.yml to modify the following content
 successLoginSendTitle: "§aLogin Success"

@@ -18,6 +18,10 @@ public class Configvar {
     public static boolean noLoginPlayerSendTitle;
     public static boolean noLoginPlayerSendSubTitle;
     public static boolean noLoginPlayerSendActionBar;
+    public static boolean noRegisterPlayerSendMessage;
+    public static boolean noRegisterPlayerSendTitle;
+    public static boolean noRegisterPlayerSendSubTitle;
+    public static boolean noRegisterPlayerSendActionBar;
 
     public static boolean successLoginSendTitle;
     public static boolean successLoginSendSubTitle;

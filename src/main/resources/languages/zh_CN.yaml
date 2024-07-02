@@ -1,5 +1,5 @@
+version: 1.8.3
 Language: "简体中文 (Simplified Chinese)"
-
 loadedLanguage: "已加载语言文件: %s"
 
 logEnable: "波比登录系统已注入。"
@@ -19,6 +19,12 @@ noLoginPlayerSendMessage: "您当前§c未登录§f, 操作可能受限, 使用 
 noLoginPlayerSendTitle: "§l欢迎使用§fblbi§bLogin"
 noLoginPlayerSendSubTitle: "请使用 §6/login <密码>§f 登录游戏"
 noLoginPlayerSendActionBar: "您当前§c未登录§f, 操作可能受限, 使用 /login <密码> 进行登录"
+
+# 修改下面的内容前请确保 config.yml 中的对应功能已开启
+noRegisterPlayerSendMessage: "您当前§c未注册§f, 操作可能受限, 使用 /register <密码> 进行注册"
+noRegisterPlayerSendTitle: "§l欢迎使用§fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "请使用 §6/register <密码>§f 注册游戏"
+noRegisterPlayerSendActionBar: "您当前§c未注册§f, 操作可能受限, 使用 /register <密码> 进行登录"
 
 # 修改下面的内容前请确保 config.yml 中的对应功能已开启
 successLoginSendTitle: "§a§l登录成功"

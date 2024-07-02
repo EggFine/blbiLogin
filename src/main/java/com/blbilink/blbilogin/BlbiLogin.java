@@ -1,22 +1,30 @@
 // 包本体
 package com.blbilink.blbilogin;
-import com.blbilink.blbilogin.load.*;
-import com.blbilink.blbilogin.modules.*;
-// 导入 Bukkit 配置文件包
+
+import com.blbilink.blbilogin.load.Load;
+import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.modules.Metrics;
+import com.blbilink.blbilogin.modules.PlayerSender;
+import com.blbilink.blbilogin.modules.Sqlite;
 import com.blbilink.blbilogin.modules.commands.BlbiLoginCommand;
 import com.blbilink.blbilogin.modules.commands.Login;
 import com.blbilink.blbilogin.modules.commands.Register;
-import org.bukkit.*;
+import com.blbilink.blbilogin.modules.commands.ResetPassword;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-// 导入数组列表包
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -28,8 +36,8 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         plugin = this;
+        getConfig().options().copyDefaults(true);
         saveDefaultConfig();
-        getConfig().options().copyDefaults(false);
         // Plugin startup logic
         getLogger().info("波比登录系统开始注入。");
         // 注册Bukkit事件监听器
@@ -44,6 +52,13 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         Objects.requireNonNull(getCommand("blbilogin")).setExecutor(new BlbiLoginCommand());
         Objects.requireNonNull(getCommand("register")).setExecutor(new Register());
         Objects.requireNonNull(getCommand("login")).setExecutor(new Login());
+        Objects.requireNonNull(getCommand("resetpassword")).setExecutor(new ResetPassword());
+
+        int pluginId = 22490; // <-- Replace with the id of your plugin!
+        Metrics metrics = new Metrics(this, pluginId);
+
+        // Optional: Add custom charts
+        metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
     }
     public Sqlite getSqlite() {
         return sqlite;

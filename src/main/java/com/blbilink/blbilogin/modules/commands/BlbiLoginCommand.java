@@ -12,19 +12,29 @@ import static com.blbilink.blbilogin.BlbiLogin.plugin;
 public class BlbiLoginCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        Player player = (Player) sender;
+
+
         if (command.getName().equalsIgnoreCase("blbilogin")) {
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-                if (player.hasPermission("blbilogin.reload")) {
+                if((sender instanceof Player)){
+                    Player player = (Player) sender;
+                    if (player.hasPermission("blbilogin.reload")) {
+                        Load.loadConfig(plugin);
+                        player.sendMessage(Load.getMessage("msgReloaded", "§f配置文件及语言文件的§a重载已经完成.",player.getName(),true));
+                        return true;
+                    } else {
+                        player.sendMessage(Load.getMessage("msgNoPermission", "§f你当前§c没有权限§f执行该操作.",player.getName(),true));
+                        return true;
+                    }
+                }else{
                     Load.loadConfig(plugin);
-                    player.sendMessage(Load.getMessage("msgReloaded", "§f配置文件及语言文件的§a重载已经完成.",player.getName(),true));
-                    return true;
-                } else {
-                    player.sendMessage(Load.getMessage("msgNoPermission", "§f你当前§c没有权限§f执行该操作.",player.getName(),true));
+                    plugin.getLogger().info(Load.getMessage("msgReloaded", "§f配置文件及语言文件的§a重载已经完成.",null,false));
                     return true;
                 }
+
             }
         }
+
         return false;
     }
 }

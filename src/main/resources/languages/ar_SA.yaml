@@ -1,3 +1,4 @@
+version: 1.8.3
 Language: "اللغة العربية (Arabic)"
 
 loadedLanguage: "تم تحميل ملف اللغة: %s"
