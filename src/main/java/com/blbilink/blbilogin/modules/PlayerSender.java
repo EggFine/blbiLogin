@@ -2,13 +2,13 @@ package com.blbilink.blbilogin.modules;
 
 import com.blbilink.blbilogin.BlbiLogin;
 import com.blbilink.blbilogin.load.Load;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Sound;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.jetbrains.annotations.NotNull;
 
 import static com.blbilink.blbilogin.BlbiLogin.plugin;
 
@@ -24,7 +24,7 @@ public class PlayerSender implements Listener {
                     if (Configvar.noLoginPlayerList.contains(e.getPlayer().getName())) {
                         if(plugin.getSqlite().playerExists(e.getPlayer().getUniqueId().toString())){
                             if(Configvar.noLoginPlayerSendActionBar){
-                                e.getPlayer().sendActionBar(Load.getMessage("noLoginPlayerSendActionBar", "您当前§c未登录§f, 操作可能受限, 使用 /login <密码> 进行登录",e.getPlayer().getName(),false));
+                                e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR,new TextComponent(Load.getMessage("noLoginPlayerSendActionBar", "您当前§c未登录§f, 操作可能受限, 使用 /login <密码> 进行登录",e.getPlayer().getName(),false)));
                             }
                             if(Configvar.noLoginPlayerSendMessage){
                                 e.getPlayer().sendMessage(Load.getMessage("noLoginPlayerSendMessage", "您当前§c未登录§f, 操作可能受限, 使用 /login <密码> 进行登录",e.getPlayer().getName(),true));
@@ -40,7 +40,7 @@ public class PlayerSender implements Listener {
                             }
                         }else{
                             if(Configvar.noRegisterPlayerSendActionBar){
-                                e.getPlayer().sendActionBar(Load.getMessage("noRegisterPlayerSendActionBar", "您当前§c未注册§f, 操作可能受限, 使用 /register <密码> 进行注册",e.getPlayer().getName(),false));
+                                e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR,new TextComponent(Load.getMessage("noRegisterPlayerSendActionBar", "您当前§c未注册§f, 操作可能受限, 使用 /register <密码> 进行注册",e.getPlayer().getName(),false)));
                             }
                             if(Configvar.noRegisterPlayerSendMessage){
                                 e.getPlayer().sendMessage(Load.getMessage("noRegisterPlayerSendMessage", "您当前§c未注册§f, 操作可能受限, 使用 /register <密码> 进行注册",e.getPlayer().getName(),true));

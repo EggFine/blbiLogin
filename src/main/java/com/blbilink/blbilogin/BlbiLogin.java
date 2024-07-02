@@ -42,7 +42,7 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         // 打印 Logo
         String logo = "\n\n\n\n\n"
                 + Configvar.logo
-                + "\n                        " + getPluginMeta().getVersion() + "  Loading...\n";
+                + "\n                        " + getDescription().getVersion() + "  Loading...\n";
         logo = logo + "\n主要开发人员(Main Author): ";
 
         for (String author : Configvar.mainAuthor) {
