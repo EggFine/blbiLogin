@@ -1,7 +1,7 @@
 #blbiLogin的配置文件
 
 # 警告: 配置文件版本号, 无特殊情况不要修改!!! [Warning: Do not edit this!!!]
-version: 1.8.5
+version: 1.8.6
 
 prefix: "§8[§fblbi§bLogin§8] §f"
 
