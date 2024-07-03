@@ -99,9 +99,15 @@ public final class FileUtil {
      * @param plugin plugin instance
      * @param resourceFile the language file you want to complete
      */
-    public static void completeLangFile(Plugin plugin, String resourceFile){
-        InputStream stream = plugin.getResource(resourceFile);
+    public static void completeLangFile(Plugin plugin, String resourceFile, Boolean syncChinese){
         File file = new File(plugin.getDataFolder() , resourceFile);
+        InputStream stream;
+        if (syncChinese){
+            stream = plugin.getResource("languages/zh_CN.yaml");
+        }else{
+            stream = plugin.getResource(resourceFile);
+        }
+
 
         if (!file.exists()) {
             if (stream != null) {
@@ -135,9 +141,12 @@ public final class FileUtil {
                 if (!configuration2.contains(key)) {
                     configuration2.set(key, value);
                 }
-                if (!configuration.getComments(key).equals(configuration2.getComments(key))) {
-                    configuration2.setComments(key, configuration.getComments(key));
+                if(!syncChinese){
+                    if (!configuration.getComments(key).equals(configuration2.getComments(key))) {
+                        configuration2.setComments(key, configuration.getComments(key));
+                    }
                 }
+
             }
             for (String key : configuration2.getKeys(true)) {
                 if (configuration2.contains(key) & !configuration.contains(key)) {

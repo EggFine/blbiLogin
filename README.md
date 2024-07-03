@@ -1,20 +1,21 @@
 # 波比登录 [blbiLogin]
 
-##### 波比登录 [blbiLogin] 是基于高版本 Minecraft Paper 核心制作的玩家登录解决方案
+##### 波比登录 [blbiLogin] 是基于高版本 Minecraft Spigot 核心制作的玩家登录解决方案
 
-| 项       | 值                            |
-| -------- | ----------------------------- |
-| 插件名   | 波比登录 [blbiLogin]          |
-| 最新版本 | Beta 1.4                      |
-| 最低要求 | Minecraft ≥ 1.21 && Java ≥ 21 |
+| 项       | 值                              |
+| -------- | ------------------------------- |
+| 插件名   | 波比登录 [blbiLogin]            |
+| 最新版本 | 1.8.8                           |
+| 最低要求 | Minecraft ≥ 1.20.6 && Java ≥ 21 |
 
 ### 基本命令
 
-| 命令              | 缩写        | 作用                   | 权限                       |
-| ----------------- | ----------- | ---------------------- | -------------------------- |
-| /register <密码>  | /reg <密码> | 玩家注册               |                            |
-| /login <密码>     | /l <密码>   | 玩家登录               |                            |
-| /blbilogin <参数> | none        | 插件主命令<br />reload | none<br />blbilogin.reload |
+| 命令                                                         | 缩写                     | 作用                   | 权限                       |
+| ------------------------------------------------------------ | ------------------------ | ---------------------- | -------------------------- |
+| /register <密码>                                             | /reg <密码>              | 玩家注册               |                            |
+| /login <密码>                                                | /l <密码>                | 玩家登录               |                            |
+| /blbilogin <参数>                                            | none                     | 插件主命令<br />reload | none<br />blbilogin.reload |
+| 玩家：/resetpassword <密码> <新密码><br />控制台：/resetpassword <玩家> <新密码> | /resetpw<br />/resetpass | 重置密码命令           | none                       |
 
 ### 配置文件
 
@@ -22,12 +23,13 @@
 #blbiLogin的配置文件
 
 # 警告: 配置文件版本号, 无特殊情况不要修改!!! [Warning: Do not edit this!!!]
-version: 1.3
+version: 1.8.6
 
 prefix: "§8[§fblbi§bLogin§8] §f"
 
 # 插件语言文件
-# Use Language. ! important ! We default to having zh_CN and en_US language files. For other languages, you can create your own yaml files in the /languages directory
+# Use Language. you can create your own yaml files in the /languages directory
+# 可用语言包 available language: zh_CN, en_US, ru_RU, ar_SA, ja_JP
 language: zh_CN
 
 # 使用 Sqlite 方式存储玩家数据 (!重要! 目前版本仅支持这一种存储方式, 请勿修改!)
@@ -62,11 +64,19 @@ noLoginPlayerSendTitle: true
 noLoginPlayerSendSubTitle: true
 noLoginPlayerSendActionBar: true
 
+# 玩家未注册时循环发送消息，具体消息请在语言文件内修改
+# Show Message or Title or SubTitle or ActionBar for No Register Players ( can all be true), please modify in your language file.
+# 其中发送消息和发送ActionBar带有音效
+# noRegisterPlayerSendMessage and noRegisterPlayerSendActionBar will play sound :p very good!!!
+noRegisterPlayerSendMessage: true
+noRegisterPlayerSendTitle: true
+noRegisterPlayerSendSubTitle: true
+noRegisterPlayerSendActionBar: true
+
 # 玩家登录成功时发送标题和副标题，具体消息请在语言文件内修改
 # Show Title and SubTitle for Login Success Players ( can all be true), please modify in your language file.
 successLoginSendTitle: true
 successLoginSendSubTitle: true
-
 
 ```
 

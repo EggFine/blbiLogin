@@ -116,8 +116,10 @@ public class Load {
         // 加载语言文件
         languageConfig = YamlConfiguration.loadConfiguration(languageFile);
         FileConfiguration languageConfigNew = YamlConfiguration.loadConfiguration(new InputStreamReader(Objects.requireNonNull(plugin.getResource("languages/"+languageFileName))));
-        plugin.getLogger().warning(languageConfigNew.getString("version"));
-        plugin.getLogger().warning(languageConfig.getString("version"));
+        FileConfiguration cnLanguage = YamlConfiguration.loadConfiguration(new InputStreamReader(Objects.requireNonNull(plugin.getResource("languages/zh_CN.yaml"))));
+        plugin.getLogger().warning("your language version"+languageConfigNew.getString("version"));
+        plugin.getLogger().warning("your language last version"+languageConfig.getString("version"));
+        plugin.getLogger().warning("Chinese(zh_CN.yaml) language last version"+cnLanguage.getString("version"));
         if (isVersionGreater(languageConfigNew.getString("version"),languageConfig.getString("version"))) {
             languageConfig.set("version", languageConfigNew.getString("version"));
             try {
@@ -126,10 +128,14 @@ public class Load {
                 throw new RuntimeException(e);
             }
             plugin.getLogger().warning("检测到新版本语言文件");
-            FileUtil.completeLangFile(plugin, "languages/"+languageFileName);
-
+            FileUtil.completeLangFile(plugin, "languages/"+languageFileName,false);
         }else{
-            plugin.getLogger().info("未检测到新版本配置文件");
+            plugin.getLogger().info("未检测到新版本语言文件");
+        }
+        if (isVersionGreater(cnLanguage.getString("version"),languageConfig.getString("version"))) {
+            plugin.getLogger().warning("It is detected that the Chinese(zh_CN.yaml) language file is newer than your language file, " +
+                    "so we are about to synchronize the new language configuration items of Chinese(zh_CN.yaml) to your language file");
+            FileUtil.completeLangFile(plugin, "languages/"+languageFileName,true);
         }
     }
 
