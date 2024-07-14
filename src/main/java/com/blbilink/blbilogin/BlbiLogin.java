@@ -2,10 +2,7 @@
 package com.blbilink.blbilogin;
 
 import com.blbilink.blbilogin.load.Load;
-import com.blbilink.blbilogin.modules.Configvar;
-import com.blbilink.blbilogin.modules.Metrics;
-import com.blbilink.blbilogin.modules.PlayerSender;
-import com.blbilink.blbilogin.modules.Sqlite;
+import com.blbilink.blbilogin.modules.*;
 import com.blbilink.blbilogin.modules.commands.BlbiLoginCommand;
 import com.blbilink.blbilogin.modules.commands.Login;
 import com.blbilink.blbilogin.modules.commands.Register;
@@ -32,7 +29,6 @@ import java.util.Objects;
 public final class BlbiLogin extends JavaPlugin implements Listener {
     private Sqlite sqlite;
     public static BlbiLogin plugin;
-
     @Override
     public void onEnable() {
         plugin = this;
@@ -61,7 +57,6 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new PlayerSender(), this);
         // 初始化插件
         Load.loadConfig(this);
-        // CheckOnline.initialize(this);
         // 初始化sqlite数据库
         sqlite = new Sqlite();
 
@@ -91,15 +86,6 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
             this.getLogger().info(msgPlayerLogin);
             Configvar.noLoginPlayerList.add(e.getPlayer().getName());
 
-
-
-//            Player player = e.getPlayer();
-//            if(CheckOnline.isPlayerPremium(player)){
-//                player.sendMessage("欢迎正版玩家！");
-//            }else{
-//                player.sendMessage("您正在使用离线账户游戏。");
-//                noLoginPlayerList.add(e.getPlayer().getName());
-//            }
 //            CheckOnline.checkPremiumStatus(player).thenAccept(isPremium -> {
 //                if (isPremium) {
 //                    // 玩家拥有正版账户，可以在这里执行相应的操作
@@ -199,7 +185,8 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
 
 
             // 发送粒子效果
-            playerLocation.getWorld().spawnParticle(Particle.FIREWORK, particleLocation, 1, 0, 0, 0, 0.1); // 使用Firework粒子效果
+            Particle particle = Particle.valueOf("FIREWORKS_SPARK");
+            playerLocation.getWorld().spawnParticle(particle, particleLocation, 1, 0, 0, 0, 0.1); // 使用Firework粒子效果
         }
 
     }

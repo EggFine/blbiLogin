@@ -139,8 +139,8 @@ public class Load {
         }
     }
 
-    public static String getMessage(String path, String defaultValue,@Nullable String player,boolean addPrefix) {
-        String str = languageConfig.getString(path, defaultValue).replace("&", "§");
+    public static String getMessage(String key, String defaultValue,@Nullable String player,boolean addPrefix) {
+        String str = languageConfig.getString(key, defaultValue).replace("&", "§");
         if (player != null) {
             str = str.replace("%player%", player);
         }
