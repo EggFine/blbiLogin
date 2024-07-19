@@ -1,6 +1,6 @@
 package com.blbilink.blbilogin.modules.events;
 
-import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.vars.Configvar;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;

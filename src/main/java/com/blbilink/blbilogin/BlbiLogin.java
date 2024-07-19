@@ -3,7 +3,7 @@ package com.blbilink.blbilogin;
 
 import com.blbilink.blbilogin.load.LoadConfig;
 import com.blbilink.blbilogin.load.LoadFunction;
-import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.vars.Configvar;
 import org.blbilink.blbiLibrary.BlbiLibrary;
 import org.blbilink.blbiLibrary.I18n;
 import org.blbilink.blbiLibrary.Metrics;

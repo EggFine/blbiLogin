@@ -1,7 +1,7 @@
 package com.blbilink.blbilogin.load;
 
 import com.blbilink.blbilogin.BlbiLogin;
-import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.vars.Configvar;
 import org.blbilink.blbiLibrary.I18n;
 import org.blbilink.blbiLibrary.utils.FileUtil;
 import org.blbilink.blbiLibrary.utils.YmlUtil;
@@ -55,6 +55,14 @@ public class LoadConfig {
         Configvar.successLoginSendTitle = Configvar.config.getBoolean("successLoginSendTitle", true);
         Configvar.successLoginSendSubTitle = Configvar.config.getBoolean("successLoginSendSubTitle", true);
 
+        Configvar.playerJoinAutoTeleportToSavedLocation = Configvar.config.getBoolean("playerJoinAutoTeleportToSavedLocation", false);
+        Configvar.playerJoinAutoTeleportToSavedLocation_AutoBack = Configvar.config.getBoolean("playerJoinAutoTeleportToSavedLocation_AutoBack", false);
+        Configvar.location_world = Configvar.config.getString("locationPos.world", "world");
+        Configvar.location_x = Configvar.config.getDouble("locationPos.x", 0.0);
+        Configvar.location_y = Configvar.config.getDouble("locationPos.y", 0.0);
+        Configvar.location_z = Configvar.config.getDouble("locationPos.z", 0.0);
+        Configvar.location_yaw = (float) Configvar.config.getDouble("locationPos.yaw", 0.0);
+        Configvar.location_pitch = (float) Configvar.config.getDouble("locationPos.pitch", 0.0);
         plugin.i18n = new I18n(plugin,Configvar.prefix, Configvar.language);
         plugin.i18n.loadLanguage();
     }

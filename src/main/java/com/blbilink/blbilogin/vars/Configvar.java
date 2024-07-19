@@ -1,4 +1,4 @@
-package com.blbilink.blbilogin.modules;
+package com.blbilink.blbilogin.vars;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -18,7 +18,8 @@ public class Configvar {
     public static boolean noLoginPlayerCantBreak;
     public static boolean noLoginPlayerCantHurt;
     public static boolean noLoginPlayerParticle;
-
+    public static boolean playerJoinAutoTeleportToSavedLocation;
+    public static boolean playerJoinAutoTeleportToSavedLocation_AutoBack;
     public static boolean noLoginPlayerSendMessage;
     public static boolean noLoginPlayerSendTitle;
     public static boolean noLoginPlayerSendSubTitle;
@@ -34,4 +35,11 @@ public class Configvar {
     public static boolean isFolia = false;
 
     public static List<String> noLoginPlayerList = new ArrayList<>();
+
+    public static String location_world;
+    public static double location_x;
+    public static double location_y;
+    public static double location_z;
+    public static float location_yaw;
+    public static float location_pitch;
 }

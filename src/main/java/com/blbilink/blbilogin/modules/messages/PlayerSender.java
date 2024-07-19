@@ -1,7 +1,7 @@
 package com.blbilink.blbilogin.modules.messages;
 
 import com.blbilink.blbilogin.BlbiLogin;
-import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.vars.Configvar;
 import com.blbilink.blbilogin.modules.Sqlite;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;

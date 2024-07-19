@@ -1,6 +1,6 @@
 package com.blbilink.blbilogin.modules.commands;
 
-import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.vars.Configvar;
 import com.blbilink.blbilogin.modules.Sqlite;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;

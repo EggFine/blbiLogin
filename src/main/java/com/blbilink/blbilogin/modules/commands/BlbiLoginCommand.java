@@ -1,7 +1,7 @@
 package com.blbilink.blbilogin.modules.commands;
 
 import com.blbilink.blbilogin.load.LoadConfig;
-import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.vars.Configvar;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -53,13 +53,20 @@ public class BlbiLoginCommand implements CommandExecutor, TabCompleter {
         if((sender instanceof Player player)){
             if (player.hasPermission("blbilogin.savelocation")) {
                 Location loc = player.getLocation();
+                Configvar.location_world = loc.getWorld().getName();
+                Configvar.location_x = loc.getX();
+                Configvar.location_y = loc.getY();
+                Configvar.location_z = loc.getZ();
+                Configvar.location_yaw = loc.getYaw();
+                Configvar.location_pitch = loc.getPitch();
+                player.sendMessage(plugin.i18n.as("msgSavedLocation",true,player.getName()));
                 Configvar.config.set("locationPos.world", loc.getWorld().getName());
                 Configvar.config.set("locationPos.x", loc.getX());
                 Configvar.config.set("locationPos.y", loc.getY());
                 Configvar.config.set("locationPos.z", loc.getZ());
                 Configvar.config.set("locationPos.yaw", loc.getYaw());
                 Configvar.config.set("locationPos.pitch", loc.getPitch());
-                player.sendMessage(plugin.i18n.as("msgSavedLocation",true,player.getName()));
+
                 try {
                     Configvar.config.save(Configvar.configFile);
                     player.sendMessage(plugin.i18n.as("msgSavedConfigFile",true,player.getName()));
