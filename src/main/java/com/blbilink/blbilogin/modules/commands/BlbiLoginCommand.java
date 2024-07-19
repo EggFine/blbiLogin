@@ -1,6 +1,6 @@
 package com.blbilink.blbilogin.modules.commands;
 
-import com.blbilink.blbilogin.load.Load;
+import com.blbilink.blbilogin.load.LoadConfig;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,7 +19,7 @@ public class BlbiLoginCommand implements CommandExecutor {
                 if((sender instanceof Player)){
                     Player player = (Player) sender;
                     if (player.hasPermission("blbilogin.reload")) {
-                        Load.loadConfig(plugin);
+                        LoadConfig.loadConfig(plugin);
                         player.sendMessage(plugin.i18n.as("msgReloaded",true,player.getName()));
                         return true;
                     } else {
@@ -27,7 +27,7 @@ public class BlbiLoginCommand implements CommandExecutor {
                         return true;
                     }
                 }else{
-                    Load.loadConfig(plugin);
+                    LoadConfig.loadConfig(plugin);
                     plugin.getLogger().info(plugin.i18n.as("msgReloaded",false));
                     return true;
                 }

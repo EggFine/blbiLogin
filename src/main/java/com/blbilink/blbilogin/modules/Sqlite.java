@@ -1,6 +1,8 @@
 package com.blbilink.blbilogin.modules;
 
 
+import com.blbilink.blbilogin.load.LoadFunction;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,6 +13,9 @@ public class Sqlite {
 
     private Connection connection;
 
+    public static Sqlite getSqlite() {
+        return LoadFunction.sqlite;
+    }
     public Sqlite() {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:plugins/blbiLogin/players.db");

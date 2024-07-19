@@ -1,6 +1,8 @@
-package com.blbilink.blbilogin.modules;
+package com.blbilink.blbilogin.modules.messages;
 
 import com.blbilink.blbilogin.BlbiLogin;
+import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.modules.Sqlite;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Sound;
@@ -46,7 +48,7 @@ public class PlayerSender implements Listener {
     }
 
     private static void sendPlayerMessages(Player player) {
-        if(plugin.getSqlite().playerExists(player.getUniqueId().toString())) {
+        if(Sqlite.getSqlite().playerExists(player.getUniqueId().toString())) {
             if(Configvar.noLoginPlayerSendActionBar) {
                 player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(plugin.i18n.as("noLoginPlayerSendActionBar",false, player.getName())));
             }

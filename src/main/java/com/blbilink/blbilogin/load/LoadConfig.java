@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-public class Load {
+public class LoadConfig {
     private static FileConfiguration config;
     private static File configFile;
     private static FileConfiguration languageConfig;

@@ -1,5 +1,6 @@
 package com.blbilink.blbilogin.modules.commands;
 
+import com.blbilink.blbilogin.modules.Sqlite;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,8 +18,8 @@ public class ResetPassword implements CommandExecutor {
                 if (args.length == 2) {
                     String password = args[0];
                     String newPassword = args[1];
-                    if (plugin.getSqlite().checkPassword(((Player) sender).getUniqueId().toString(), password)) {
-                        if (plugin.getSqlite().resetPassword(((Player) sender).getUniqueId().toString(), newPassword)) {
+                    if (Sqlite.getSqlite().checkPassword(((Player) sender).getUniqueId().toString(), password)) {
+                        if (Sqlite.getSqlite().resetPassword(((Player) sender).getUniqueId().toString(), newPassword)) {
                             ((Player) sender).kickPlayer(plugin.i18n.as("kickByPasswordRested",false ,sender.getName()));
                         } else {
                             sender.sendMessage("§4密码重置失败");
@@ -35,7 +36,7 @@ public class ResetPassword implements CommandExecutor {
                     String newPassword = args[1];
                     Player player = Bukkit.getPlayer(playerName);
                     if (player != null && player.isOnline()) {
-                        if (plugin.getSqlite().resetPassword(player.getUniqueId().toString(), newPassword)) {
+                        if (Sqlite.getSqlite().resetPassword(player.getUniqueId().toString(), newPassword)) {
                             player.kickPlayer(plugin.i18n.as("kickByPasswordRested",false,sender.getName()));
                             plugin.getLogger().info(playerName + "的密码已被重置为" + newPassword);
                         } else {

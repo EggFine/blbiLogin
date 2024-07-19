@@ -1,6 +1,7 @@
 package com.blbilink.blbilogin.modules.commands;
 
 import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.modules.Sqlite;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -29,12 +30,12 @@ public class Login implements CommandExecutor {
 
             String password = args[0];
 
-            if (!plugin.getSqlite().playerExists(uuid)) {
+            if (!Sqlite.getSqlite().playerExists(uuid)) {
                 player.sendMessage(plugin.i18n.as("msgPlayerNotRegister", true,player.getName()));
                 return true;
             }
 
-            if (plugin.getSqlite().checkPassword(uuid, password)) {
+            if (Sqlite.getSqlite().checkPassword(uuid, password)) {
                 String msgLoginSuccess = plugin.i18n.as("msgLoginSuccess",true,player.getName());
                 player.sendMessage(msgLoginSuccess);
                 if (Configvar.successLoginSendTitle || Configvar.successLoginSendSubTitle){

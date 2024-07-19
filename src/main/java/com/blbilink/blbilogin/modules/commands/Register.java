@@ -1,5 +1,6 @@
 package com.blbilink.blbilogin.modules.commands;
 
+import com.blbilink.blbilogin.modules.Sqlite;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,12 +23,12 @@ public class Register implements CommandExecutor {
             if (args.length == 1) {
                 String password = args[0];
 
-                if (plugin.getSqlite().playerExists(uuid)) {
+                if (Sqlite.getSqlite().playerExists(uuid)) {
                     player.sendMessage(plugin.i18n.as("msgAlreadyRegistered",true,player.getName()));
                     return true;
                 }
 
-                plugin.getSqlite().registerPlayer(uuid, player.getName(), password);
+                Sqlite.getSqlite().registerPlayer(uuid, player.getName(), password);
                 player.sendMessage(plugin.i18n.as("msgRegisterSuccess",true,player.getName()));
                 return true;
 
