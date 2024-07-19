@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Java CI with Gradle and Release
 
 on:
   push:
@@ -10,8 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-
+      contents: write  # This is required for creating releases
     steps:
       - uses: actions/checkout@v4
 
@@ -38,8 +37,27 @@ jobs:
           chmod +x ./gradlew
           ./gradlew build
 
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3
+      - name: Get Version
+        id: get_version
+        run: echo "VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: blbiLogin
-          path: build/libs/*
+          tag_name: v${{ steps.get_version.outputs.VERSION }}
+          release_name: Release v${{ steps.get_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/libs/blbiLogin-${{ steps.get_version.outputs.VERSION }}.jar
+          asset_name: blbiLogin-${{ steps.get_version.outputs.VERSION }}.jar
+          asset_content_type: application/java-archive
