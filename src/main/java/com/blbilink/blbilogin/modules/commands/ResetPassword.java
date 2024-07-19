@@ -1,6 +1,5 @@
 package com.blbilink.blbilogin.modules.commands;
 
-import com.blbilink.blbilogin.load.Load;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,15 +19,15 @@ public class ResetPassword implements CommandExecutor {
                     String newPassword = args[1];
                     if (plugin.getSqlite().checkPassword(((Player) sender).getUniqueId().toString(), password)) {
                         if (plugin.getSqlite().resetPassword(((Player) sender).getUniqueId().toString(), newPassword)) {
-                            ((Player) sender).kickPlayer(Load.getMessage("kickByPasswordRested", "§f你的密码已被重置, 请重新登录",sender.getName(),false));
+                            ((Player) sender).kickPlayer(plugin.i18n.as("kickByPasswordRested",false ,sender.getName()));
                         } else {
                             sender.sendMessage("§4密码重置失败");
                         }
                     } else {
-                        sender.sendMessage(Load.getMessage("msgLoginPasswordWrong", "输入的§c密码有误§f, 请检查后重试",sender.getName(),true));
+                        sender.sendMessage(plugin.i18n.as("msgLoginPasswordWrong",true,sender.getName()));
                     }
                 } else {
-                    sender.sendMessage(String.format(Load.getMessage("msgCommandWrong","§c输入的指令有错误§f, 正确的用法是 §6%s",sender.getName(),true),"/resetpassword <nowPassword> <newPassword>"));
+                    sender.sendMessage(String.format(plugin.i18n.as("msgCommandWrong",true,sender.getName()),"/resetpassword <nowPassword> <newPassword>"));
                 }
             } else {
                 if (args.length == 2) {
@@ -37,7 +36,7 @@ public class ResetPassword implements CommandExecutor {
                     Player player = Bukkit.getPlayer(playerName);
                     if (player != null && player.isOnline()) {
                         if (plugin.getSqlite().resetPassword(player.getUniqueId().toString(), newPassword)) {
-                            player.kickPlayer(Load.getMessage("kickByPasswordRested", "§f你的密码已被重置, 请重新登录",sender.getName(),false));
+                            player.kickPlayer(plugin.i18n.as("kickByPasswordRested",false,sender.getName()));
                             plugin.getLogger().info(playerName + "的密码已被重置为" + newPassword);
                         } else {
                             plugin.getLogger().severe("密码重置失败");
@@ -46,7 +45,7 @@ public class ResetPassword implements CommandExecutor {
                         plugin.getLogger().severe("玩家不在线");
                     }
                 } else {
-                    plugin.getLogger().severe(String.format(Load.getMessage("msgCommandWrong","§c输入的指令有错误§f, 正确的用法是 §6%s",null,false),"/resetpassword <playerName> <newPassword>"));
+                    plugin.getLogger().severe(String.format(plugin.i18n.as("msgCommandWrong",false,"/resetpassword <playerName> <newPassword>")));
                 }
             }
         }

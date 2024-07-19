@@ -3,12 +3,12 @@ Language: "简体中文 (Simplified Chinese)"
 loadedLanguage: "已加载语言文件: %s"
 
 logEnable: "波比登录系统已注入。"
-logPlayerJoin: "检测到玩家 %player% 进入服务器, 已封锁玩家移动."
-logNoLoginTryMove: "未登录玩家 %player% 尝试移动，已进行回弹."
+logPlayerJoin: "检测到玩家 %s 进入服务器, 已封锁玩家移动."
+logNoLoginTryMove: "未登录玩家 %s 尝试移动，已进行回弹."
 
 msgCommandWrong: "§c输入的指令有错误§f, 正确的用法是 §6%s"
-msgLoginSuccess: "登录成功, %player% 欢迎回来."
-msgRegisterSuccess: "注册成功, 欢迎新玩家 %player%."
+msgLoginSuccess: "登录成功, %s 欢迎回来."
+msgRegisterSuccess: "注册成功, 欢迎新玩家 %s."
 msgAlreadyRegister: "已经注册过啦, 无需重复注册."
 msgNoPermission: "§f你当前§c没有权限§f执行该操作."
 msgReloaded: "§f配置文件及语言文件的§a重载已经完成."
@@ -31,4 +31,4 @@ noRegisterPlayerSendActionBar: "您当前§c未注册§f, 操作可能受限, �
 
 # 修改下面的内容前请确保 config.yml 中的对应功能已开启
 successLoginSendTitle: "§a§l登录成功"
-successLoginSendSubTitle: "欢迎回来: §a%player%"
+successLoginSendSubTitle: "欢迎回来: §a%s"

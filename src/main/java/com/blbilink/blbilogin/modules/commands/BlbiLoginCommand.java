@@ -20,15 +20,15 @@ public class BlbiLoginCommand implements CommandExecutor {
                     Player player = (Player) sender;
                     if (player.hasPermission("blbilogin.reload")) {
                         Load.loadConfig(plugin);
-                        player.sendMessage(Load.getMessage("msgReloaded", "§f配置文件及语言文件的§a重载已经完成.",player.getName(),true));
+                        player.sendMessage(plugin.i18n.as("msgReloaded",true,player.getName()));
                         return true;
                     } else {
-                        player.sendMessage(Load.getMessage("msgNoPermission", "§f你当前§c没有权限§f执行该操作.",player.getName(),true));
+                        player.sendMessage(plugin.i18n.as("msgNoPermission",true,player.getName()));
                         return true;
                     }
                 }else{
                     Load.loadConfig(plugin);
-                    plugin.getLogger().info(Load.getMessage("msgReloaded", "§f配置文件及语言文件的§a重载已经完成.",null,false));
+                    plugin.getLogger().info(plugin.i18n.as("msgReloaded",false));
                     return true;
                 }
 

@@ -4,11 +4,11 @@ Language: "English (en_US)"
 loadedLanguage: "Loaded language file: %s"
 
 logEnable: "BlbiLogin system has been enabled."
-logPlayerJoin: "Detected player %player% joining the server, player movement has been blocked."
-logNoLoginTryMove: "Unlogged player %player% tried to move, has been bounced back."
+logPlayerJoin: "Detected player %s joining the server, player movement has been blocked."
+logNoLoginTryMove: "Unlogged player %s tried to move, has been bounced back."
 
-msgLoginSuccess: "Login successful, welcome back %player%."
-msgRegisterSuccess: "Register successful, welcome new player %player%."
+msgLoginSuccess: "Login successful, welcome back %s."
+msgRegisterSuccess: "Register successful, welcome new player %s."
 msgAlreadyRegistered: "You have already registered."
 msgNoPermission: "§fYou §cdon't have permission §fto use this command."
 msgReloaded: "§fConfiguration file and language file §areloading completed."
@@ -30,4 +30,4 @@ noRegisterPlayerSendActionBar: "You are currently §cnot registered§f, actions 
 
 # Please make sure that the function is enabled in config.yml to modify the following content
 successLoginSendTitle: "§aLogin Success"
-successLoginSendSubTitle: "Welcome back: §a%player%"
+successLoginSendSubTitle: "Welcome back: §a%s"

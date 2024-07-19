@@ -1,6 +1,5 @@
 package com.blbilink.blbilogin.modules.commands;
 
-import com.blbilink.blbilogin.load.Load;
 import com.blbilink.blbilogin.modules.Configvar;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -18,6 +17,7 @@ public class Login implements CommandExecutor {
             sender.sendMessage("只有玩家可以使用此命令！");
             return true;
         }
+
         Player player = (Player) sender;
         String uuid = player.getUniqueId().toString();
 
@@ -30,19 +30,19 @@ public class Login implements CommandExecutor {
             String password = args[0];
 
             if (!plugin.getSqlite().playerExists(uuid)) {
-                player.sendMessage(Load.getMessage("msgPlayerNotRegister", "你还没有注册, 请先使用 §6/register <password> §f进行注册.",player.getName(),true));
+                player.sendMessage(plugin.i18n.as("msgPlayerNotRegister", true,player.getName()));
                 return true;
             }
 
             if (plugin.getSqlite().checkPassword(uuid, password)) {
-                String msgLoginSuccess = Load.getMessage("msgLoginSuccess", "登录成功, %player% 欢迎回来.",player.getName(),true);
+                String msgLoginSuccess = plugin.i18n.as("msgLoginSuccess",true,player.getName());
                 player.sendMessage(msgLoginSuccess);
                 if (Configvar.successLoginSendTitle || Configvar.successLoginSendSubTitle){
                     if(Configvar.successLoginSendTitle){
-                        player.sendTitle(Load.getMessage("successLoginSendTitle", "§a§l登录成功",player.getName(),false), null, 20, 100, 20);
+                        player.sendTitle(plugin.i18n.as("successLoginSendTitle",false ,player.getName()), null, 20, 100, 20);
                     }
                     if(Configvar.successLoginSendSubTitle){
-                        player.sendTitle(null,Load.getMessage("successLoginSendSubTitle", "欢迎回来: §a%player%",player.getName(),false),20,100,20);
+                        player.sendTitle(null,plugin.i18n.as("successLoginSendSubTitle",false ,player.getName()),20,100,20);
                     }
                 }
                 player.getPlayer().playSound(player.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
@@ -53,7 +53,7 @@ public class Login implements CommandExecutor {
                 Configvar.noLoginPlayerList.remove(player.getName());
                 return true;
             } else {
-                player.sendMessage(Load.getMessage("msgLoginPasswordWrong", "输入的§c密码有误§f, 请检查后重试",player.getName(),true));
+                player.sendMessage(plugin.i18n.as("msgLoginPasswordWrong",true,player.getName()));
                 return true;
             }
         }

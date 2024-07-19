@@ -2,11 +2,17 @@
 package com.blbilink.blbilogin;
 
 import com.blbilink.blbilogin.load.Load;
-import com.blbilink.blbilogin.modules.*;
+import com.blbilink.blbilogin.modules.Configvar;
+import com.blbilink.blbilogin.modules.PlayerSender;
+import com.blbilink.blbilogin.modules.Sqlite;
 import com.blbilink.blbilogin.modules.commands.BlbiLoginCommand;
 import com.blbilink.blbilogin.modules.commands.Login;
 import com.blbilink.blbilogin.modules.commands.Register;
 import com.blbilink.blbilogin.modules.commands.ResetPassword;
+import org.blbilink.blbiLibrary.BlbiLibrary;
+import org.blbilink.blbiLibrary.I18n;
+import org.blbilink.blbiLibrary.Metrics;
+import org.blbilink.blbiLibrary.utils.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -23,34 +29,33 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public final class BlbiLogin extends JavaPlugin implements Listener {
     private Sqlite sqlite;
     public static BlbiLogin plugin;
+    public I18n i18n;
+
     @Override
     public void onEnable() {
         plugin = this;
+
+        // 检查是否是 Folia 服务端核心
+        Configvar.isFolia = BlbiLibrary.checkFolia(plugin, true);
+
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
-        // Plugin startup logic
         // 打印 Logo
-        String logo = "\n\n\n\n\n"
-                + Configvar.logo
-                + "\n                        " + getDescription().getVersion() + "  Loading...\n";
-        logo = logo + "\n主要开发人员(Main Author): ";
+        getLogger().info(TextUtil.getLogo(
+                "Loading...",
+                "BLBILOGIN",
+                "SpigotMC: https://www.spigotmc.org/resources/117672/",
+                plugin,
+                Arrays.asList("EggFine"),
+                Arrays.asList("Mgazul")));
 
-        for (String author : Configvar.mainAuthor) {
-            logo = logo + author + " ";
-        }
-        logo = logo + "\n\n次要开发人员(Sub Author): \n";
-        for (String author : Configvar.subAuthor) {
-            logo = logo + author + " ";
-        }
-        logo = logo + "\n\n\n\n\n";
-
-        getLogger().info(logo);
         getLogger().info("波比登录系统开始注入。");
         // 注册Bukkit事件监听器
         Bukkit.getPluginManager().registerEvents(this, this);
@@ -65,67 +70,73 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         Objects.requireNonNull(getCommand("login")).setExecutor(new Login());
         Objects.requireNonNull(getCommand("resetpassword")).setExecutor(new ResetPassword());
 
-        int pluginId = 22490; // <-- Replace with the id of your plugin!
-        Metrics metrics = new Metrics(this, pluginId);
-
-        // Optional: Add custom charts
+        Metrics metrics = new Metrics(this, 22490);
         metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
     }
+
     public Sqlite getSqlite() {
         return sqlite;
     }
+
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // 打印 Logo
+        getLogger().info(TextUtil.getLogo(
+                "Disabling...",
+                "BLBILOGIN",
+                "SpigotMC: https://www.spigotmc.org/resources/117672/",
+                plugin,
+                Arrays.asList("EggFine"),
+                Arrays.asList("Mgazul")));
     }
 
     @EventHandler(priority = EventPriority.LOW)
     public void onPlayerJoin(PlayerJoinEvent e) {
         if (!Configvar.noLoginPlayerList.contains(e.getPlayer().getName())) {
-            String msgPlayerLogin = Load.getMessage("logPlayerJoin", "检测到玩家 %player% 进入服务器, 已封锁玩家移动.",e.getPlayer().getName(),false);
-            this.getLogger().info(msgPlayerLogin);
+            getLogger().info(i18n.as("logPlayerJoin", false, e.getPlayer().getName()));
             Configvar.noLoginPlayerList.add(e.getPlayer().getName());
 
-//            CheckOnline.checkPremiumStatus(player).thenAccept(isPremium -> {
-//                if (isPremium) {
-//                    // 玩家拥有正版账户，可以在这里执行相应的操作
-//                    player.sendMessage("欢迎正版玩家！");
-//                } else {
-//                    // 玩家没有正版账户
-//                    player.sendMessage("您正在使用离线账户游戏。");
-//                    noLoginPlayerList.add(e.getPlayer().getName());
-//                }
-//            });
-
-        }
-
-        if(Configvar.noLoginPlayerParticle){
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    if (Configvar.noLoginPlayerList.contains(e.getPlayer().getName())) {
-                        createFallingParticlesAroundPlayer(e.getPlayer());
-                    } else {
-                        this.cancel();
-                    }
+            if (Configvar.noLoginPlayerParticle) {
+                Player player = e.getPlayer();
+                if (Configvar.isFolia) {
+                    // Folia 环境
+                    player.getScheduler().runAtFixedRate(plugin, task -> {
+                        if (Configvar.noLoginPlayerList.contains(player.getName())) {
+                            createFallingParticlesAroundPlayer(player);
+                        } else {
+                            task.cancel();
+                        }
+                    }, null, 1L, 20L);
+                } else {
+                    // 非 Folia 环境
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            if (Configvar.noLoginPlayerList.contains(player.getName())) {
+                                createFallingParticlesAroundPlayer(player);
+                            } else {
+                                this.cancel();
+                            }
+                        }
+                    }.runTaskTimer(plugin, 0L, 20L);
                 }
-            }.runTaskTimer(this, 0L, 20L);
+            }
+            e.getPlayer().setAllowFlight(true);
+            e.getPlayer().setFlying(true);
         }
-        e.getPlayer().setAllowFlight(true);
-        e.getPlayer().setFlying(true);
     }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
         if (Configvar.noLoginPlayerList.contains(e.getPlayer().getName()) && Configvar.noLoginPlayerCantMove) {
-            String msgNoLoginTryMove = Load.getMessage("logNoLoginTryMove", "未登录玩家 %player% 尝试移动，已进行回弹.",e.getPlayer().getName(),false);
+            String msgNoLoginTryMove = i18n.as("logNoLoginTryMove", false, e.getPlayer().getName());
             this.getLogger().info(msgNoLoginTryMove);
             e.setCancelled(true);
         }
     }
 
     @EventHandler
-    public void onPlayerBreak(BlockBreakEvent e){
+    public void onPlayerBreak(BlockBreakEvent e) {
         if (Configvar.noLoginPlayerList.contains(e.getPlayer().getName()) && Configvar.noLoginPlayerCantBreak) {
             getLogger().info("未登录玩家 " + e.getPlayer().getName() + " 尝试挖掘方块" + e.getBlock().getType().name() + "已进行阻止.");
             e.setCancelled(true);
@@ -145,7 +156,6 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
             }
         }
     }
-
 
 
     @EventHandler
@@ -190,17 +200,4 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         }
 
     }
-
-
-
-
-//    @EventHandler
-//    public void onPlayerInteract(PlayerInteractEvent e) {
-//        if (noLoginPlayerList.contains(e.getPlayer().getName()) && e.getAction() == Action.LEFT_CLICK_AIR) {
-//            this.getLogger().info("玩家 " + e.getPlayer().getName() + "成功登录, 已解除封锁.");
-//            noLoginPlayerList.remove(e.getPlayer().getName());
-//        }
-//    }
-
-
 }

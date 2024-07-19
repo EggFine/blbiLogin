@@ -4,11 +4,11 @@ Language: "اللغة العربية (Arabic)"
 loadedLanguage: "تم تحميل ملف اللغة: %s"
 
 logEnable: "تم حقن نظام تسجيل الدخول blbi."
-logPlayerJoin: "تم اكتشاف اللاعب %player% ينضم إلى الخادم، تم حظر حركة اللاعب."
-logNoLoginTryMove: "حاول اللاعب %player% غير المسجل الدخول التحرك، تم إرجاعه."
+logPlayerJoin: "تم اكتشاف اللاعب %s ينضم إلى الخادم، تم حظر حركة اللاعب."
+logNoLoginTryMove: "حاول اللاعب %s غير المسجل الدخول التحرك، تم إرجاعه."
 
-msgLoginSuccess: "تم تسجيل الدخول بنجاح، مرحبًا بعودتك %player%."
-msgRegisterSuccess: "تم التسجيل بنجاح، مرحبًا باللاعب الجديد %player%."
+msgLoginSuccess: "تم تسجيل الدخول بنجاح، مرحبًا بعودتك %s."
+msgRegisterSuccess: "تم التسجيل بنجاح، مرحبًا باللاعب الجديد %s."
 msgAlreadyRegister: "لقد تم تسجيلك بالفعل، لا حاجة للتسجيل مرة أخرى."
 msgNoPermission: "§fأنت حاليًا §cليس لديك إذن§f لتنفيذ هذا الإجراء."
 msgReloaded: "§fتم إعادة تحميل ملفات التكوين وملفات اللغة §aبنجاح."
@@ -23,4 +23,4 @@ noLoginPlayerSendActionBar: "أنت حاليًا §cغير مسجل الدخول
 
 # تأكد من تمكين الوظيفة المقابلة في config.yml قبل تعديل المحتوى أدناه
 successLoginSendTitle: "§a§lتم تسجيل الدخول بنجاح"
-successLoginSendSubTitle: "مرحبًا بعودتك: §a%player%"
+successLoginSendSubTitle: "مرحبًا بعودتك: §a%s"

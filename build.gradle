@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.blbilink'
-version = '1.8.11'
+version = '1.9.0'
 
 repositories {
     mavenCentral()
@@ -15,11 +15,16 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven {
+        name = "sonatype-oss-snapshots1"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
 }
 
 dependencies {
     compileOnly "org.jetbrains:annotations:24.0.1"
     compileOnly "org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT"
+    compileOnly "dev.folia:folia-api:1.20.1-R0.1-SNAPSHOT"
     implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
     implementation fileTree(dir: 'libs', include: '*.jar')
 }

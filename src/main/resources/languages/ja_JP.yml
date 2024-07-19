@@ -4,11 +4,11 @@ Language: "日本語 (Japanese)"
 loadedLanguage: "言語ファイルが読み込まれました: %s"
 
 logEnable: "波比ログインシステムが注入されました。"
-logPlayerJoin: "プレイヤー %player% がサーバーに参加しました、プレイヤーの移動をブロックしました。"
-logNoLoginTryMove: "ログインしていないプレイヤー %player% が移動を試みました、反動させました。"
+logPlayerJoin: "プレイヤー %s がサーバーに参加しました、プレイヤーの移動をブロックしました。"
+logNoLoginTryMove: "ログインしていないプレイヤー %s が移動を試みました、反動させました。"
 
-msgLoginSuccess: "ログイン成功、%player% ようこそ。"
-msgRegisterSuccess: "登録成功、新しいプレイヤー %player% ようこそ。"
+msgLoginSuccess: "ログイン成功、%s ようこそ。"
+msgRegisterSuccess: "登録成功、新しいプレイヤー %s ようこそ。"
 msgAlreadyRegister: "既に登録済みです、再登録は不要です。"
 msgNoPermission: "§f現在、§c権限がありません§fこの操作を実行することはできません。"
 msgReloaded: "§f設定ファイルと言語ファイルの§aリロードが完了しました。"
@@ -23,4 +23,4 @@ noLoginPlayerSendActionBar: "現在§cログインしていません§f、操作
 
 # 下の内容を変更する前に、config.yml の対応する機能が有効になっていることを確認してください
 successLoginSendTitle: "§a§lログイン成功"
-successLoginSendSubTitle: "お帰りなさい: §a%player%"
+successLoginSendSubTitle: "お帰りなさい: §a%s"

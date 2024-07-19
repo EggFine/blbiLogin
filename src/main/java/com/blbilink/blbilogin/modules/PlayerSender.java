@@ -1,10 +1,10 @@
 package com.blbilink.blbilogin.modules;
 
 import com.blbilink.blbilogin.BlbiLogin;
-import com.blbilink.blbilogin.load.Load;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -17,50 +17,67 @@ public class PlayerSender implements Listener {
     public static void noLoginPlayerSendTitle(PlayerJoinEvent e) {
         if(Configvar.noLoginPlayerSendActionBar || Configvar.noLoginPlayerSendTitle || Configvar.noLoginPlayerSendSubTitle || Configvar.noLoginPlayerSendMessage ||
                 Configvar.noRegisterPlayerSendTitle || Configvar.noRegisterPlayerSendSubTitle || Configvar.noRegisterPlayerSendMessage || Configvar.noRegisterPlayerSendActionBar){
-            new BukkitRunnable() {
-                @Override
-                public void run() {
 
-                    if (Configvar.noLoginPlayerList.contains(e.getPlayer().getName())) {
-                        if(plugin.getSqlite().playerExists(e.getPlayer().getUniqueId().toString())){
-                            if(Configvar.noLoginPlayerSendActionBar){
-                                e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR,new TextComponent(Load.getMessage("noLoginPlayerSendActionBar", "您当前§c未登录§f, 操作可能受限, 使用 /login <密码> 进行登录",e.getPlayer().getName(),false)));
-                            }
-                            if(Configvar.noLoginPlayerSendMessage){
-                                e.getPlayer().sendMessage(Load.getMessage("noLoginPlayerSendMessage", "您当前§c未登录§f, 操作可能受限, 使用 /login <密码> 进行登录",e.getPlayer().getName(),true));
-                            }
-                            if(Configvar.noLoginPlayerSendTitle){
-                                e.getPlayer().sendTitle(Load.getMessage("noLoginPlayerSendTitle", "§l欢迎使用§fblbi§bLogin",e.getPlayer().getName(),false), null, 0, 100, 0);
-                            }
-                            if(Configvar.noLoginPlayerSendSubTitle){
-                                e.getPlayer().sendTitle(null,Load.getMessage("noLoginPlayerSendSubTitle", "请使用 §6/login <密码>§f 登录游戏",e.getPlayer().getName(),false),0,100,0);
-                            }
-                            if(Configvar.noLoginPlayerSendMessage || Configvar.noLoginPlayerSendActionBar){
-                                e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
-                            }
-                        }else{
-                            if(Configvar.noRegisterPlayerSendActionBar){
-                                e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR,new TextComponent(Load.getMessage("noRegisterPlayerSendActionBar", "您当前§c未注册§f, 操作可能受限, 使用 /register <密码> 进行注册",e.getPlayer().getName(),false)));
-                            }
-                            if(Configvar.noRegisterPlayerSendMessage){
-                                e.getPlayer().sendMessage(Load.getMessage("noRegisterPlayerSendMessage", "您当前§c未注册§f, 操作可能受限, 使用 /register <密码> 进行注册",e.getPlayer().getName(),true));
-                            }
-                            if(Configvar.noRegisterPlayerSendTitle){
-                                e.getPlayer().sendTitle(Load.getMessage("noRegisterPlayerSendTitle", "§l欢迎使用§fblbi§bLogin",e.getPlayer().getName(),false), null, 0, 100, 0);
-                            }
-                            if(Configvar.noRegisterPlayerSendSubTitle){
-                                e.getPlayer().sendTitle(null,Load.getMessage("noRegisterPlayerSendSubTitle", "请使用 §6/register <密码>§f 注册游戏",e.getPlayer().getName(),false),0,100,0);
-                            }
-                            if(Configvar.noRegisterPlayerSendMessage || Configvar.noRegisterPlayerSendActionBar){
-                                e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
-                            }
-                        }
+            Player player = e.getPlayer();
 
+            if (Configvar.isFolia) {
+                // Folia 环境下的调度
+                player.getScheduler().runAtFixedRate(plugin, (task) -> {
+                    if (Configvar.noLoginPlayerList.contains(player.getName())) {
+                        sendPlayerMessages(player);
                     } else {
-                        this.cancel();
+                        task.cancel();
                     }
-                }
-            }.runTaskTimer(BlbiLogin.plugin, 0L, 60L);
+                }, null, 1L, 60L);
+            } else {
+                // 非 Folia 环境下的调度
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        if (Configvar.noLoginPlayerList.contains(player.getName())) {
+                            sendPlayerMessages(player);
+                        } else {
+                            this.cancel();
+                        }
+                    }
+                }.runTaskTimer(BlbiLogin.plugin, 0L, 60L);
+            }
+        }
+    }
+
+    private static void sendPlayerMessages(Player player) {
+        if(plugin.getSqlite().playerExists(player.getUniqueId().toString())) {
+            if(Configvar.noLoginPlayerSendActionBar) {
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(plugin.i18n.as("noLoginPlayerSendActionBar",false, player.getName())));
+            }
+            if(Configvar.noLoginPlayerSendMessage) {
+                player.sendMessage(plugin.i18n.as("noLoginPlayerSendMessage", true, player.getName()));
+            }
+            if(Configvar.noLoginPlayerSendTitle) {
+                player.sendTitle(plugin.i18n.as("noLoginPlayerSendTitle", false, player.getName()), null, 0, 100, 0);
+            }
+            if(Configvar.noLoginPlayerSendSubTitle) {
+                player.sendTitle(null, plugin.i18n.as("noLoginPlayerSendSubTitle", false, player.getName()), 0, 100, 0);
+            }
+            if(Configvar.noLoginPlayerSendMessage || Configvar.noLoginPlayerSendActionBar) {
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
+            }
+        } else {
+            if(Configvar.noRegisterPlayerSendActionBar) {
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(plugin.i18n.as("noRegisterPlayerSendActionBar",false, player.getName())));
+            }
+            if(Configvar.noRegisterPlayerSendMessage) {
+                player.sendMessage(plugin.i18n.as("noRegisterPlayerSendMessage", true, player.getName()));
+            }
+            if(Configvar.noRegisterPlayerSendTitle) {
+                player.sendTitle(plugin.i18n.as("noRegisterPlayerSendTitle", false, player.getName()), null, 0, 100, 0);
+            }
+            if(Configvar.noRegisterPlayerSendSubTitle) {
+                player.sendTitle(null, plugin.i18n.as("noRegisterPlayerSendSubTitle", false,player.getName()), 0, 100, 0);
+            }
+            if(Configvar.noRegisterPlayerSendMessage || Configvar.noRegisterPlayerSendActionBar) {
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
+            }
         }
     }
 }

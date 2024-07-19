@@ -4,15 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Configvar {
-    public static String logo =  """
-        
-             __        __          __   __        \s
-            |__) |    |__) | |    /  \\ / _` | |\\ |\s
-            |__) |___ |__) | |___ \\__/ \\__> | | \\|\s
-                                                  \s
-        """;
-    public static List<String> mainAuthor = List.of("EggFine(blbilink)");
-    public static List<String> subAuthor = List.of("Mgazul(MohistMC)");
     public static String language;
     public static String prefix;
 
@@ -34,6 +25,8 @@ public class Configvar {
 
     public static boolean successLoginSendTitle;
     public static boolean successLoginSendSubTitle;
+
+    public static boolean isFolia = false;
 
     public static List<String> noLoginPlayerList = new ArrayList<>();
 }
