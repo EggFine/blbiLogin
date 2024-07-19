@@ -13,7 +13,7 @@ public class Sqlite {
 
     public Sqlite() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:plugins/BlbiLogin/players.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:plugins/blbiLogin/players.db");
             try (PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS players (uuid TEXT PRIMARY KEY, username TEXT, password TEXT)")) {
                 statement.executeUpdate();
             }

@@ -2,6 +2,7 @@ name: blbiLogin
 version: '${version}'
 main: com.blbilink.blbilogin.BlbiLogin
 api-version: '1.20'
+folia-supported: true
 
 commands:
   login:
