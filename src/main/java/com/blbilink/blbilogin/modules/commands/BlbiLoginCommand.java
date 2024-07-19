@@ -28,7 +28,7 @@ public class BlbiLoginCommand implements CommandExecutor, TabCompleter {
                 reload(sender);
                 return true;
             }
-            if (args.length == 1 && args[0].equalsIgnoreCase("setspawn")) {
+            if (args.length == 1 && args[0].equalsIgnoreCase("savelocation")) {
                 saveLocation(sender);
                 return true;
             }
