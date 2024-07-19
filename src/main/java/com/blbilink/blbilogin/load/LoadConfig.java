@@ -14,19 +14,16 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class LoadConfig {
-    private static FileConfiguration config;
-    private static File configFile;
-    private static FileConfiguration languageConfig;
     public static void loadConfig(BlbiLogin plugin) {
         // 加载配置
         plugin.getLogger().info("开始加载配置文件");
-        configFile = new File(plugin.getDataFolder(), "config.yml");
-        config = YamlConfiguration.loadConfiguration(configFile);
+        Configvar.configFile = new File(plugin.getDataFolder(), "config.yml");
+        Configvar.config = YamlConfiguration.loadConfiguration(Configvar.configFile);
         FileConfiguration configNew = YamlConfiguration.loadConfiguration(new InputStreamReader(Objects.requireNonNull(plugin.getResource("config.yml"))));
-        if (YmlUtil.checkVersion(configNew.getString("version"), config.getString("version"))) {
-            config.set("version", configNew.getString("version"));
+        if (YmlUtil.checkVersion(configNew.getString("version"), Configvar.config.getString("version"))) {
+            Configvar.config.set("version", configNew.getString("version"));
             try {
-                config.save(configFile);
+                Configvar.config.save(Configvar.configFile);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -36,27 +33,27 @@ public class LoadConfig {
         } else {
             plugin.getLogger().info("未检测到新版本配置文件");
         }
-        Configvar.language = config.getString("language", "zh_CN");
-        Configvar.prefix = config.getString("prefix", "§8[§fblbi§bLogin§8] ");
+        Configvar.language = Configvar.config.getString("language", "zh_CN");
+        Configvar.prefix = Configvar.config.getString("prefix", "§8[§fblbi§bLogin§8] ");
 
-        Configvar.noLoginPlayerCantMove = config.getBoolean("noLoginPlayerCantMove", true);
-        Configvar.noLoginPlayerCantUseCommand = config.getBoolean("noLoginPlayerCantUseCommand", true);
-        Configvar.noLoginPlayerAllowUseCommand = config.getStringList("noLoginPlayerAllowUseCommand");
-        Configvar.noLoginPlayerCantBreak = config.getBoolean("noLoginPlayerCantBreak", true);
-        Configvar.noLoginPlayerCantHurt = config.getBoolean("noLoginPlayerCantHurt", true);
-        Configvar.noLoginPlayerParticle = config.getBoolean("noLoginPlayerParticle", true);
+        Configvar.noLoginPlayerCantMove = Configvar.config.getBoolean("noLoginPlayerCantMove", true);
+        Configvar.noLoginPlayerCantUseCommand = Configvar.config.getBoolean("noLoginPlayerCantUseCommand", true);
+        Configvar.noLoginPlayerAllowUseCommand = Configvar.config.getStringList("noLoginPlayerAllowUseCommand");
+        Configvar.noLoginPlayerCantBreak = Configvar.config.getBoolean("noLoginPlayerCantBreak", true);
+        Configvar.noLoginPlayerCantHurt = Configvar.config.getBoolean("noLoginPlayerCantHurt", true);
+        Configvar.noLoginPlayerParticle = Configvar.config.getBoolean("noLoginPlayerParticle", true);
 
-        Configvar.noLoginPlayerSendMessage = config.getBoolean("noLoginPlayerSendMessage", true);
-        Configvar.noLoginPlayerSendTitle = config.getBoolean("noLoginPlayerSendTitle", true);
-        Configvar.noLoginPlayerSendSubTitle = config.getBoolean("noLoginPlayerSendSubTitle", true);
-        Configvar.noLoginPlayerSendActionBar = config.getBoolean("noLoginPlayerSendActionBar", true);
-        Configvar.noRegisterPlayerSendMessage = config.getBoolean("noRegisterPlayerSendMessage", true);
-        Configvar.noRegisterPlayerSendTitle = config.getBoolean("noRegisterPlayerSendTitle", true);
-        Configvar.noRegisterPlayerSendSubTitle = config.getBoolean("noRegisterPlayerSendSubTitle", true);
-        Configvar.noRegisterPlayerSendActionBar = config.getBoolean("noRegisterPlayerSendActionBar", true);
+        Configvar.noLoginPlayerSendMessage = Configvar.config.getBoolean("noLoginPlayerSendMessage", true);
+        Configvar.noLoginPlayerSendTitle = Configvar.config.getBoolean("noLoginPlayerSendTitle", true);
+        Configvar.noLoginPlayerSendSubTitle = Configvar.config.getBoolean("noLoginPlayerSendSubTitle", true);
+        Configvar.noLoginPlayerSendActionBar = Configvar.config.getBoolean("noLoginPlayerSendActionBar", true);
+        Configvar.noRegisterPlayerSendMessage = Configvar.config.getBoolean("noRegisterPlayerSendMessage", true);
+        Configvar.noRegisterPlayerSendTitle = Configvar.config.getBoolean("noRegisterPlayerSendTitle", true);
+        Configvar.noRegisterPlayerSendSubTitle = Configvar.config.getBoolean("noRegisterPlayerSendSubTitle", true);
+        Configvar.noRegisterPlayerSendActionBar = Configvar.config.getBoolean("noRegisterPlayerSendActionBar", true);
 
-        Configvar.successLoginSendTitle = config.getBoolean("successLoginSendTitle", true);
-        Configvar.successLoginSendSubTitle = config.getBoolean("successLoginSendSubTitle", true);
+        Configvar.successLoginSendTitle = Configvar.config.getBoolean("successLoginSendTitle", true);
+        Configvar.successLoginSendSubTitle = Configvar.config.getBoolean("successLoginSendSubTitle", true);
 
         plugin.i18n = new I18n(plugin,Configvar.prefix, Configvar.language);
         plugin.i18n.loadLanguage();

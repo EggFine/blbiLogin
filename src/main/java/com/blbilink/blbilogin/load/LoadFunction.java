@@ -27,7 +27,11 @@ public class LoadFunction {
     }
 
     private void loadCommands(){
-        Objects.requireNonNull(plugin.getCommand("blbilogin")).setExecutor(new BlbiLoginCommand());
+        BlbiLoginCommand blbiLoginCommand = new BlbiLoginCommand();
+        Objects.requireNonNull(plugin.getCommand("blbilogin")).setExecutor(blbiLoginCommand);
+        Objects.requireNonNull(plugin.getCommand("blbilogin")).setTabCompleter(blbiLoginCommand);
+
+
         Objects.requireNonNull(plugin.getCommand("register")).setExecutor(new Register());
         Objects.requireNonNull(plugin.getCommand("login")).setExecutor(new Login());
         Objects.requireNonNull(plugin.getCommand("resetpassword")).setExecutor(new ResetPassword());

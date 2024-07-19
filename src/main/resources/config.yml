@@ -3,9 +3,20 @@
 
 # 🚨 这是版本号，别碰它哦，它怕痒~
 # 🚨 Version number. Don't touch, it's ticklish!
-version: 1.8.6
+version: 1.8.7
 
 prefix: "§8[§fblbi§bLogin§8] §f"
+
+# 玩家进入游戏自动传送到出生点，用/blbilogin savelocation设置出生点
+playerJoinAutoTeleportToSavedLocation: false
+locationPos:
+  world: ""  # 世界名称
+  x: 0.0     # X 坐标
+  y: 0.0     # Y 坐标
+  z: 0.0     # Z 坐标
+  yaw: 0.0   # 水平角度
+  pitch: 0.0 # 垂直角度
+playerJoinAutoTeleportToSavedLocation_AutoBack: false
 
 # 🗣️ 选择你想要的语言，就像选择你最爱的冰淇淋味道~
 # 🗣️ Pick your language, like choosing your favorite ice cream flavor!

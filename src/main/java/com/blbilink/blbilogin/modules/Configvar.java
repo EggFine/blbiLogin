@@ -1,10 +1,15 @@
 package com.blbilink.blbilogin.modules;
 
+import org.bukkit.configuration.file.FileConfiguration;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Configvar {
     public static String language;
+    public static File configFile;
+    public static FileConfiguration config;
     public static String prefix;
 
     public static boolean noLoginPlayerCantMove;
