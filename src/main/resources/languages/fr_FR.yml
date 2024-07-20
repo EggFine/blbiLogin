@@ -1,0 +1,38 @@
+version: 2.0.0
+Language: "Français (French)"
+loadedLanguage: "Fichier de langue chargé : %s"
+
+logEnable: "Le système blbiLogin a été injecté."
+logPlayerJoin: "Joueur %s détecté entrant sur le serveur, le mouvement du joueur a été bloqué."
+logNoLoginTryMove: "Le joueur non connecté %s a tenté de se déplacer, il a été renvoyé à sa position initiale."
+
+msgCommandWrong: "§cLa commande saisie est incorrecte§f, l'utilisation correcte est §6%s"
+msgLoginSuccess: "Connexion réussie, %s bienvenue."
+msgRegisterSuccess: "Inscription réussie, bienvenue au nouveau joueur %s."
+msgAlreadyRegister: "Vous êtes déjà inscrit, pas besoin de vous réinscrire."
+msgNoPermission: "§fVous n'avez actuellement §cpas la permission§f d'effectuer cette action."
+msgReloaded: "§fLe fichier de configuration et le fichier de langue ont été §arechargés."
+msgLoginPasswordWrong: "§cMot de passe incorrect§f, veuillez vérifier et réessayer"
+msgPlayerNotRegister: "Vous n'êtes pas encore inscrit, veuillez utiliser §6/register <mot de passe> §fpour vous inscrire d'abord."
+msgCommandOnlyPlayer: "Cette commande ne peut être utilisée que par les joueurs"
+msgSavedLocation: "Coordonnées sauvegardées avec succès !"
+msgSavedConfigFile: "Fichier de configuration sauvegardé avec succès !"
+msgFailSaveConfigFile: "Échec de la sauvegarde du fichier de configuration... Veuillez vérifier les permissions du fichier"
+
+kickByPasswordRested: "§fVotre mot de passe a été réinitialisé, veuillez vous reconnecter"
+
+# Assurez-vous que la fonction correspondante est activée dans config.yml avant de modifier le contenu ci-dessous
+noLoginPlayerSendMessage: "Vous n'êtes actuellement §cpas connecté§f, les opérations peuvent être limitées, utilisez /login <mot de passe> pour vous connecter"
+noLoginPlayerSendTitle: "§lBienvenue sur §fblbi§bLogin"
+noLoginPlayerSendSubTitle: "Veuillez utiliser §6/login <mot de passe>§f pour vous connecter au jeu"
+noLoginPlayerSendActionBar: "Vous n'êtes actuellement §cpas connecté§f, les opérations peuvent être limitées, utilisez /login <mot de passe> pour vous connecter"
+
+# Assurez-vous que la fonction correspondante est activée dans config.yml avant de modifier le contenu ci-dessous
+noRegisterPlayerSendMessage: "Vous n'êtes actuellement §cpas inscrit§f, les actions peuvent être limitées, utilisez /register <mot de passe> pour vous inscrire"
+noRegisterPlayerSendTitle: "§lBienvenue sur §fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "Veuillez utiliser §6/register <mot de passe>§f pour vous inscrire au jeu"
+noRegisterPlayerSendActionBar: "Vous n'êtes actuellement §cpas inscrit§f, les actions peuvent être limitées, utilisez /register <mot de passe> pour vous inscrire"
+
+# Assurez-vous que la fonction correspondante est activée dans config.yml avant de modifier le contenu ci-dessous
+successLoginSendTitle: "§a§lConnexion réussie"
+successLoginSendSubTitle: "Bon retour : §a%s"

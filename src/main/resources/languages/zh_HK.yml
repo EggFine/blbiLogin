@@ -1,0 +1,38 @@
+version: 2.0.0
+Language: "香港繁體 (Hong Kong Chinese)"
+loadedLanguage: "已載入語言文件: %s"
+
+logEnable: "波比登入(blbiLogin)系統已注入。"
+logPlayerJoin: "檢測到玩家 %s 進入伺服器, 已封鎖玩家移動."
+logNoLoginTryMove: "未登入玩家 %s 嘗試移動，已進行回彈."
+
+msgCommandWrong: "§c輸入的指令有錯誤§f, 正確的用法是 §6%s"
+msgLoginSuccess: "登入成功, %s 歡迎回來."
+msgRegisterSuccess: "註冊成功, 歡迎新玩家 %s."
+msgAlreadyRegister: "已經註冊過啦, 無需重複註冊."
+msgNoPermission: "§f你當前§c沒有權限§f執行該操作."
+msgReloaded: "§f配置文件及語言文件的§a重載已經完成."
+msgLoginPasswordWrong: "輸入的§c密碼有誤§f, 請檢查後重試"
+msgPlayerNotRegister: "你還沒有註冊, 請先使用 §6/register <password> §f進行註冊."
+msgCommandOnlyPlayer: "該指令只能由玩家使用"
+msgSavedLocation: "保存坐標成功!"
+msgSavedConfigFile: "保存配置文件成功!"
+msgFailSaveConfigFile: "保存配置文件失敗...請檢查文件權限"
+
+kickByPasswordRested: "§f你的密碼已被重置, 請重新登入"
+
+# 修改下面的內容前請確保 config.yml 中的對應功能已開啟
+noLoginPlayerSendMessage: "您當前§c未登入§f, 操作可能受限, 使用 /login <密碼> 進行登入"
+noLoginPlayerSendTitle: "§l歡迎使用§fblbi§bLogin"
+noLoginPlayerSendSubTitle: "請使用 §6/login <密碼>§f 登入遊戲"
+noLoginPlayerSendActionBar: "您當前§c未登入§f, 操作可能受限, 使用 /login <密碼> 進行登入"
+
+# 修改下面的內容前請確保 config.yml 中的對應功能已開啟
+noRegisterPlayerSendMessage: "您當前§c未註冊§f, 操作可能受限, 使用 /register <密碼> 進行註冊"
+noRegisterPlayerSendTitle: "§l歡迎使用§fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "請使用 §6/register <密碼>§f 註冊遊戲"
+noRegisterPlayerSendActionBar: "您當前§c未註冊§f, 操作可能受限, 使用 /register <密碼> 進行登入"
+
+# 修改下面的內容前請確保 config.yml 中的對應功能已開啟
+successLoginSendTitle: "§a§l登入成功"
+successLoginSendSubTitle: "歡迎回來: §a%s"

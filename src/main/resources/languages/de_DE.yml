@@ -1,0 +1,38 @@
+version: 2.0.0
+Language: "Deutsch (German)"
+loadedLanguage: "Sprachdatei geladen: %s"
+
+logEnable: "blbiLogin-System wurde injiziert."
+logPlayerJoin: "Spieler %s beim Betreten des Servers erkannt, Spielerbewegung wurde blockiert."
+logNoLoginTryMove: "Nicht eingeloggter Spieler %s versuchte sich zu bewegen, wurde zurückgesetzt."
+
+msgCommandWrong: "§cDer eingegebene Befehl ist falsch§f, die korrekte Verwendung ist §6%s"
+msgLoginSuccess: "Anmeldung erfolgreich, %s willkommen zurück."
+msgRegisterSuccess: "Registrierung erfolgreich, willkommen neuer Spieler %s."
+msgAlreadyRegister: "Du bist bereits registriert, eine erneute Registrierung ist nicht nötig."
+msgNoPermission: "§fDu hast derzeit §ckeine Berechtigung§f, diese Aktion auszuführen."
+msgReloaded: "§fKonfigurations- und Sprachdatei §awurden neu geladen."
+msgLoginPasswordWrong: "§cFalsches Passwort eingegeben§f, bitte überprüfe und versuche es erneut"
+msgPlayerNotRegister: "Du bist noch nicht registriert, bitte benutze §6/register <Passwort> §fum dich zuerst zu registrieren."
+msgCommandOnlyPlayer: "Dieser Befehl kann nur von Spielern verwendet werden"
+msgSavedLocation: "Koordinaten erfolgreich gespeichert!"
+msgSavedConfigFile: "Konfigurationsdatei erfolgreich gespeichert!"
+msgFailSaveConfigFile: "Fehler beim Speichern der Konfigurationsdatei... Bitte überprüfe die Dateiberechtigungen"
+
+kickByPasswordRested: "§fDein Passwort wurde zurückgesetzt, bitte melde dich erneut an"
+
+# Bitte stelle sicher, dass die entsprechende Funktion in config.yml aktiviert ist, bevor du den folgenden Inhalt änderst
+noLoginPlayerSendMessage: "Du bist derzeit §cnicht angemeldet§f, Aktionen können eingeschränkt sein, benutze /login <Passwort> um dich anzumelden"
+noLoginPlayerSendTitle: "§lWillkommen bei §fblbi§bLogin"
+noLoginPlayerSendSubTitle: "Bitte benutze §6/login <Passwort>§f um dich im Spiel anzumelden"
+noLoginPlayerSendActionBar: "Du bist derzeit §cnicht angemeldet§f, Aktionen können eingeschränkt sein, benutze /login <Passwort> um dich anzumelden"
+
+# Bitte stelle sicher, dass die entsprechende Funktion in config.yml aktiviert ist, bevor du den folgenden Inhalt änderst
+noRegisterPlayerSendMessage: "Du bist derzeit §cnicht registriert§f, Aktionen können eingeschränkt sein, benutze /register <Passwort> um dich zu registrieren"
+noRegisterPlayerSendTitle: "§lWillkommen bei §fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "Bitte benutze §6/register <Passwort>§f um dich für das Spiel zu registrieren"
+noRegisterPlayerSendActionBar: "Du bist derzeit §cnicht registriert§f, Aktionen können eingeschränkt sein, benutze /register <Passwort> um dich zu registrieren"
+
+# Bitte stelle sicher, dass die entsprechende Funktion in config.yml aktiviert ist, bevor du den folgenden Inhalt änderst
+successLoginSendTitle: "§a§lAnmeldung erfolgreich"
+successLoginSendSubTitle: "Willkommen zurück: §a%s"

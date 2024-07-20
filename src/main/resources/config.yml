@@ -29,8 +29,9 @@ playerJoinAutoTeleportToSavedLocation_AutoBack: false
 
 # 插件语言设置
 # Plugin language setting
-# 可用语言：zh_CN, en_US, ru_RU, ar_SA, ja_JP, es_AR, pt_BR
-# Available languages: zh_CN, en_US, ru_RU, ar_SA, ja_JP, es_AR, pt_BR
+# 可用语言：
+# Available languages:
+#  zh_CN, zh_TW, zh_HK, en_US, en_GB, ru_RU, ar_SA, ja_JP, es_AR, pt_BR, de_DE, fr_FR
 language: zh_CN
 
 # 是否使用 SQLite 数据库存储玩家信息

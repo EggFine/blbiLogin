@@ -1,0 +1,38 @@
+version: 2.0.0
+Language: "British English (en_GB)"
+loadedLanguage: "Language file loaded: %s"
+
+logEnable: "blbiLogin system has been injected."
+logPlayerJoin: "Player %s detected entering the server, player movement has been blocked."
+logNoLoginTryMove: "Unlogged player %s attempted to move, has been bounced back."
+
+msgCommandWrong: "§cThe entered command is incorrect§f, the correct usage is §6%s"
+msgLoginSuccess: "Login successful, %s welcome back."
+msgRegisterSuccess: "Registration successful, welcome new player %s."
+msgAlreadyRegister: "You've already registered, no need to register again."
+msgNoPermission: "§fYou currently §cdo not have permission§f to perform this action."
+msgReloaded: "§fConfiguration file and language file §areload completed."
+msgLoginPasswordWrong: "§cIncorrect password entered§f, please check and try again"
+msgPlayerNotRegister: "You are not registered yet, please use §6/register <password> §fto register first."
+msgCommandOnlyPlayer: "This command can only be used by players"
+msgSavedLocation: "Coordinates saved successfully!"
+msgSavedConfigFile: "Configuration file saved successfully!"
+msgFailSaveConfigFile: "Failed to save configuration file... Please check file permissions"
+
+kickByPasswordRested: "§fYour password has been reset, please log in again"
+
+# Please ensure the corresponding feature is enabled in config.yml before modifying the content below
+noLoginPlayerSendMessage: "You are currently §cnot logged in§f, operations may be restricted, use /login <password> to log in"
+noLoginPlayerSendTitle: "§lWelcome to §fblbi§bLogin"
+noLoginPlayerSendSubTitle: "Please use §6/login <password>§f to log into the game"
+noLoginPlayerSendActionBar: "You are currently §cnot logged in§f, operations may be restricted, use /login <password> to log in"
+
+# Please ensure the corresponding feature is enabled in config.yml before modifying the content below
+noRegisterPlayerSendMessage: "You are currently §cnot registered§f, actions may be limited, use /register <password> to register"
+noRegisterPlayerSendTitle: "§lWelcome to §fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "Please use §6/register <password>§f to register for the game"
+noRegisterPlayerSendActionBar: "You are currently §cnot registered§f, actions may be limited, use /register <password> to register"
+
+# Please ensure the corresponding feature is enabled in config.yml before modifying the content below
+successLoginSendTitle: "§a§lLogin Successful"
+successLoginSendSubTitle: "Welcome back: §a%s"
