@@ -13,7 +13,7 @@ public class Register implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("只有玩家可以使用此命令！");
+            sender.sendMessage(String.format(plugin.i18n.as("msgCommandOnlyPlayer",true)));
             return true;
         }
         Player player = (Player) sender;
@@ -33,7 +33,7 @@ public class Register implements CommandExecutor {
                 return true;
 
             }
-            player.sendMessage("用法: /register <密码>");
+            player.sendMessage(String.format(plugin.i18n.as("msgCommandWrong",true, "/register <password>")));
             return true;
 
         }

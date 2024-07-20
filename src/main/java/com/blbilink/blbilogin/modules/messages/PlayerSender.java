@@ -1,8 +1,10 @@
 package com.blbilink.blbilogin.modules.messages;
 
 import com.blbilink.blbilogin.BlbiLogin;
-import com.blbilink.blbilogin.vars.Configvar;
 import com.blbilink.blbilogin.modules.Sqlite;
+import com.blbilink.blbilogin.modules.events.CheckOnline;
+import com.blbilink.blbilogin.modules.events.LoginAction;
+import com.blbilink.blbilogin.vars.Configvar;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Sound;
@@ -12,9 +14,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Timer;
+
 import static com.blbilink.blbilogin.BlbiLogin.plugin;
 
 public class PlayerSender implements Listener {
+    CheckOnline check = CheckOnline.INSTANCE;
+    LoginAction login = LoginAction.INSTANCE;
+    private Timer timer;
     @EventHandler
     public static void noLoginPlayerSendTitle(PlayerJoinEvent e) {
         if (Configvar.config.getBoolean("noLoginPlayerSendActionBar") ||

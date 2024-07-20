@@ -1,6 +1,7 @@
 package com.blbilink.blbilogin.modules.commands;
 
 import com.blbilink.blbilogin.modules.Sqlite;
+import com.blbilink.blbilogin.modules.events.LoginAction;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.blbilink.blbilogin.BlbiLogin.plugin;
 
 public class ResetPassword implements CommandExecutor {
+    LoginAction login = LoginAction.INSTANCE;
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (command.getName().equalsIgnoreCase("resetpassword")) {
@@ -18,7 +20,7 @@ public class ResetPassword implements CommandExecutor {
                 if (args.length == 2) {
                     String password = args[0];
                     String newPassword = args[1];
-                    if (Sqlite.getSqlite().checkPassword(((Player) sender).getUniqueId().toString(), password)) {
+                    if (login.isCorrect(((Player) sender).getUniqueId().toString(), password)) {
                         if (Sqlite.getSqlite().resetPassword(((Player) sender).getUniqueId().toString(), newPassword)) {
                             ((Player) sender).kickPlayer(plugin.i18n.as("kickByPasswordRested",false ,sender.getName()));
                         } else {

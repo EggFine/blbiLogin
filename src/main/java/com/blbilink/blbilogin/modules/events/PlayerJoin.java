@@ -13,16 +13,22 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerJoin implements Listener {
+    CheckOnline check = CheckOnline.INSTANCE;
     private final BlbiLogin plugin;
     public PlayerJoin(BlbiLogin plugin){
         this.plugin = plugin;
     }
     @EventHandler(priority = EventPriority.LOW)
-    public void onPlayerJoin(PlayerJoinEvent e) {
-        teleportLocation(e.getPlayer());
+    public void onPlayerJoin(PlayerJoinEvent ev) {
+        Player e = ev.getPlayer();
         addNoLoginList(e.getPlayer());
-        setFlying(e.getPlayer());
-        sendParticles(e.getPlayer());
+        if(!check.isAllowed(e)) {
+            teleportLocation(e);
+            setFlying(e);
+            sendParticles(e);
+        } else {
+            LoginAction.INSTANCE.loginSuccess(e);
+        }
     }
 
     private void addNoLoginList(Player player){

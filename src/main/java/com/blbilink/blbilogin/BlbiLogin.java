@@ -3,6 +3,8 @@ package com.blbilink.blbilogin;
 
 import com.blbilink.blbilogin.load.LoadConfig;
 import com.blbilink.blbilogin.load.LoadFunction;
+import com.blbilink.blbilogin.modules.events.CheckOnline;
+import com.blbilink.blbilogin.modules.events.LoginAction;
 import com.blbilink.blbilogin.vars.Configvar;
 import org.blbilink.blbiLibrary.I18n;
 import org.blbilink.blbiLibrary.Metrics;
@@ -50,6 +52,8 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         LoadConfig.loadConfig(this);
         LoadFunction loadFunction = new LoadFunction(this);
         loadFunction.loadFunction();
+        LoginAction.INSTANCE.sync(this);
+        CheckOnline.INSTANCE.sync(this);
 
         // 加载 bStats 统计
         Metrics metrics = new Metrics(this, 22490);
