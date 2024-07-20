@@ -28,7 +28,7 @@ public class ResetPassword implements CommandExecutor {
                         sender.sendMessage(plugin.i18n.as("msgLoginPasswordWrong",true,sender.getName()));
                     }
                 } else {
-                    sender.sendMessage(String.format(plugin.i18n.as("msgCommandWrong",true,sender.getName()),"/resetpassword <nowPassword> <newPassword>"));
+                    sender.sendMessage(String.format(plugin.i18n.as("msgCommandWrong",true,"/resetpassword <nowPassword> <newPassword>")));
                 }
             } else {
                 if (args.length == 2) {
