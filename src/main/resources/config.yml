@@ -29,8 +29,8 @@ playerJoinAutoTeleportToSavedLocation_AutoBack: false
 
 # 插件语言设置
 # Plugin language setting
-# 可用语言：zh_CN, en_US, ru_RU, ar_SA, ja_JP
-# Available languages: zh_CN, en_US, ru_RU, ar_SA, ja_JP
+# 可用语言：zh_CN, en_US, ru_RU, ar_SA, ja_JP, es_AR, pt_BR
+# Available languages: zh_CN, en_US, ru_RU, ar_SA, ja_JP, es_AR, pt_BR
 language: zh_CN
 
 # 是否使用 SQLite 数据库存储玩家信息
@@ -39,80 +39,69 @@ useSqlite: true
 
 # 未登录玩家行为限制设置
 # Behavior restrictions for unlogged players
-
 # 是否限制未登录玩家移动
 # Whether to restrict unlogged players from moving
 noLoginPlayerCantMove: true
-
 # 是否限制未登录玩家使用命令
 # Whether to restrict unlogged players from using commands
 noLoginPlayerCantUseCommand: true
-
 # 未登录玩家允许使用的命令列表
 # List of commands allowed for unlogged players
 noLoginPlayerAllowUseCommand:
   - "/example"
-
 # 是否限制未登录玩家破坏方块
 # Whether to restrict unlogged players from breaking blocks
 noLoginPlayerCantBreak: true
-
 # 是否使未登录玩家无敌（不受伤害）
 # Whether to make unlogged players invulnerable (immune to damage)
 noLoginPlayerCantHurt: true
-
 # 是否为未登录玩家添加粒子效果
 # Whether to add particle effects to unlogged players
 noLoginPlayerParticle: true
+# 是否使未登录玩家无法发送消息
+# Whether to prevent unlogged players from sending messages
+noLoginPlayerCantSendMessage: true
 
 # 未登录玩家提醒方式设置
 # Reminder settings for unlogged players
-
+# 注：消息、动作栏和标题提醒会伴随音效
+# Note: Messages, action bar, and title notifications are accompanied by sound effects
 # 是否发送聊天消息提醒
 # Whether to send chat message reminders
 noLoginPlayerSendMessage: true
-
 # 是否发送标题提醒
 # Whether to send title reminders
 noLoginPlayerSendTitle: true
-
 # 是否发送副标题提醒
 # Whether to send subtitle reminders
 noLoginPlayerSendSubTitle: true
-
 # 是否发送动作栏提醒
 # Whether to send action bar reminders
 noLoginPlayerSendActionBar: true
 
 # 未注册玩家提醒方式设置
 # Reminder settings for unregistered players
-
+# 注：消息、动作栏和标题提醒会伴随音效
+# Note: Messages, action bar, and title notifications are accompanied by sound effects
 # 是否发送聊天消息提醒
 # Whether to send chat message reminders
 noRegisterPlayerSendMessage: true
-
 # 是否发送标题提醒
 # Whether to send title reminders
 noRegisterPlayerSendTitle: true
-
 # 是否发送副标题提醒
 # Whether to send subtitle reminders
 noRegisterPlayerSendSubTitle: true
-
 # 是否发送动作栏提醒
 # Whether to send action bar reminders
 noRegisterPlayerSendActionBar: true
 
 # 登录成功提醒方式设置
 # Successful login notification settings
-
 # 是否发送标题提醒
 # Whether to send title notifications
 successLoginSendTitle: true
-
 # 是否发送副标题提醒
 # Whether to send subtitle notifications
 successLoginSendSubTitle: true
 
-# 注：消息、动作栏和标题提醒会伴随音效
-# Note: Messages, action bar, and title notifications are accompanied by sound effects

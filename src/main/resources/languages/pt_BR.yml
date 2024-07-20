@@ -1,0 +1,39 @@
+version: 2.0.0
+Language: "Português (pt_BR)"
+
+loadedLanguage: "Arquivo de linguagens carregado: %s"
+
+logEnable: "O sistema de BlbiLogin foi ativado."
+logPlayerJoin: "Foi detectado que o jogador %s entrou no servidor, o movimento do jogador foi bloqueado."
+logNoLoginTryMove: "O jogador não registrado %s tentou se mover, ele foi restaurado."
+
+msgCommandWrong: "§cO comando inserido está incorreto§f, o uso correto é §6%s"
+msgLoginSuccess: "Sessão iniciada com sucesso, bem-vindo de volta %s."
+msgRegisterSuccess: "Registrado com sucesso, bem-vindo novo jogador, %s."
+msgAlreadyRegister: "Você já está registrado, não é necessário registrar-se novamente."
+msgNoPermission: "§fVocê §cnão tem permissão §fpara usar este comando."
+msgReloaded: "§fArquivo de configuração e de linguagens foram §arecarregados completamente."
+msgLoginPasswordWrong: "A senha introduzida §cestá incorreta§f, verifique novamente e tente novamente."
+msgPlayerNotRegister: "Você ainda não está registrado, use §6/register <senha> §fpara se registrar primeiro."
+msgCommandOnlyPlayer: "Este comando só pode ser usado por jogadores"
+msgSavedLocation: "Coordenadas salvas com sucesso!"
+msgSavedConfigFile: "Arquivo de configuração salvo com sucesso!"
+msgFailSaveConfigFile: "Falha ao salvar o arquivo de configuração... Por favor, verifique as permissões do arquivo"
+
+kickByPasswordRested: "§fSua senha foi redefinida, por favor faça login novamente"
+
+# Certifique-se de que a função esteja habilitada no config.yml para modificar o conteúdo a seguir
+noLoginPlayerSendMessage: "Atualmente você está §csem iniciar sessão§f, as operações podem estar restritas, use /login <senha> para iniciar sessão"
+noLoginPlayerSendTitle: "§lBem-vindo ao §fblbi§bLogin"
+noLoginPlayerSendSubTitle: "Use §6/login <senha>§f para iniciar sessão"
+noLoginPlayerSendActionBar: "Atualmente você está §csem iniciar sessão§f, as operações podem estar restritas, use /login <senha> para iniciar sessão"
+
+# Certifique-se de que a função esteja habilitada no config.yml para modificar o conteúdo a seguir
+noRegisterPlayerSendMessage: "Atualmente você está §csem registro§f, as ações podem ser limitadas, use /register <senha> para registrar"
+noRegisterPlayerSendTitle: "§lBem-vindo ao §fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "Use §6/register <senha>§f para se registrar"
+noRegisterPlayerSendActionBar: "Atualmente você está §csem registro§f, as ações podem ser limitadas, use /register <senha> para registrar"
+
+# Certifique-se de que a função esteja habilitada no config.yml para modificar o conteúdo a seguir
+successLoginSendTitle: "§a§lSessão iniciada com sucesso"
+successLoginSendSubTitle: "Bem-vindo de volta: §a%s"

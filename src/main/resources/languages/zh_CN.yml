@@ -1,8 +1,8 @@
-version: 1.8.8
+version: 2.0.0
 Language: "简体中文 (Simplified Chinese)"
 loadedLanguage: "已加载语言文件: %s"
 
-logEnable: "波比登录系统已注入。"
+logEnable: "波比登录(blbiLogin)系统已注入。"
 logPlayerJoin: "检测到玩家 %s 进入服务器, 已封锁玩家移动."
 logNoLoginTryMove: "未登录玩家 %s 尝试移动，已进行回弹."
 

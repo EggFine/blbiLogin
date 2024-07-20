@@ -1,26 +1,35 @@
-version: 1.8.3
-Language: "اللغة العربية (Arabic)"
-
+version: 2.0.0
+Language: "العربية (Arabic)"
 loadedLanguage: "تم تحميل ملف اللغة: %s"
 
-logEnable: "تم حقن نظام تسجيل الدخول blbi."
-logPlayerJoin: "تم اكتشاف اللاعب %s ينضم إلى الخادم، تم حظر حركة اللاعب."
-logNoLoginTryMove: "حاول اللاعب %s غير المسجل الدخول التحرك، تم إرجاعه."
+logEnable: "تم حقن نظام blbiLogin."
+logPlayerJoin: "تم اكتشاف دخول اللاعب %s إلى الخادم، تم حظر حركة اللاعب."
+logNoLoginTryMove: "حاول اللاعب %s غير المسجل الحركة، تم إرجاعه."
 
-msgLoginSuccess: "تم تسجيل الدخول بنجاح، مرحبًا بعودتك %s."
+msgCommandWrong: "§cالأمر المدخل خاطئ§f، الاستخدام الصحيح هو §6%s"
+msgLoginSuccess: "تم تسجيل الدخول بنجاح، %s مرحبًا بعودتك."
 msgRegisterSuccess: "تم التسجيل بنجاح، مرحبًا باللاعب الجديد %s."
-msgAlreadyRegister: "لقد تم تسجيلك بالفعل، لا حاجة للتسجيل مرة أخرى."
-msgNoPermission: "§fأنت حاليًا §cليس لديك إذن§f لتنفيذ هذا الإجراء."
-msgReloaded: "§fتم إعادة تحميل ملفات التكوين وملفات اللغة §aبنجاح."
-msgLoginPasswordWrong: "كلمة المرور المدخلة §cغير صحيحة§f، يرجى التحقق والمحاولة مرة أخرى."
-msgPlayerNotRegister: "لم تقم بالتسجيل بعد، يرجى استخدام §6/register <كلمة المرور> §fللتسجيل أولاً."
+msgAlreadyRegister: "لقد قمت بالتسجيل بالفعل، لا داعي للتسجيل مرة أخرى."
+msgNoPermission: "§fليس لديك §cصلاحية§f لتنفيذ هذا الإجراء."
+msgReloaded: "§fتم §aإعادة تحميل§f ملف الإعدادات وملف اللغة."
+msgLoginPasswordWrong: "§cكلمة المرور المدخلة خاطئة§f، يرجى التحقق والمحاولة مرة أخرى"
+msgPlayerNotRegister: "أنت غير مسجل بعد، يرجى استخدام §6/register <كلمة المرور> §fللتسجيل أولاً."
+msgCommandOnlyPlayer: "هذا الأمر يمكن استخدامه من قبل اللاعبين فقط"
+msgSavedLocation: "تم حفظ الإحداثيات بنجاح!"
+msgSavedConfigFile: "تم حفظ ملف الإعدادات بنجاح!"
+msgFailSaveConfigFile: "فشل حفظ ملف الإعدادات... يرجى التحقق من صلاحيات الملف"
 
-# تأكد من تمكين الوظيفة المقابلة في config.yml قبل تعديل المحتوى أدناه
-noLoginPlayerSendMessage: "أنت حاليًا §cغير مسجل الدخول§f، قد تكون العمليات مقيدة. استخدم /login <كلمة المرور> لتسجيل الدخول."
-noLoginPlayerSendTitle: "§lمرحبًا بك في§f blbi§bLogin"
-noLoginPlayerSendSubTitle: "يرجى استخدام §6/login <كلمة المرور>§f لتسجيل الدخول"
-noLoginPlayerSendActionBar: "أنت حاليًا §cغير مسجل الدخول§f، قد تكون العمليات مقيدة. استخدم /login <كلمة المرور> لتسجيل الدخول."
+kickByPasswordRested: "§fتم إعادة تعيين كلمة المرور الخاصة بك، يرجى إعادة تسجيل الدخول"
 
-# تأكد من تمكين الوظيفة المقابلة في config.yml قبل تعديل المحتوى أدناه
+noLoginPlayerSendMessage: "أنت §cغير مسجل الدخول§f حاليًا، قد تكون العمليات مقيدة، استخدم /login <كلمة المرور> لتسجيل الدخول"
+noLoginPlayerSendTitle: "§lمرحبًا بك في §fblbi§bLogin"
+noLoginPlayerSendSubTitle: "يرجى استخدام §6/login <كلمة المرور>§f لتسجيل الدخول إلى اللعبة"
+noLoginPlayerSendActionBar: "أنت §cغير مسجل الدخول§f حاليًا، قد تكون العمليات مقيدة، استخدم /login <كلمة المرور> لتسجيل الدخول"
+
+noRegisterPlayerSendMessage: "أنت §cغير مسجل§f حاليًا، قد تكون العمليات مقيدة، استخدم /register <كلمة المرور> للتسجيل"
+noRegisterPlayerSendTitle: "§lمرحبًا بك في §fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "يرجى استخدام §6/register <كلمة المرور>§f للتسجيل في اللعبة"
+noRegisterPlayerSendActionBar: "أنت §cغير مسجل§f حاليًا، قد تكون العمليات مقيدة، استخدم /register <كلمة المرور> للتسجيل"
+
 successLoginSendTitle: "§a§lتم تسجيل الدخول بنجاح"
 successLoginSendSubTitle: "مرحبًا بعودتك: §a%s"

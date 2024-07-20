@@ -1,0 +1,39 @@
+version: 2.0.0
+Language: "Español (es_AR)"
+
+loadedLanguage: "Archivo de lenguajes cargado: %s"
+
+logEnable: "El sistema de BlbiLogin ha sido activado."
+logPlayerJoin: "Se ha detectado a %s ingresar al servidor, el movimiento del jugador ha sido bloqueado."
+logNoLoginTryMove: "El jugador no registrado %s ha intentado realizar un movimiento, ha sido restaurado."
+
+msgCommandWrong: "§cEl comando introducido es incorrecto§f, el uso correcto es §6%s"
+msgLoginSuccess: "Sesión iniciada correctamente, bienvenido de vuelta %s."
+msgRegisterSuccess: "Registrado correctamente, bienvenido nuevo jugador, %s."
+msgAlreadyRegister: "Ya has sido registrado, no es necesario registrarse de nuevo."
+msgNoPermission: "§fNo §ctienes permisos §fpara utilizar este comando."
+msgReloaded: "§fEl archivo de configuración y de lenguajes ha sido §arecargado completamente."
+msgLoginPasswordWrong: "La contraseña introducida §ces incorrecta§f, comprueba nuevamente e intenta de nuevo."
+msgPlayerNotRegister: "Aún no te has registrado, utiliza §6/register <contraseña> §fpara registrarte primero."
+msgCommandOnlyPlayer: "Este comando solo puede ser utilizado por jugadores"
+msgSavedLocation: "¡Coordenadas guardadas exitosamente!"
+msgSavedConfigFile: "¡Archivo de configuración guardado exitosamente!"
+msgFailSaveConfigFile: "No se pudo guardar el archivo de configuración... Por favor, verifica los permisos del archivo"
+
+kickByPasswordRested: "§fTu contraseña ha sido restablecida, por favor inicia sesión nuevamente"
+
+# Asegúrese de que la función esté habilitada en config.yml para modificar el siguiente contenido
+noLoginPlayerSendMessage: "Actualmente estás §csin iniciar sesión§f, las operaciones pueden estar restringidas, utiliza /login <contraseña> para iniciar sesión"
+noLoginPlayerSendTitle: "§lBienvenido a §fblbi§bLogin"
+noLoginPlayerSendSubTitle: "Utiliza §6/login <contraseña>§f para iniciar sesión"
+noLoginPlayerSendActionBar: "Actualmente estás §csin iniciar sesión§f, las operaciones pueden estar restringidas, utiliza /login <contraseña> para iniciar sesión"
+
+# Asegúrese de que la función esté habilitada en config.yml para modificar el siguiente contenido
+noRegisterPlayerSendMessage: "Actualmente estás §csin registro§f, las acciones pueden ser limitadas, utiliza /register <contraseña> para registrar"
+noRegisterPlayerSendTitle: "§lBienvenido a §fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "Utiliza §6/register <contraseña>§f para registrarte"
+noRegisterPlayerSendActionBar: "Actualmente estás §csin registro§f, las acciones pueden ser limitadas, utiliza /register <contraseña> para registrar"
+
+# Asegúrese de que la función esté habilitada en config.yml para modificar el siguiente contenido
+successLoginSendTitle: "§a§lSesión iniciada correctamente"
+successLoginSendSubTitle: "Bienvenido de nuevo: §a%s"

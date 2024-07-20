@@ -31,6 +31,7 @@ public class Configvar {
     public static boolean noRegisterPlayerSendTitle;
     public static boolean noRegisterPlayerSendSubTitle;
     public static boolean noRegisterPlayerSendActionBar;
+    public static boolean noLoginPlayerCantSendMessage;
 
     public static boolean successLoginSendTitle;
     public static boolean successLoginSendSubTitle;

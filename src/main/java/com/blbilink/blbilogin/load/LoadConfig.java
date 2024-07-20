@@ -42,7 +42,7 @@ public class LoadConfig {
         Configvar.noLoginPlayerCantBreak = Configvar.config.getBoolean("noLoginPlayerCantBreak", true);
         Configvar.noLoginPlayerCantHurt = Configvar.config.getBoolean("noLoginPlayerCantHurt", true);
         Configvar.noLoginPlayerParticle = Configvar.config.getBoolean("noLoginPlayerParticle", true);
-
+        Configvar.noLoginPlayerCantSendMessage = Configvar.config.getBoolean("noLoginPlayerCantSendMessage", true);
         Configvar.noLoginPlayerSendMessage = Configvar.config.getBoolean("noLoginPlayerSendMessage", true);
         Configvar.noLoginPlayerSendTitle = Configvar.config.getBoolean("noLoginPlayerSendTitle", true);
         Configvar.noLoginPlayerSendSubTitle = Configvar.config.getBoolean("noLoginPlayerSendSubTitle", true);

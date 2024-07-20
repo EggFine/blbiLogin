@@ -7,6 +7,7 @@ import com.blbilink.blbilogin.modules.commands.Login;
 import com.blbilink.blbilogin.modules.commands.Register;
 import com.blbilink.blbilogin.modules.commands.ResetPassword;
 import com.blbilink.blbilogin.modules.events.PlayerJoin;
+import com.blbilink.blbilogin.modules.events.PlayerSendMessage;
 import com.blbilink.blbilogin.modules.events.PlayerUseCommands;
 import com.blbilink.blbilogin.modules.messages.PlayerSender;
 import org.bukkit.Bukkit;
@@ -42,6 +43,7 @@ public class LoadFunction {
         Bukkit.getPluginManager().registerEvents(new PlayerSender(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerUseCommands(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(BlbiLogin.plugin), plugin);
+        Bukkit.getPluginManager().registerEvents(new PlayerSendMessage(), plugin);
     }
 
     private void loadSqlite(){

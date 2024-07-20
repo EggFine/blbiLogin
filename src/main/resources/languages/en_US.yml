@@ -1,33 +1,35 @@
-version: 1.8.7
-Language: "English (en_US)"
-
+version: 2.0.0
+Language: "English (US)"
 loadedLanguage: "Loaded language file: %s"
 
-logEnable: "BlbiLogin system has been enabled."
-logPlayerJoin: "Detected player %s joining the server, player movement has been blocked."
-logNoLoginTryMove: "Unlogged player %s tried to move, has been bounced back."
+logEnable: "blbiLogin system has been injected."
+logPlayerJoin: "Player %s detected entering the server, player movement has been blocked."
+logNoLoginTryMove: "Unlogged player %s attempted to move, has been bounced back."
 
-msgLoginSuccess: "Login successful, welcome back %s."
-msgRegisterSuccess: "Register successful, welcome new player %s."
-msgAlreadyRegistered: "You have already registered."
-msgNoPermission: "§fYou §cdon't have permission §fto use this command."
-msgReloaded: "§fConfiguration file and language file §areloading completed."
-msgLoginPasswordWrong: "The entered §cpassword is incorrect§f, please check and try again."
-msgPlayerNotRegister: "You have not registered yet, please use §6/register <password> §fto register first."
+msgCommandWrong: "§cThe entered command is incorrect§f, the correct usage is §6%s"
+msgLoginSuccess: "Login successful, %s welcome back."
+msgRegisterSuccess: "Registration successful, welcome new player %s."
+msgAlreadyRegister: "Already registered, no need to register again."
+msgNoPermission: "§fYou currently §cdo not have permission§f to perform this action."
+msgReloaded: "§fConfiguration file and language file §areload completed."
+msgLoginPasswordWrong: "§cIncorrect password entered§f, please check and try again"
+msgPlayerNotRegister: "You are not registered yet, please use §6/register <password> §fto register first."
+msgCommandOnlyPlayer: "This command can only be used by players"
+msgSavedLocation: "Coordinates saved successfully!"
+msgSavedConfigFile: "Configuration file saved successfully!"
+msgFailSaveConfigFile: "Failed to save configuration file... Please check file permissions"
 
-# Please make sure that the function is enabled in config.yml to modify the following content
-noLoginPlayerSendMessage: "You are currently§c not logged in§f, operations may be restricted, use /login <password> to log in"
-noLoginPlayerSendTitle: "Welcome use §fblbi§bLogin"
-noLoginPlayerSendSubTitle: "Please use §6/login <password>§f to log in to the game"
-noLoginPlayerSendActionBar: "You are currently§c not logged in§f, operations may be restricted, use /login <password> to log in"
+kickByPasswordRested: "§fYour password has been reset, please log in again"
 
-# Please make sure that the function is enabled in config.yml to modify the following content
-noRegisterPlayerSendMessage: "You are currently §cnot registered§f, actions may be limited, use /register <password> to register"
-noRegisterPlayerSendTitle: "Welcome use §fblbi§bLogin"
-noRegisterPlayerSendSubTitle: "Please use §6/register <password>§f to register the game"
-noRegisterPlayerSendActionBar: "You are currently §cnot registered§f, actions may be limited, use /register <password> to register"
+noLoginPlayerSendMessage: "You are currently §cnot logged in§f, operations may be restricted, use /login <password> to log in"
+noLoginPlayerSendTitle: "§lWelcome to §fblbi§bLogin"
+noLoginPlayerSendSubTitle: "Please use §6/login <password>§f to log into the game"
+noLoginPlayerSendActionBar: "You are currently §cnot logged in§f, operations may be restricted, use /login <password> to log in"
 
+noRegisterPlayerSendMessage: "You are currently §cnot registered§f, operations may be restricted, use /register <password> to register"
+noRegisterPlayerSendTitle: "§lWelcome to §fblbi§bLogin"
+noRegisterPlayerSendSubTitle: "Please use §6/register <password>§f to register for the game"
+noRegisterPlayerSendActionBar: "You are currently §cnot registered§f, operations may be restricted, use /register <password> to register"
 
-# Please make sure that the function is enabled in config.yml to modify the following content
-successLoginSendTitle: "§aLogin Success"
+successLoginSendTitle: "§a§lLogin Successful"
 successLoginSendSubTitle: "Welcome back: §a%s"
