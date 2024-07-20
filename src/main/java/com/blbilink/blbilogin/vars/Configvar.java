@@ -1,10 +1,13 @@
 package com.blbilink.blbilogin.vars;
 
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Configvar {
     public static String language;
@@ -35,6 +38,7 @@ public class Configvar {
     public static boolean isFolia = false;
 
     public static List<String> noLoginPlayerList = new ArrayList<>();
+    public static Map<String, Location> originalLocation = new HashMap<>();
 
     public static String location_world;
     public static double location_x;

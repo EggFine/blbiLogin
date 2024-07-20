@@ -1,7 +1,7 @@
 package com.blbilink.blbilogin.modules.commands;
 
-import com.blbilink.blbilogin.vars.Configvar;
 import com.blbilink.blbilogin.modules.Sqlite;
+import com.blbilink.blbilogin.vars.Configvar;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -36,22 +36,7 @@ public class Login implements CommandExecutor {
             }
 
             if (Sqlite.getSqlite().checkPassword(uuid, password)) {
-                String msgLoginSuccess = plugin.i18n.as("msgLoginSuccess",true,player.getName());
-                player.sendMessage(msgLoginSuccess);
-                if (Configvar.successLoginSendTitle || Configvar.successLoginSendSubTitle){
-                    if(Configvar.successLoginSendTitle){
-                        player.sendTitle(plugin.i18n.as("successLoginSendTitle",false ,player.getName()), null, 20, 100, 20);
-                    }
-                    if(Configvar.successLoginSendSubTitle){
-                        player.sendTitle(null,plugin.i18n.as("successLoginSendSubTitle",false ,player.getName()),20,100,20);
-                    }
-                }
-                player.getPlayer().playSound(player.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
-                if(!player.isOp()){
-                    player.setAllowFlight(false);
-                }
-                player.setFlying(false);
-                Configvar.noLoginPlayerList.remove(player.getName());
+                loginSuccess(player);
                 return true;
             } else {
                 player.sendMessage(plugin.i18n.as("msgLoginPasswordWrong",true,player.getName()));
@@ -59,5 +44,36 @@ public class Login implements CommandExecutor {
             }
         }
         return false;
+    }
+
+    private void loginSuccess(Player player){
+        String msgLoginSuccess = plugin.i18n.as("msgLoginSuccess",true,player.getName());
+        player.sendMessage(msgLoginSuccess);
+        if (Configvar.successLoginSendTitle || Configvar.successLoginSendSubTitle){
+            if(Configvar.successLoginSendTitle){
+                player.sendTitle(plugin.i18n.as("successLoginSendTitle",false ,player.getName()), null, 20, 100, 20);
+            }
+            if(Configvar.successLoginSendSubTitle){
+                player.sendTitle(null,plugin.i18n.as("successLoginSendSubTitle",false ,player.getName()),20,100,20);
+            }
+        }
+        player.getPlayer().playSound(player.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+        if(!player.isOp()){
+            player.setAllowFlight(false);
+        }
+        player.setFlying(false);
+        Configvar.noLoginPlayerList.remove(player.getName());
+        if(Configvar.playerJoinAutoTeleportToSavedLocation && Configvar.playerJoinAutoTeleportToSavedLocation_AutoBack){
+            if(Configvar.isFolia){
+                player.getScheduler().run(plugin, task -> {
+                    player.teleportAsync(Configvar.originalLocation.get(player.getName())).thenAccept(result -> {
+                    });
+                }, () -> {
+                });
+            }else{
+                player.teleport(Configvar.originalLocation.get(player.getName()));
+            }
+            Configvar.originalLocation.remove(player.getName());
+        }
     }
 }
