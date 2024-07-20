@@ -53,7 +53,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: release-${{ steps.generate_version.outputs.VERSION }}
-          release_name: Release ${{ steps.generate_version.outputs.VERSION }}
+          release_name: Canary ${{ steps.generate_version.outputs.VERSION }}
           draft: false
           prerelease: false
 
