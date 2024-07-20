@@ -91,7 +91,7 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
     public void onPlayerHurt(EntityDamageEvent e) {
         if (e.getEntity() instanceof Player player) {
 
-            if (Configvar.noLoginPlayerList.contains(player.getName()) && Configvar.config.getBoolean("")) {
+            if (Configvar.noLoginPlayerList.contains(player.getName()) && Configvar.config.getBoolean("noLoginPlayerCantHurt")) {
                 EntityDamageEvent.DamageCause currentDamageCause = e.getCause();
                 String damageCauseName = currentDamageCause.name();
 
