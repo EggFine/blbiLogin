@@ -36,48 +36,44 @@ public class BlbiLoginCommand implements CommandExecutor, TabCompleter {
 
         return false;
     }
-    private void reload(CommandSender sender){
-        if((sender instanceof Player player)){
+
+    private void reload(CommandSender sender) {
+        if ((sender instanceof Player player)) {
             if (player.hasPermission("blbilogin.reload")) {
                 LoadConfig.loadConfig(plugin);
-                player.sendMessage(plugin.i18n.as("msgReloaded",true,player.getName()));
+                player.sendMessage(plugin.i18n.as("msgReloaded", true, player.getName()));
             } else {
-                player.sendMessage(plugin.i18n.as("msgNoPermission",true,player.getName()));
+                player.sendMessage(plugin.i18n.as("msgNoPermission", true, player.getName()));
             }
-        }else{
+        } else {
             LoadConfig.loadConfig(plugin);
-            plugin.getLogger().info(plugin.i18n.as("msgReloaded",false));
+            plugin.getLogger().info(plugin.i18n.as("msgReloaded", false));
         }
     }
-    private void saveLocation(CommandSender sender){
-        if((sender instanceof Player player)){
+
+    private void saveLocation(CommandSender sender) {
+        if ((sender instanceof Player player)) {
             if (player.hasPermission("blbilogin.savelocation")) {
                 Location loc = player.getLocation();
-                Configvar.location_world = loc.getWorld().getName();
-                Configvar.location_x = loc.getX();
-                Configvar.location_y = loc.getY();
-                Configvar.location_z = loc.getZ();
-                Configvar.location_yaw = loc.getYaw();
-                Configvar.location_pitch = loc.getPitch();
-                player.sendMessage(plugin.i18n.as("msgSavedLocation",true,player.getName()));
                 Configvar.config.set("locationPos.world", loc.getWorld().getName());
                 Configvar.config.set("locationPos.x", loc.getX());
                 Configvar.config.set("locationPos.y", loc.getY());
                 Configvar.config.set("locationPos.z", loc.getZ());
                 Configvar.config.set("locationPos.yaw", loc.getYaw());
                 Configvar.config.set("locationPos.pitch", loc.getPitch());
-
+                player.sendMessage(plugin.i18n.as("msgSavedLocation", true, player.getName()));
                 try {
                     Configvar.config.save(Configvar.configFile);
-                    player.sendMessage(plugin.i18n.as("msgSavedConfigFile",true,player.getName()));
+                    plugin.getLogger().info(plugin.i18n.as("msgSavedConfigFile", true));
                 } catch (IOException e) {
-                    player.sendMessage(plugin.i18n.as("msgFailSaveConfigFile",true,player.getName()));
-                    e.printStackTrace();
+                    plugin.getLogger().warning(plugin.i18n.as("msgFailSaveConfigFile", true));
+                    throw new RuntimeException(e);
                 }
+
             } else {
-                player.sendMessage(plugin.i18n.as("msgNoPermission",true,player.getName()));
+                player.sendMessage(plugin.i18n.as("msgNoPermission", true, player.getName()));
             }
-        }else{
+        } else {
             plugin.getLogger().info(plugin.i18n.as("msgCommandOnlyPlayer"));
         }
     }

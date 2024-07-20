@@ -17,8 +17,14 @@ import static com.blbilink.blbilogin.BlbiLogin.plugin;
 public class PlayerSender implements Listener {
     @EventHandler
     public static void noLoginPlayerSendTitle(PlayerJoinEvent e) {
-        if(Configvar.noLoginPlayerSendActionBar || Configvar.noLoginPlayerSendTitle || Configvar.noLoginPlayerSendSubTitle || Configvar.noLoginPlayerSendMessage ||
-                Configvar.noRegisterPlayerSendTitle || Configvar.noRegisterPlayerSendSubTitle || Configvar.noRegisterPlayerSendMessage || Configvar.noRegisterPlayerSendActionBar){
+        if (Configvar.config.getBoolean("noLoginPlayerSendActionBar") ||
+                Configvar.config.getBoolean("noLoginPlayerSendTitle") ||
+                Configvar.config.getBoolean("noLoginPlayerSendSubTitle") ||
+                Configvar.config.getBoolean("noLoginPlayerSendMessage") ||
+                Configvar.config.getBoolean("noRegisterPlayerSendTitle") ||
+                Configvar.config.getBoolean("noRegisterPlayerSendSubTitle") ||
+                Configvar.config.getBoolean("noRegisterPlayerSendMessage") ||
+                Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
 
             Player player = e.getPlayer();
 
@@ -49,35 +55,35 @@ public class PlayerSender implements Listener {
 
     private static void sendPlayerMessages(Player player) {
         if(Sqlite.getSqlite().playerExists(player.getUniqueId().toString())) {
-            if(Configvar.noLoginPlayerSendActionBar) {
+            if(Configvar.config.getBoolean("noLoginPlayerSendActionBar")) {
                 player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(plugin.i18n.as("noLoginPlayerSendActionBar",false, player.getName())));
             }
-            if(Configvar.noLoginPlayerSendMessage) {
+            if(Configvar.config.getBoolean("noLoginPlayerSendMessage")) {
                 player.sendMessage(plugin.i18n.as("noLoginPlayerSendMessage", true, player.getName()));
             }
-            if(Configvar.noLoginPlayerSendTitle) {
+            if(Configvar.config.getBoolean("noLoginPlayerSendTitle")) {
                 player.sendTitle(plugin.i18n.as("noLoginPlayerSendTitle", false, player.getName()), null, 0, 100, 0);
             }
-            if(Configvar.noLoginPlayerSendSubTitle) {
+            if(Configvar.config.getBoolean("noLoginPlayerSendSubTitle")) {
                 player.sendTitle(null, plugin.i18n.as("noLoginPlayerSendSubTitle", false, player.getName()), 0, 100, 0);
             }
-            if(Configvar.noLoginPlayerSendMessage || Configvar.noLoginPlayerSendActionBar) {
+            if(Configvar.config.getBoolean("noLoginPlayerSendMessage") || Configvar.config.getBoolean("noLoginPlayerSendActionBar")) {
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
             }
         } else {
-            if(Configvar.noRegisterPlayerSendActionBar) {
+            if(Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
                 player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(plugin.i18n.as("noRegisterPlayerSendActionBar",false, player.getName())));
             }
-            if(Configvar.noRegisterPlayerSendMessage) {
+            if(Configvar.config.getBoolean("noRegisterPlayerSendMessage")) {
                 player.sendMessage(plugin.i18n.as("noRegisterPlayerSendMessage", true, player.getName()));
             }
-            if(Configvar.noRegisterPlayerSendTitle) {
+            if(Configvar.config.getBoolean("noRegisterPlayerSendTitle")) {
                 player.sendTitle(plugin.i18n.as("noRegisterPlayerSendTitle", false, player.getName()), null, 0, 100, 0);
             }
-            if(Configvar.noRegisterPlayerSendSubTitle) {
+            if(Configvar.config.getBoolean("noRegisterPlayerSendSubTitle")) {
                 player.sendTitle(null, plugin.i18n.as("noRegisterPlayerSendSubTitle", false,player.getName()), 0, 100, 0);
             }
-            if(Configvar.noRegisterPlayerSendMessage || Configvar.noRegisterPlayerSendActionBar) {
+            if(Configvar.config.getBoolean("noRegisterPlayerSendMessage") || Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
             }
         }

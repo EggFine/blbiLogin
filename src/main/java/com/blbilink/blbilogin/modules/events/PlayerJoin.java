@@ -31,14 +31,14 @@ public class PlayerJoin implements Listener {
     }
 
     private void setFlying(Player player){
-        if (Configvar.noLoginPlayerCantMove) {
+        if (Configvar.config.getBoolean("noLoginPlayerCantMove")) {
             player.setAllowFlight(true);
             player.setFlying(true);
         }
     }
 
     private void sendParticles(Player player){
-        if (Configvar.noLoginPlayerParticle) {
+        if (Configvar.config.getBoolean("noLoginPlayerParticle")) {
             Particles particles = new Particles();
             if (Configvar.isFolia) {
                 // Folia 环境
@@ -65,16 +65,16 @@ public class PlayerJoin implements Listener {
         }
     }
     private void teleportLocation(Player player){
-        if(Configvar.playerJoinAutoTeleportToSavedLocation){
+        if(Configvar.config.getBoolean("playerJoinAutoTeleportToSavedLocation")){
             Location loc = new Location(
-                    Bukkit.getWorld(Configvar.location_world),
-                    Configvar.location_x,
-                    Configvar.location_y,
-                    Configvar.location_z,
-                    Configvar.location_yaw,
-                    Configvar.location_pitch
+                    Bukkit.getWorld(Configvar.config.getString("locationPos.world")),
+                    Configvar.config.getDouble("locationPos.x"),
+                    Configvar.config.getDouble("locationPos.y"),
+                    Configvar.config.getDouble("locationPos.z"),
+                    (float) Configvar.config.getDouble("locationPos.yaw"),
+                    (float) Configvar.config.getDouble("locationPos.pitch")
             );
-            if(Configvar.playerJoinAutoTeleportToSavedLocation_AutoBack){
+            if(Configvar.config.getBoolean("playerJoinAutoTeleportToSavedLocation_AutoBack")){
                 Configvar.originalLocation.put(player.getName(), player.getLocation());
             }
             if(Configvar.isFolia){

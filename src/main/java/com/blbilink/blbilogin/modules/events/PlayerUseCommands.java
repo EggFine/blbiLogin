@@ -12,7 +12,7 @@ public class PlayerUseCommands implements Listener {
     @EventHandler
     public void onPlayerCommandSend(PlayerCommandPreprocessEvent e) {
         List<String> cmds = new ArrayList<>(List.of("/login", "/l", "/reg", "/register"));
-        cmds.addAll(Configvar.noLoginPlayerAllowUseCommand);
+        cmds.addAll(Configvar.config.getStringList("noLoginPlayerAllowUseCommand"));
         String message = e.getMessage();
         boolean isAllowedCommand = false;
 
@@ -23,7 +23,7 @@ public class PlayerUseCommands implements Listener {
                     break; // 找到匹配的命令就退出循环
                 }
             }
-            if (!isAllowedCommand && Configvar.noLoginPlayerCantUseCommand) {
+            if (!isAllowedCommand && Configvar.config.getBoolean("noLoginPlayerCantUseCommand")) {
                 e.setCancelled(true);
             }
         }
