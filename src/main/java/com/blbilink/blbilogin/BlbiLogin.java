@@ -4,9 +4,9 @@ package com.blbilink.blbilogin;
 import com.blbilink.blbilogin.load.LoadConfig;
 import com.blbilink.blbilogin.load.LoadFunction;
 import com.blbilink.blbilogin.vars.Configvar;
-import org.blbilink.blbiLibrary.BlbiLibrary;
 import org.blbilink.blbiLibrary.I18n;
 import org.blbilink.blbiLibrary.Metrics;
+import org.blbilink.blbiLibrary.utils.FoliaUtil;
 import org.blbilink.blbiLibrary.utils.TextUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +17,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
+import java.util.List;
 
 public final class BlbiLogin extends JavaPlugin implements Listener {
     public static BlbiLogin plugin;
@@ -27,7 +28,7 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         plugin = this;
 
         // 检查是否是 Folia 服务端核心
-        Configvar.isFolia = BlbiLibrary.checkFolia(plugin, true);
+        Configvar.isFolia = FoliaUtil.checkFolia(plugin, true);
 
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
@@ -62,8 +63,8 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
                 "BLBILOGIN",
                 "SpigotMC: https://www.spigotmc.org/resources/117672/",
                 plugin,
-                Arrays.asList("EggFine"),
-                Arrays.asList("Mgazul")));
+                List.of("EggFine"),
+                List.of("Mgazul")));
     }
 
     @EventHandler
