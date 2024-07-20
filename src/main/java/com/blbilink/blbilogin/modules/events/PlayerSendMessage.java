@@ -14,7 +14,7 @@ public class PlayerSendMessage implements Listener {
     }
 
     private void ifCantSendMessage(AsyncPlayerChatEvent event) {
-        if(Configvar.config.getBoolean("noLoginPlayerCantSendMessage")){
+        if(Configvar.config.getBoolean("noLoginPlayerCantSendMessage") && Configvar.noLoginPlayerList.contains(event.getPlayer().getName())){
             event.setCancelled(true);
         }
     }
