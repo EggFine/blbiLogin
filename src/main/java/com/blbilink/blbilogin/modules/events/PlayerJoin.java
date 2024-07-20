@@ -79,8 +79,7 @@ public class PlayerJoin implements Listener {
             }
             if(Configvar.isFolia){
                 player.getScheduler().run(plugin, task -> {
-                    player.teleportAsync(loc).thenAccept(result -> {
-                    });
+                    player.teleportAsync(loc);
                 }, () -> {
                 });
             }else{

@@ -47,6 +47,22 @@ public class Login implements CommandExecutor {
     }
 
     private void loginSuccess(Player player){
+        Configvar.noLoginPlayerList.remove(player.getName());
+        if(Configvar.playerJoinAutoTeleportToSavedLocation && Configvar.playerJoinAutoTeleportToSavedLocation_AutoBack){
+            if(Configvar.isFolia){
+                player.getScheduler().run(plugin, task -> {
+                    player.teleportAsync(Configvar.originalLocation.get(player.getName())).thenAccept(result -> {
+                        if (result) {
+                            Configvar.originalLocation.remove(player.getName());
+                        }
+                    });
+                }, () -> {
+                });
+            }else{
+                player.teleport(Configvar.originalLocation.get(player.getName()));
+                Configvar.originalLocation.remove(player.getName());
+            }
+        }
         String msgLoginSuccess = plugin.i18n.as("msgLoginSuccess",true,player.getName());
         player.sendMessage(msgLoginSuccess);
         if (Configvar.successLoginSendTitle || Configvar.successLoginSendSubTitle){
@@ -62,18 +78,5 @@ public class Login implements CommandExecutor {
             player.setAllowFlight(false);
         }
         player.setFlying(false);
-        Configvar.noLoginPlayerList.remove(player.getName());
-        if(Configvar.playerJoinAutoTeleportToSavedLocation && Configvar.playerJoinAutoTeleportToSavedLocation_AutoBack){
-            if(Configvar.isFolia){
-                player.getScheduler().run(plugin, task -> {
-                    player.teleportAsync(Configvar.originalLocation.get(player.getName())).thenAccept(result -> {
-                    });
-                }, () -> {
-                });
-            }else{
-                player.teleport(Configvar.originalLocation.get(player.getName()));
-            }
-            Configvar.originalLocation.remove(player.getName());
-        }
     }
 }
