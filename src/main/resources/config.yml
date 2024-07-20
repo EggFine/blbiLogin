@@ -1,77 +1,118 @@
-# 🌟 这里是 blbiLogin 的设置小屋，欢迎光临！
-# 🌟 Welcome to blbiLogin's cozy settings home!
+# blbiLogin 配置文件
+# blbiLogin Configuration File
 
-# 🚨 这是版本号，别碰它哦，它怕痒~
-# 🚨 Version number. Don't touch, it's ticklish!
-version: 1.8.8
+# 配置文件版本号，请勿修改
+# Configuration file version, do not modify
+version: 2.0.0
 
+# 插件消息前缀
+# Plugin message prefix
 prefix: "§8[§fblbi§bLogin§8] §f"
 
-# 玩家进入游戏自动传送到出生点，用/blbilogin savelocation设置出生点
+# 玩家加入游戏时是否自动传送到预设位置
+# Whether to automatically teleport players to a preset location upon joining
 playerJoinAutoTeleportToSavedLocation: false
+
+# 预设位置坐标（使用 /blbilogin savelocation 命令设置）
+# Preset location coordinates (set using /blbilogin savelocation command)
 locationPos:
-  world: ""  # 世界名称
-  x: 0.0     # X 坐标
-  y: 0.0     # Y 坐标
-  z: 0.0     # Z 坐标
-  yaw: 0.0   # 水平角度
-  pitch: 0.0 # 垂直角度
+  world: ""  # 世界名称 | World name
+  x: 0.0     # X 坐标 | X coordinate
+  y: 0.0     # Y 坐标 | Y coordinate
+  z: 0.0     # Z 坐标 | Z coordinate
+  yaw: 0.0   # 水平角度 | Yaw
+  pitch: 0.0 # 垂直角度 | Pitch
+
+# 玩家登录后是否自动返回之前的位置
+# Whether to automatically return players to their previous location after logging in
 playerJoinAutoTeleportToSavedLocation_AutoBack: false
 
-# 🗣️ 选择你想要的语言，就像选择你最爱的冰淇淋味道~
-# 🗣️ Pick your language, like choosing your favorite ice cream flavor!
-# 现在有这些口味：zh_CN, en_US, ru_RU, ar_SA, ja_JP
-# Available flavors: zh_CN, en_US, ru_RU, ar_SA, ja_JP
+# 插件语言设置
+# Plugin language setting
+# 可用语言：zh_CN, en_US, ru_RU, ar_SA, ja_JP
+# Available languages: zh_CN, en_US, ru_RU, ar_SA, ja_JP
 language: zh_CN
 
-# 💾 我们用 SQLite 来存储玩家信息，就像一个安全的小保险箱~
-# 💾 We use SQLite to store player info, like a tiny, secure vault!
+# 是否使用 SQLite 数据库存储玩家信息
+# Whether to use SQLite database to store player information
 useSqlite: true
 
-# 🚶‍♂️ 没登录的玩家要站在原地吗？像玩"一二三木头人"那样~
-# 🚶‍♂️ Should unlogged players freeze? Like playing "Red Light, Green Light"!
+# 未登录玩家行为限制设置
+# Behavior restrictions for unlogged players
+
+# 是否限制未登录玩家移动
+# Whether to restrict unlogged players from moving
 noLoginPlayerCantMove: true
 
-# 🎭 没登录的玩家不能用命令吗？就像没有魔法棒的小巫师~
-# 🎭 Can't use commands when not logged in? Like a wizard without a wand!
+# 是否限制未登录玩家使用命令
+# Whether to restrict unlogged players from using commands
 noLoginPlayerCantUseCommand: true
 
-# 📜 没登录的玩家可以用哪些命令？这是特别允许的小魔法~
-# 📜 What commands can unlogged players use? These are the special allowed spells!
+# 未登录玩家允许使用的命令列表
+# List of commands allowed for unlogged players
 noLoginPlayerAllowUseCommand:
   - "/example"
 
-# 🏗️ 没登录的玩家不能挖方块吗？就像不能动游戏里的积木~
-# 🏗️ Can't break blocks when not logged in? Like "don't touch the Lego" rule!
+# 是否限制未登录玩家破坏方块
+# Whether to restrict unlogged players from breaking blocks
 noLoginPlayerCantBreak: true
 
-# 🛡️ 没登录的玩家是不是超人呀？打不疼的那种~
-# 🛡️ Are unlogged players superheroes? The invincible kind!
+# 是否使未登录玩家无敌（不受伤害）
+# Whether to make unlogged players invulnerable (immune to damage)
 noLoginPlayerCantHurt: true
 
-# ✨ 给没登录的玩家加点闪闪发光的效果，像仙女散花~
-# ✨ Add some sparkles to unlogged players, like fairy dust!
+# 是否为未登录玩家添加粒子效果
+# Whether to add particle effects to unlogged players
 noLoginPlayerParticle: true
 
-# 📢 怎么提醒还没登录的玩家？选你喜欢的方式：
-# 📢 How to remind unlogged players? Pick your favorite way:
+# 未登录玩家提醒方式设置
+# Reminder settings for unlogged players
+
+# 是否发送聊天消息提醒
+# Whether to send chat message reminders
 noLoginPlayerSendMessage: true
+
+# 是否发送标题提醒
+# Whether to send title reminders
 noLoginPlayerSendTitle: true
+
+# 是否发送副标题提醒
+# Whether to send subtitle reminders
 noLoginPlayerSendSubTitle: true
+
+# 是否发送动作栏提醒
+# Whether to send action bar reminders
 noLoginPlayerSendActionBar: true
 
-# 📣 怎么叫还没注册的玩家来注册？选你喜欢的方式：
-# 📣 How to call unregistered players? Pick your favorite way:
+# 未注册玩家提醒方式设置
+# Reminder settings for unregistered players
+
+# 是否发送聊天消息提醒
+# Whether to send chat message reminders
 noRegisterPlayerSendMessage: true
+
+# 是否发送标题提醒
+# Whether to send title reminders
 noRegisterPlayerSendTitle: true
+
+# 是否发送副标题提醒
+# Whether to send subtitle reminders
 noRegisterPlayerSendSubTitle: true
+
+# 是否发送动作栏提醒
+# Whether to send action bar reminders
 noRegisterPlayerSendActionBar: true
 
-# 🎉 登录成功要不要放烟花庆祝呀？
-# 🎉 Wanna celebrate successful logins with fireworks?
+# 登录成功提醒方式设置
+# Successful login notification settings
+
+# 是否发送标题提醒
+# Whether to send title notifications
 successLoginSendTitle: true
+
+# 是否发送副标题提醒
+# Whether to send subtitle notifications
 successLoginSendSubTitle: true
 
-# 🎵 记住哦，发消息和动作栏还有好听的音效呢！
-# 🎵 Remember, messages and action bar come with cool sounds!
-
+# 注：消息、动作栏和标题提醒会伴随音效
+# Note: Messages, action bar, and title notifications are accompanied by sound effects
