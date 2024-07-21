@@ -73,7 +73,7 @@ public class PlayerInteraction implements Listener {
     }
 	
 	private boolean playerCanInteract(Player e) {
-		return (Configvar.config.getBoolean("noLoginPlayerCantInteract") && Configvar.noLoginPlayerList.contains(e))
+		return (Configvar.config.getBoolean("noLoginPlayerCantInteract") && Configvar.noLoginPlayerList.contains(e));
 	}
 
 }
