@@ -26,13 +26,22 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
     public static BlbiLogin plugin;
     public I18n i18n;
     public ConfigUtil config;
+    public FoliaUtil foliaUtil;
 
     @Override
     public void onEnable() {
         plugin = this;
 
+        // 初始化插件
+        LoadConfig.loadConfig(this);
+        LoadFunction loadFunction = new LoadFunction(this);
+        loadFunction.loadFunction();
+        LoginAction.INSTANCE.sync(this);
+        CheckOnline.INSTANCE.sync(this);
+        foliaUtil = new FoliaUtil(this);
+
         // 检查是否是 Folia 服务端核心
-        Configvar.isFolia = FoliaUtil.checkFolia(plugin, true);
+        foliaUtil.checkFolia(true);
 
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
@@ -42,18 +51,11 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
                 "BLBILOGIN",
                 "SpigotMC: https://www.spigotmc.org/resources/117672/",
                 plugin,
-                Arrays.asList("EggFine"),
+                Arrays.asList("EggFine","ImFoxerARG"),
                 Arrays.asList("Mgazul")));
 
         getLogger().info("波比登录系统开始注入。");
 
-
-        // 初始化插件
-        LoadConfig.loadConfig(this);
-        LoadFunction loadFunction = new LoadFunction(this);
-        loadFunction.loadFunction();
-        LoginAction.INSTANCE.sync(this);
-        CheckOnline.INSTANCE.sync(this);
 
         // 加载 bStats 统计
         Metrics metrics = new Metrics(this, 22490);

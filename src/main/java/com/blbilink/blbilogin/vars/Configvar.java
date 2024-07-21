@@ -11,7 +11,6 @@ import java.util.Map;
 
 public class Configvar {
 
-    public static boolean isFolia = false;
     public static Map<String, Location> originalLocation = new HashMap<>();
     public static List<String> noLoginPlayerList = new ArrayList<>();
     public static FileConfiguration config;

@@ -34,11 +34,8 @@ public class LoadFunction {
 
 
         Objects.requireNonNull(plugin.getCommand("register")).setExecutor(new Register());
-        Objects.requireNonNull(plugin.getCommand("register")).setTabCompleter(blbiLoginCommand);
         Objects.requireNonNull(plugin.getCommand("login")).setExecutor(new Login());
-        Objects.requireNonNull(plugin.getCommand("login")).setTabCompleter(blbiLoginCommand);
         Objects.requireNonNull(plugin.getCommand("resetpassword")).setExecutor(new ResetPassword());
-        Objects.requireNonNull(plugin.getCommand("resetpassword")).setTabCompleter(blbiLoginCommand);
     }
     private void loadListeners(){
         // 注册Bukkit事件监听器

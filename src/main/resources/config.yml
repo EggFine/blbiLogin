@@ -3,7 +3,7 @@
 
 # 配置文件版本号，请勿修改
 # Configuration file version, do not modify
-version: 2.0.0
+version: 2.1.0
 
 # 插件消息前缀
 # Plugin message prefix
@@ -106,25 +106,28 @@ successLoginSendTitle: true
 # Whether to send subtitle notifications
 successLoginSendSubTitle: true
 
-# Unblock some bedrock features.
+# 解锁一些基岩版功能
+# Unblock some bedrock features
 bedrock:
-  # Allow player auto-login if this join in bedrock with
-  # floodgate or UUID (of Bedrock user)?
-  # Please, configure a correct prefix for bedrock users, because
-  # this can auto-login with Java name's if this don't has a
-  # default prefix.
+  # 如果玩家通过基岩版使用 floodgate 或 UUID（基岩版用户）加入，是否允许玩家自动登录？
+  # 请为基岩版用户配置正确的前缀，因为如果没有默认前缀，Java 版玩家名也可能被自动登录。
+  # Allow player auto-login if they join from bedrock with floodgate or UUID (of Bedrock user)?
+  # Please configure a correct prefix for bedrock users, as Java names could be auto-logged in without a default prefix.
   autologin:
 
+    # 是否启用 Floodgate 的此功能？
     # Enable this feature with Floodgate?
     floodgate: false
 
+    # 是否启用 UUID 的此功能？（使用基岩版 UUID）
     # Enable this feature with UUID? (Use Bedrock UUID)
     uuid: false
 
-    # Enable this feature with prefix? (Please, configure
-    # a prefix for bedrock players!)
+    # 是否启用前缀的此功能？（请为基岩版玩家配置前缀！）
+    # Enable this feature with prefix? (Please configure a prefix for bedrock players!)
     prefix: false
     prefix_value: "*"
 
+  # 是否允许基岩版玩家使用表单？
   # Allow forms for bedrock players?
   forms: true

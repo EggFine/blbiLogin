@@ -42,7 +42,7 @@ public enum LoginAction {
     }
     private void loginTeleport(Player player){
         if(Configvar.config.getBoolean("playerJoinAutoTeleportToSavedLocation") && Configvar.config.getBoolean("playerJoinAutoTeleportToSavedLocation_AutoBack")){
-            if(Configvar.isFolia){
+            if(plugin.foliaUtil.isFolia){
                 player.getScheduler().run(plugin, task -> {
                     player.teleportAsync(Configvar.originalLocation.get(player.getName())).thenAccept(result -> {
                         if (result) {

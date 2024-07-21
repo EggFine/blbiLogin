@@ -46,7 +46,7 @@ public class PlayerJoin implements Listener {
     private void sendParticles(Player player){
         if (Configvar.config.getBoolean("noLoginPlayerParticle")) {
             Particles particles = new Particles();
-            if (Configvar.isFolia) {
+            if (plugin.foliaUtil.isFolia) {
                 // Folia 环境
                 player.getScheduler().runAtFixedRate(plugin, task -> {
                     if (Configvar.noLoginPlayerList.contains(player.getName())) {
@@ -83,7 +83,7 @@ public class PlayerJoin implements Listener {
             if(Configvar.config.getBoolean("playerJoinAutoTeleportToSavedLocation_AutoBack")){
                 Configvar.originalLocation.put(player.getName(), player.getLocation());
             }
-            if(Configvar.isFolia){
+            if(plugin.foliaUtil.isFolia){
                 player.getScheduler().run(plugin, task -> {
                     player.teleportAsync(loc);
                 }, () -> {
