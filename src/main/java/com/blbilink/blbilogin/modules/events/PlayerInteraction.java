@@ -17,7 +17,7 @@ public class PlayerInteraction implements Listener {
 
     @EventHandler(ignoreCancelled=true)
     public void onPlayerInteract(PlayerInteractEvent ev) {
-        Player e = e.getPlayer();
+        Player e = ev.getPlayer();
         if(playerCanInteract(e)) {
             ev.setCancelled(true);
 			return;
@@ -54,7 +54,7 @@ public class PlayerInteraction implements Listener {
 	}
 	
 	@EventHandler(ignoreCancelled=true)
-    public void onBlockBreak(BlockBreakEvent event) {
+    public void onBlockBreak(BlockBreakEvent ev) {
         Player e = ev.getPlayer();
 		if(!(ev.getPlayer().getType() == EntityType.PLAYER)) return;
         if (!playerCanInteract(e)) {
