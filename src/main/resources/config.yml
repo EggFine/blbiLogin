@@ -106,3 +106,25 @@ successLoginSendTitle: true
 # Whether to send subtitle notifications
 successLoginSendSubTitle: true
 
+# Unblock some bedrock features.
+bedrock:
+  # Allow player auto-login if this join in bedrock with
+  # floodgate or UUID (of Bedrock user)?
+  # Please, configure a correct prefix for bedrock users, because
+  # this can auto-login with Java name's if this don't has a
+  # default prefix.
+  autologin:
+
+    # Enable this feature with Floodgate?
+    floodgate: false
+
+    # Enable this feature with UUID? (Use Bedrock UUID)
+    uuid: false
+
+    # Enable this feature with prefix? (Please, configure
+    # a prefix for bedrock players!)
+    prefix: false
+    prefix_value: "*"
+
+  # Allow forms for bedrock players?
+  forms: true

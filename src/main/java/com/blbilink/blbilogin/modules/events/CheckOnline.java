@@ -2,12 +2,7 @@ package com.blbilink.blbilogin.modules.events;
 
 import com.blbilink.blbilogin.BlbiLogin;
 import com.blbilink.blbilogin.vars.Configvar;
-import java.net.HttpURLConnection;
-import java.util.HashMap;
-import java.util.List;
-import java.net.URL;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.entity.Player;
 
 public enum CheckOnline {
@@ -28,22 +23,22 @@ public enum CheckOnline {
 	
 	public boolean verifyAllowBedrock(Player e) {
 		boolean isBedrock = false;
-		isBedrock = (e.getUniqueId().toString().startsWith("00000000-0000-0000-") && Configvar.bedrock_autologin_uuid);
+		isBedrock = (e.getUniqueId().toString().startsWith("00000000-0000-0000-") && Configvar.config.getBoolean("bedrock.autologin.uuid"));
 		if (isBedrock) return true;
-		isBedrock = (e.getName().startsWith(Configvar.bedrock_autologin_prefix_value) && Configvar.bedrock_autologin_prefix);
+		isBedrock = (e.getName().startsWith(Configvar.config.getString("bedrock.autologin.prefix_value")) && Configvar.config.getBoolean("bedrock.autologin.prefix"));
 		if (isBedrock) return true;
-		if(floodgate == true && Configvar.bedrock_autologin_floodgate) {
+		if(floodgate == true && Configvar.config.getBoolean("bedrock.autologin.floodgate")) {
 			try { isBedrock = FloodgateCheck.isFloodgate(e); if (isBedrock) return true; } catch (Exception ignored) {}
 		}
 		return isBedrock;
 	}
 	
 	public boolean isBedrock(Player e) {
-		if(!Configvar.bedrock_forms) return false;
+		if(!Configvar.config.getBoolean("bedrock_forms")) return false;
 		boolean isBedrock = false;
 		isBedrock = (e.getUniqueId().toString().startsWith("00000000-0000-0000-"));
 		if (isBedrock) return true;
-		isBedrock = (e.getName().startsWith(Configvar.bedrock_autologin_prefix_value) && Configvar.bedrock_autologin_prefix);
+		isBedrock = (e.getName().startsWith(Configvar.config.getString("bedrock.autologin.prefix_value")) && Configvar.config.getBoolean("bedrock.autologin.prefix"));
 		if (isBedrock) return true;
 		if(floodgate == true) {
 			try { isBedrock = FloodgateCheck.isFloodgate(e); if (isBedrock) return true; } catch (Exception ignored) {}
