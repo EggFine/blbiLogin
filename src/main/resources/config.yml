@@ -50,9 +50,6 @@ noLoginPlayerCantUseCommand: true
 # List of commands allowed for unlogged players
 noLoginPlayerAllowUseCommand:
   - "/example"
-# 是否限制未登录玩家破坏方块
-# Whether to restrict unlogged players from breaking blocks
-noLoginPlayerCantBreak: true
 # 是否使未登录玩家无敌（不受伤害）
 # Whether to make unlogged players invulnerable (immune to damage)
 noLoginPlayerCantHurt: true
@@ -62,6 +59,11 @@ noLoginPlayerParticle: true
 # 是否使未登录玩家无法发送消息
 # Whether to prevent unlogged players from sending messages
 noLoginPlayerCantSendMessage: true
+
+
+# Whether to restrict unlogged players from interact, damage, get
+# targetted and place/break blocks
+noLoginPlayerCantInteract: true
 
 # 未登录玩家提醒方式设置
 # Reminder settings for unlogged players
