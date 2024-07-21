@@ -9,6 +9,7 @@ import com.blbilink.blbilogin.modules.commands.ResetPassword;
 import com.blbilink.blbilogin.modules.events.PlayerJoin;
 import com.blbilink.blbilogin.modules.events.PlayerSendMessage;
 import com.blbilink.blbilogin.modules.events.PlayerUseCommands;
+import com.blbilink.blbilogin.modules.events.PlayerInteraction;
 import com.blbilink.blbilogin.modules.messages.PlayerSender;
 import org.bukkit.Bukkit;
 
@@ -34,8 +35,11 @@ public class LoadFunction {
 
 
         Objects.requireNonNull(plugin.getCommand("register")).setExecutor(new Register());
+        Objects.requireNonNull(plugin.getCommand("register")).setTabCompleter(blbiLoginCommand);
         Objects.requireNonNull(plugin.getCommand("login")).setExecutor(new Login());
+        Objects.requireNonNull(plugin.getCommand("login")).setTabCompleter(blbiLoginCommand);
         Objects.requireNonNull(plugin.getCommand("resetpassword")).setExecutor(new ResetPassword());
+        Objects.requireNonNull(plugin.getCommand("resetpassword")).setTabCompleter(blbiLoginCommand);
     }
     private void loadListeners(){
         // 注册Bukkit事件监听器
@@ -44,6 +48,7 @@ public class LoadFunction {
         Bukkit.getPluginManager().registerEvents(new PlayerUseCommands(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(BlbiLogin.plugin), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerSendMessage(), plugin);
+		Bukkit.getPluginManager().registerEvents(new PlayerInteraction(), plugin);
     }
 
     private void loadSqlite(){
