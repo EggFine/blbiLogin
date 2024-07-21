@@ -34,7 +34,7 @@ public enum CheckOnline {
 	}
 	
 	public boolean isBedrock(Player e) {
-		if(!Configvar.config.getBoolean("bedrock_forms")) return false;
+		if(!Configvar.config.getBoolean("bedrock.forms")) return false;
 		boolean isBedrock = false;
 		isBedrock = (e.getUniqueId().toString().startsWith("00000000-0000-0000-"));
 		if (isBedrock) return true;
