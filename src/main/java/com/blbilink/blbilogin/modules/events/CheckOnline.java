@@ -28,7 +28,7 @@ public enum CheckOnline {
 		isBedrock = (e.getName().startsWith(Configvar.config.getString("bedrock.autologin.prefix_value")) && Configvar.config.getBoolean("bedrock.autologin.prefix"));
 		if (isBedrock) return true;
 		if(floodgate == true && Configvar.config.getBoolean("bedrock.autologin.floodgate")) {
-			try { isBedrock = FloodgateCheck.isFloodgate(e); if (isBedrock) return true; } catch (Exception ignored) {}
+			try { isBedrock = FloodgateUtil.isFloodgate(e); if (isBedrock) return true; } catch (Exception ignored) {}
 		}
 		return isBedrock;
 	}
@@ -41,7 +41,7 @@ public enum CheckOnline {
 		isBedrock = (e.getName().startsWith(Configvar.config.getString("bedrock.autologin.prefix_value")) && Configvar.config.getBoolean("bedrock.autologin.prefix"));
 		if (isBedrock) return true;
 		if(floodgate == true) {
-			try { isBedrock = FloodgateCheck.isFloodgate(e); if (isBedrock) return true; } catch (Exception ignored) {}
+			try { isBedrock = FloodgateUtil.isFloodgate(e); if (isBedrock) return true; } catch (Exception ignored) {}
 		}
 		return isBedrock;
 	}
