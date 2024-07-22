@@ -3,7 +3,7 @@
 
 # 配置文件版本号，请勿修改
 # Configuration file version, do not modify
-version: 2.1.0
+version: 2.1.1
 
 # 插件消息前缀
 # Plugin message prefix
@@ -60,7 +60,7 @@ noLoginPlayerParticle: true
 # Whether to prevent unlogged players from sending messages
 noLoginPlayerCantSendMessage: true
 
-
+# 是否使玩家无法操作（如放置/挖掘方块，对实体进行伤害，获取物品）
 # Whether to restrict unlogged players from interact, damage, get
 # targetted and place/break blocks
 noLoginPlayerCantInteract: true
