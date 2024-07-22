@@ -45,7 +45,7 @@ public class LoadFunction {
         Bukkit.getPluginManager().registerEvents(new PlayerUseCommands(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(BlbiLogin.plugin), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerSendMessage(), plugin);
-		Bukkit.getPluginManager().registerEvents(new PlayerInteraction(), plugin);
+	Bukkit.getPluginManager().registerEvents(new PlayerInteraction(), plugin);
     }
 
     private void loadSqlite(){
