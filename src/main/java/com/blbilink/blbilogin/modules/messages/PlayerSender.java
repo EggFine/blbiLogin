@@ -6,6 +6,7 @@ import com.blbilink.blbilogin.modules.events.FloodgateUtil;
 import com.blbilink.blbilogin.vars.Configvar;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
+import org.bukkit.plugin.Plugin;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -43,7 +45,12 @@ public class PlayerSender implements Listener {
                     public void run() { if (Configvar.noLoginPlayerList.contains(e.getPlayer().getName())) { sendPlayerMessages(e.getPlayer()); } else if (!e.getPlayer().isOnline()) { if (timer != null) { timer.cancel(); } } else { if (timer != null) { timer.cancel(); } } }
                 }, 0L, 1000L);
             } else {
-                plugin.foliaUtil.runTaskLater(() -> FloodgateUtil.openForum(e.getPlayer()), 25L);
+                Plugin floodgate = Bukkit.getPluginManager().getPlugin("floodgate");
+                if(floodgate != null && floodgate.isEnabled()){
+                    plugin.foliaUtil.runTaskLater(() -> FloodgateUtil.openForum(e.getPlayer()), 25L);
+                }else{
+                    plugin.getLogger().warning("Floodgate is not enabled, please install it to use the bedrock support.");
+                }
             }
         }
     }
