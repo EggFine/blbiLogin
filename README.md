@@ -7,20 +7,16 @@
 [![Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/plugin/blbilogin)[![Spigot](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/spigot_vector.svg)](https://www.spigotmc.org/resources/117672)
 
 #### 中文专区 [For Chinese]
-
-![Static Badge](https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA%E5%8F%91%E5%B8%83%E9%A1%B5-blue?style=for-the-badge&label=MineBBS&link=https%3A%2F%2Fwww.minebbs.com%2Fresources%2F8676%2F)![Static Badge](https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-blue?style=for-the-badge&label=Wiki&link=https%3A%2F%2Feggfine.gitbook.io%2Fblbilogin-docs)![Static Badge](https://img.shields.io/badge/%E5%8A%A0%E5%85%A5%E7%BE%A4%E8%81%8A-blue?style=for-the-badge&label=QQ&color=white&link=https%3A%2F%2Fqm.qq.com%2Fq%2FTWjF1qyIg2)
+[![MineBBS](https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA%E5%8F%91%E5%B8%83%E9%A1%B5-blue?style=for-the-badge&label=MineBBS)](https://www.minebbs.com/resources/8676/) [![Wiki](https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-blue?style=for-the-badge&label=Wiki)](https://eggfine.gitbook.io/blbilogin-docs) [![QQ](https://img.shields.io/badge/%E5%8A%A0%E5%85%A5%E7%BE%A4%E8%81%8A-blue?style=for-the-badge&label=QQ&color=white)](https://qm.qq.com/q/TWjF1qyIg2)
 
 #### 插件状态 [Plugin Info]
-
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/EggFine/blbiLogin/gradle.yml?style=for-the-badge&link=https://github.com/EggFine/blbiLogin/actions)![Latest Version](https://img.shields.io/spiget/version/117672?style=for-the-badge&label=Latest%20Version&color=brightgreen&link=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2F117672)![Spiget Downloads](https://img.shields.io/spiget/downloads/117672?style=for-the-badge&link=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2F117672)![Discord](https://img.shields.io/discord/1256544705991147601?style=for-the-badge&label=Discord&color=pink&link=https://discord.gg/KjXXbSgJru)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/EggFine/blbiLogin/gradle.yml?style=for-the-badge)](https://github.com/EggFine/blbiLogin/actions) [![Latest Version](https://img.shields.io/spiget/version/117672?style=for-the-badge&label=Latest%20Version&color=brightgreen)](https://www.spigotmc.org/resources/117672) [![Spiget Downloads](https://img.shields.io/spiget/downloads/117672?style=for-the-badge)](https://www.spigotmc.org/resources/117672) [![Discord](https://img.shields.io/discord/1256544705991147601?style=for-the-badge&label=Discord&color=pink)](https://discord.gg/KjXXbSgJru)
 
 #### 统计 [bStats]
-
-![bStats Servers](https://img.shields.io/bstats/servers/22490?style=for-the-badge)![bStats Players](https://img.shields.io/bstats/players/22490?style=for-the-badge)
+![bStats Servers](https://img.shields.io/bstats/servers/22490?style=for-the-badge) ![bStats Players](https://img.shields.io/bstats/players/22490?style=for-the-badge)
 
 #### 依赖 [Depends]
-
-![Latest Version](https://img.shields.io/spiget/version/118213?style=for-the-badge&label=blbi%20Library&color=yellow&link=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2F118213)
+[![blbi Library](https://img.shields.io/spiget/version/118213?style=for-the-badge&label=blbi%20Library&color=yellow)](https://www.spigotmc.org/resources/118213)
 
 | 项       | 值                            |
 | -------- | ----------------------------- |
