@@ -24,7 +24,7 @@ public class Register implements CommandExecutor {
                 String password = args[0];
 
                 if (Sqlite.getSqlite().playerExists(uuid)) {
-                    player.sendMessage(plugin.i18n.as("msgAlreadyRegistered",true,player.getName()));
+                    player.sendMessage(plugin.i18n.as("msgAlreadyRegister",true,player.getName()));
                     return true;
                 }
 

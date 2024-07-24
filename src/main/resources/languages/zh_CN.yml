@@ -1,4 +1,4 @@
-version: 2.0.0
+version: 2.1.2
 Language: "简体中文 (Simplified Chinese)"
 loadedLanguage: "已加载语言文件: %s"
 
@@ -9,6 +9,7 @@ logNoLoginTryMove: "未登录玩家 %s 尝试移动，已进行回弹."
 msgCommandWrong: "§c输入的指令有错误§f, 正确的用法是 §6%s"
 msgLoginSuccess: "登录成功, %s 欢迎回来."
 msgRegisterSuccess: "注册成功, 欢迎新玩家 %s."
+msgAlreadyLogin: "已经登录过啦, 无需重复登录."
 msgAlreadyRegister: "已经注册过啦, 无需重复注册."
 msgNoPermission: "§f你当前§c没有权限§f执行该操作."
 msgReloaded: "§f配置文件及语言文件的§a重载已经完成."

@@ -116,20 +116,16 @@ bedrock:
   # Allow player auto-login if they join from bedrock with floodgate or UUID (of Bedrock user)?
   # Please configure a correct prefix for bedrock users, as Java names could be auto-logged in without a default prefix.
   autologin:
-
     # 是否启用 Floodgate 的此功能？
     # Enable this feature with Floodgate?
     floodgate: false
-
     # 是否启用 UUID 的此功能？（使用基岩版 UUID）
     # Enable this feature with UUID? (Use Bedrock UUID)
     uuid: false
-
     # 是否启用前缀的此功能？（请为基岩版玩家配置前缀！）
     # Enable this feature with prefix? (Please configure a prefix for bedrock players!)
     prefix: false
     prefix_value: "*"
-
   # 是否允许基岩版玩家使用表单？
   # Allow forms for bedrock players?
   forms: true
