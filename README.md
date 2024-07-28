@@ -16,7 +16,7 @@
 ![bStats Servers](https://img.shields.io/bstats/servers/22490?style=for-the-badge) ![bStats Players](https://img.shields.io/bstats/players/22490?style=for-the-badge)
 
 #### 依赖 [Depends]
-[![blbi Library](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.mcdd.cn%2Fddget%2Fresource%2Finfo%2F2&query=resource.version&prefix=v%20&style=for-the-badge&label=blbi%2Flibrary&color=yellow)](https://mcdd.cn/resources/2)
+[![blbi Library](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.mcdd.cn%2Fddget%2Fresource%2Finfo%2F2&query=resource.version&prefix=v%20&style=for-the-badge&label=blbi%20library&color=yellow)](https://mcdd.cn/resources/2)
 
 | 项       | 值                            |
 | -------- | ----------------------------- |
