@@ -3,6 +3,7 @@ package com.blbilink.blbilogin.modules.events;
 import com.blbilink.blbilogin.BlbiLogin;
 import com.blbilink.blbilogin.modules.effects.Particles;
 import com.blbilink.blbilogin.vars.Configvar;
+import org.blbilink.blbiLibrary.utils.FoliaUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -10,14 +11,19 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PlayerJoin implements Listener {
     CheckOnline check = CheckOnline.INSTANCE;
     private final BlbiLogin plugin;
+    private final Map<String, FoliaUtil.Cancellable> particleTasks = new HashMap<>();
+
     public PlayerJoin(BlbiLogin plugin){
         this.plugin = plugin;
     }
+
     @EventHandler(priority = EventPriority.LOW)
     public void onPlayerJoin(PlayerJoinEvent ev) {
         Player e = ev.getPlayer();
@@ -43,33 +49,21 @@ public class PlayerJoin implements Listener {
         }
     }
 
-    private void sendParticles(Player player){
+    private void sendParticles(Player player) {
         if (Configvar.config.getBoolean("noLoginPlayerParticle")) {
             Particles particles = new Particles();
-            if (plugin.foliaUtil.isFolia) {
-                // Folia 环境
-                player.getScheduler().runAtFixedRate(plugin, task -> {
-                    if (Configvar.noLoginPlayerList.contains(player.getName())) {
-                        particles.createFallingParticlesAroundPlayer(player);
-                    } else {
-                        task.cancel();
-                    }
-                }, null, 1L, 20L);
-            } else {
-                // 非 Folia 环境
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        if (Configvar.noLoginPlayerList.contains(player.getName())) {
-                            particles.createFallingParticlesAroundPlayer(player);
-                        } else {
-                            this.cancel();
-                        }
-                    }
-                }.runTaskTimer(plugin, 0L, 20L);
-            }
+            FoliaUtil.Cancellable task = plugin.foliaUtil.runTaskTimerAsync(plugin, cancellable -> {
+                if (Configvar.noLoginPlayerList.contains(player.getName())) {
+                    particles.createFallingParticlesAroundPlayer(player);
+                } else {
+                    cancellable.cancel();
+                    particleTasks.remove(player.getName());
+                }
+            }, 0L, 20L);
+            particleTasks.put(player.getName(), task);
         }
     }
+
     private void teleportLocation(Player player){
         if(Configvar.config.getBoolean("playerJoinAutoTeleportToSavedLocation")){
             Location loc = new Location(
@@ -83,14 +77,7 @@ public class PlayerJoin implements Listener {
             if(Configvar.config.getBoolean("playerJoinAutoTeleportToSavedLocation_AutoBack")){
                 Configvar.originalLocation.put(player.getName(), player.getLocation());
             }
-            if(plugin.foliaUtil.isFolia){
-                player.getScheduler().run(plugin, task -> {
-                    player.teleportAsync(loc);
-                }, () -> {
-                });
-            }else{
-                player.teleport(loc);
-            }
+            plugin.foliaUtil.runTask(plugin, task -> player.teleport(loc));
         }
     }
 }

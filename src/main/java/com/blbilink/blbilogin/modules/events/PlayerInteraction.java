@@ -1,6 +1,7 @@
 package com.blbilink.blbilogin.modules.events;
 
 import com.blbilink.blbilogin.vars.Configvar;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,7 +10,11 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+
+import java.util.Objects;
 
 public class PlayerInteraction implements Listener {
 
@@ -63,6 +68,21 @@ public class PlayerInteraction implements Listener {
             ev.setCancelled(true);
         }
     }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onPlayerDropItem(PlayerDropItemEvent ev) {
+        if (!playerCanInteract(ev.getPlayer())) {
+            ev.setCancelled(true);
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onPlayerClickInventory(InventoryClickEvent ev) {
+        if (!playerCanInteract(Objects.requireNonNull(Bukkit.getPlayer(ev.getWhoClicked().getName())))) {
+            ev.setCancelled(true);
+        }
+    }
+
 
     private boolean playerCanInteract(Player player) {
         boolean noLoginPlayerCantInteract = Configvar.config.getBoolean("noLoginPlayerCantInteract");

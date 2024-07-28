@@ -6,6 +6,7 @@ import com.blbilink.blbilogin.modules.events.FloodgateUtil;
 import com.blbilink.blbilogin.vars.Configvar;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.blbilink.blbiLibrary.utils.FoliaUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -17,13 +18,28 @@ import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 import static com.blbilink.blbilogin.BlbiLogin.plugin;
 
 public class PlayerSender implements Listener {
     CheckOnline check = CheckOnline.INSTANCE;
     private Timer timer;
+
+
+    @EventHandler
+    public void bedrockPlayerJoin(PlayerJoinEvent e) {
+        if (check.isBedrock(e.getPlayer())) {
+            Plugin floodgate = Bukkit.getPluginManager().getPlugin("floodgate");
+            if (floodgate != null && floodgate.isEnabled()) {
+                // 使用 runTask 而不是 runTaskLater，确保在主线程上执行
+                plugin.foliaUtil.runTask(plugin, task -> {
+                    FloodgateUtil.openForum(e.getPlayer());
+                });
+            } else {
+                plugin.getLogger().warning("Floodgate is not enabled, please install it to use the bedrock support.");
+            }
+        }
+    }
 
     @EventHandler
     public void noLoginPlayerSendTitle(PlayerJoinEvent e) {
@@ -37,29 +53,25 @@ public class PlayerSender implements Listener {
                 Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
 
             Player player = e.getPlayer();
-
-            if (!check.isBedrock(e.getPlayer())) {
-                timer = new Timer();
-                timer.scheduleAtFixedRate(new TimerTask() {
-                    @Override
-                    public void run() { if (Configvar.noLoginPlayerList.contains(e.getPlayer().getName())) { sendPlayerMessages(e.getPlayer()); } else if (!e.getPlayer().isOnline()) { if (timer != null) { timer.cancel(); } } else { if (timer != null) { timer.cancel(); } } }
-                }, 0L, 1000L);
-            } else {
-                Plugin floodgate = Bukkit.getPluginManager().getPlugin("floodgate");
-                if(floodgate != null && floodgate.isEnabled()){
-                    plugin.foliaUtil.runTaskLater(() -> FloodgateUtil.openForum(e.getPlayer()), 25L);
-                }else{
-                    plugin.getLogger().warning("Floodgate is not enabled, please install it to use the bedrock support.");
+            FoliaUtil.Cancellable task = plugin.foliaUtil.runTaskTimerAsync(plugin, cancellable -> {
+                if (Configvar.noLoginPlayerList.contains(player.getName())) {
+                    sendPlayerMessages(player);
+                } else {
+                    cancellable.cancel();
                 }
-            }
+            }, 0L, 60L);
         }
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent ev) {
         Player e = ev.getPlayer();
-        if(Configvar.noLoginPlayerList.contains(e.getName())) { Configvar.noLoginPlayerList.remove(e.getName()); }
-        if (timer != null) { timer.cancel(); }
+        if (Configvar.noLoginPlayerList.contains(e.getName())) {
+            Configvar.noLoginPlayerList.remove(e.getName());
+        }
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     @EventHandler
@@ -68,38 +80,37 @@ public class PlayerSender implements Listener {
     }
 
 
-
     private static void sendPlayerMessages(Player player) {
-        if(Sqlite.getSqlite().playerExists(player.getUniqueId().toString())) {
-            if(Configvar.config.getBoolean("noLoginPlayerSendActionBar")) {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(plugin.i18n.as("noLoginPlayerSendActionBar",false, player.getName())));
+        if (Sqlite.getSqlite().playerExists(player.getUniqueId().toString())) {
+            if (Configvar.config.getBoolean("noLoginPlayerSendActionBar")) {
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(plugin.i18n.as("noLoginPlayerSendActionBar", false, player.getName())));
             }
-            if(Configvar.config.getBoolean("noLoginPlayerSendMessage")) {
+            if (Configvar.config.getBoolean("noLoginPlayerSendMessage")) {
                 player.sendMessage(plugin.i18n.as("noLoginPlayerSendMessage", true, player.getName()));
             }
-            if(Configvar.config.getBoolean("noLoginPlayerSendTitle")) {
+            if (Configvar.config.getBoolean("noLoginPlayerSendTitle")) {
                 player.sendTitle(plugin.i18n.as("noLoginPlayerSendTitle", false, player.getName()), null, 0, 100, 0);
             }
-            if(Configvar.config.getBoolean("noLoginPlayerSendSubTitle")) {
+            if (Configvar.config.getBoolean("noLoginPlayerSendSubTitle")) {
                 player.sendTitle(null, plugin.i18n.as("noLoginPlayerSendSubTitle", false, player.getName()), 0, 100, 0);
             }
-            if(Configvar.config.getBoolean("noLoginPlayerSendMessage") || Configvar.config.getBoolean("noLoginPlayerSendActionBar")) {
+            if (Configvar.config.getBoolean("noLoginPlayerSendMessage") || Configvar.config.getBoolean("noLoginPlayerSendActionBar")) {
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
             }
         } else {
-            if(Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(plugin.i18n.as("noRegisterPlayerSendActionBar",false, player.getName())));
+            if (Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(plugin.i18n.as("noRegisterPlayerSendActionBar", false, player.getName())));
             }
-            if(Configvar.config.getBoolean("noRegisterPlayerSendMessage")) {
+            if (Configvar.config.getBoolean("noRegisterPlayerSendMessage")) {
                 player.sendMessage(plugin.i18n.as("noRegisterPlayerSendMessage", true, player.getName()));
             }
-            if(Configvar.config.getBoolean("noRegisterPlayerSendTitle")) {
+            if (Configvar.config.getBoolean("noRegisterPlayerSendTitle")) {
                 player.sendTitle(plugin.i18n.as("noRegisterPlayerSendTitle", false, player.getName()), null, 0, 100, 0);
             }
-            if(Configvar.config.getBoolean("noRegisterPlayerSendSubTitle")) {
-                player.sendTitle(null, plugin.i18n.as("noRegisterPlayerSendSubTitle", false,player.getName()), 0, 100, 0);
+            if (Configvar.config.getBoolean("noRegisterPlayerSendSubTitle")) {
+                player.sendTitle(null, plugin.i18n.as("noRegisterPlayerSendSubTitle", false, player.getName()), 0, 100, 0);
             }
-            if(Configvar.config.getBoolean("noRegisterPlayerSendMessage") || Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
+            if (Configvar.config.getBoolean("noRegisterPlayerSendMessage") || Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
             }
         }
