@@ -28,13 +28,13 @@ public class PlayerSender implements Listener {
 
     @EventHandler
     public void bedrockPlayerJoin(PlayerJoinEvent e) {
+
         if (check.isBedrock(e.getPlayer())) {
             Plugin floodgate = Bukkit.getPluginManager().getPlugin("floodgate");
-            if (floodgate != null && floodgate.isEnabled()) {
-                // 使用 runTask 而不是 runTaskLater，确保在主线程上执行
-                plugin.foliaUtil.runTask(plugin, task -> {
+            if (Configvar.config.getBoolean("bedrock.forms") && floodgate != null && floodgate.isEnabled()) {
+                plugin.foliaUtil.runTaskLater(plugin, () -> {
                     FloodgateUtil.openForum(e.getPlayer());
-                });
+                },60L);
             } else {
                 plugin.getLogger().warning("Floodgate is not enabled, please install it to use the bedrock support.");
             }
@@ -43,23 +43,25 @@ public class PlayerSender implements Listener {
 
     @EventHandler
     public void noLoginPlayerSendTitle(PlayerJoinEvent e) {
-        if (Configvar.config.getBoolean("noLoginPlayerSendActionBar") ||
-                Configvar.config.getBoolean("noLoginPlayerSendTitle") ||
-                Configvar.config.getBoolean("noLoginPlayerSendSubTitle") ||
-                Configvar.config.getBoolean("noLoginPlayerSendMessage") ||
-                Configvar.config.getBoolean("noRegisterPlayerSendTitle") ||
-                Configvar.config.getBoolean("noRegisterPlayerSendSubTitle") ||
-                Configvar.config.getBoolean("noRegisterPlayerSendMessage") ||
-                Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
+        if (!check.isBedrock(e.getPlayer())) {
+            if (Configvar.config.getBoolean("noLoginPlayerSendActionBar") ||
+                    Configvar.config.getBoolean("noLoginPlayerSendTitle") ||
+                    Configvar.config.getBoolean("noLoginPlayerSendSubTitle") ||
+                    Configvar.config.getBoolean("noLoginPlayerSendMessage") ||
+                    Configvar.config.getBoolean("noRegisterPlayerSendTitle") ||
+                    Configvar.config.getBoolean("noRegisterPlayerSendSubTitle") ||
+                    Configvar.config.getBoolean("noRegisterPlayerSendMessage") ||
+                    Configvar.config.getBoolean("noRegisterPlayerSendActionBar")) {
 
-            Player player = e.getPlayer();
-            FoliaUtil.Cancellable task = plugin.foliaUtil.runTaskTimerAsync(plugin, cancellable -> {
-                if (Configvar.noLoginPlayerList.contains(player.getName())) {
-                    sendPlayerMessages(player);
-                } else {
-                    cancellable.cancel();
-                }
-            }, 0L, 60L);
+                Player player = e.getPlayer();
+                FoliaUtil.Cancellable task = plugin.foliaUtil.runTaskTimerAsync(plugin, cancellable -> {
+                    if (Configvar.noLoginPlayerList.contains(player.getName())) {
+                        sendPlayerMessages(player);
+                    } else {
+                        cancellable.cancel();
+                    }
+                }, 0L, 60L);
+            }
         }
     }
 
