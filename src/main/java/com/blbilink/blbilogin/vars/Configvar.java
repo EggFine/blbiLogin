@@ -13,6 +13,7 @@ public class Configvar {
 
     public static Map<String, Location> originalLocation = new HashMap<>();
     public static List<String> noLoginPlayerList = new ArrayList<>();
+    public static List<String> canFlyingPlayerList = new ArrayList<>();
     public static FileConfiguration config;
     public static File configFile;
 

@@ -44,6 +44,9 @@ public class PlayerJoin implements Listener {
 
     private void setFlying(Player player){
         if (Configvar.config.getBoolean("noLoginPlayerCantMove")) {
+            if(player.getAllowFlight()){
+                Configvar.canFlyingPlayerList.add(player.getName());
+            }
             player.setAllowFlight(true);
             player.setFlying(true);
         }

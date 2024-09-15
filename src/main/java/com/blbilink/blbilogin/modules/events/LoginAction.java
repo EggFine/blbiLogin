@@ -28,7 +28,10 @@ public enum LoginAction {
                 player.sendTitle(null,plugin.i18n.as("successLoginSendSubTitle",false ,player.getName()),20,100,20);
             }
         }
-        if(!player.isOp()){
+        if(Configvar.canFlyingPlayerList.contains(player.getName())){
+            player.setAllowFlight(true);
+            Configvar.canFlyingPlayerList.remove(player.getName());
+        }else{
             player.setAllowFlight(false);
         }
         player.setFlying(false);
