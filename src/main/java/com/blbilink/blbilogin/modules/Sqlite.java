@@ -2,6 +2,7 @@ package com.blbilink.blbilogin.modules;
 
 
 import com.blbilink.blbilogin.load.LoadFunction;
+import com.blbilink.blbilogin.utils.PasswordUtil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,11 +19,13 @@ public class Sqlite {
     }
     public Sqlite() {
         try {
+            // Load the SQLite JDBC driver
+            Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:plugins/blbiLogin/players.db");
             try (PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS players (uuid TEXT PRIMARY KEY, username TEXT, password TEXT)")) {
                 statement.executeUpdate();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -42,7 +45,7 @@ public class Sqlite {
         try (PreparedStatement statement = connection.prepareStatement("INSERT INTO players (uuid, username, password) VALUES (?, ?, ?)")) {
             statement.setString(1, uuid);
             statement.setString(2, username);
-            statement.setString(3, password);
+            statement.setString(3, PasswordUtil.hashPassword(password));
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,7 +57,8 @@ public class Sqlite {
             statement.setString(1, uuid);
             ResultSet results = statement.executeQuery();
             if (results.next()) {
-                return results.getString("password").equals(password);
+                String storedPassword = results.getString("password");
+                return PasswordUtil.checkPassword(password, storedPassword);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,7 +68,7 @@ public class Sqlite {
 
     public boolean resetPassword(String uuid, String newPassword) {
         try (PreparedStatement statement = connection.prepareStatement("UPDATE players SET password = ? WHERE uuid = ?")) {
-            statement.setString(1, newPassword);
+            statement.setString(1, PasswordUtil.hashPassword(newPassword));
             statement.setString(2, uuid);
             int rowsUpdated = statement.executeUpdate();
             return rowsUpdated > 0;

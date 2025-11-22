@@ -5,18 +5,13 @@ import com.blbilink.blbilogin.load.LoadConfig;
 import com.blbilink.blbilogin.load.LoadFunction;
 import com.blbilink.blbilogin.modules.events.CheckOnline;
 import com.blbilink.blbilogin.modules.events.LoginAction;
-import com.blbilink.blbilogin.vars.Configvar;
+import com.blbilink.blbilogin.modules.events.PlayerActivityListener;
 import org.blbilink.blbiLibrary.I18n;
 import org.blbilink.blbiLibrary.Metrics;
 import org.blbilink.blbiLibrary.utils.ConfigUtil;
 import org.blbilink.blbiLibrary.utils.FoliaUtil;
 import org.blbilink.blbiLibrary.utils.TextUtil;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -39,6 +34,9 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
         LoginAction.INSTANCE.sync(this);
         CheckOnline.INSTANCE.sync(this);
         foliaUtil = new FoliaUtil(this);
+
+        // Register event listener
+        getServer().getPluginManager().registerEvents(new PlayerActivityListener(this), this);
 
         // 检查是否是 Folia 服务端核心
         foliaUtil.checkFolia(true);
@@ -73,37 +71,5 @@ public final class BlbiLogin extends JavaPlugin implements Listener {
                 plugin,
                 List.of("EggFine"),
                 List.of("Mgazul")));
-    }
-
-    @EventHandler
-    public void onPlayerMove(PlayerMoveEvent e) {
-
-        if (Configvar.noLoginPlayerList.contains(e.getPlayer().getName()) && Configvar.config.getBoolean("noLoginPlayerCantMove")) {
-            String msgNoLoginTryMove = i18n.as("logNoLoginTryMove", false, e.getPlayer().getName());
-            this.getLogger().info(msgNoLoginTryMove);
-            e.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onPlayerBreak(BlockBreakEvent e) {
-        if (Configvar.noLoginPlayerList.contains(e.getPlayer().getName()) && Configvar.config.getBoolean("noLoginPlayerCantBreak")) {
-            getLogger().info("未登录玩家 " + e.getPlayer().getName() + " 尝试挖掘方块" + e.getBlock().getType().name() + "已进行阻止.");
-            e.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onPlayerHurt(EntityDamageEvent e) {
-        if (e.getEntity() instanceof Player player) {
-
-            if (Configvar.noLoginPlayerList.contains(player.getName()) && Configvar.config.getBoolean("noLoginPlayerCantHurt")) {
-                EntityDamageEvent.DamageCause currentDamageCause = e.getCause();
-                String damageCauseName = currentDamageCause.name();
-
-                getLogger().info("未登录玩家 " + player.getName() + " 受到伤害 " + damageCauseName + " 已进行阻止.");
-                e.setCancelled(true);
-            }
-        }
     }
 }
