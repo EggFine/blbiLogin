@@ -34,13 +34,13 @@ public class LoadFunction {
         Objects.requireNonNull(plugin.getCommand("blbilogin")).setTabCompleter(blbiLoginCommand);
 
 
-        Objects.requireNonNull(plugin.getCommand("register")).setExecutor(new Register());
-        Objects.requireNonNull(plugin.getCommand("login")).setExecutor(new Login());
+        Objects.requireNonNull(plugin.getCommand("register")).setExecutor(new Register(plugin));
+        Objects.requireNonNull(plugin.getCommand("login")).setExecutor(new Login(plugin));
         Objects.requireNonNull(plugin.getCommand("resetpassword")).setExecutor(new ResetPassword());
     }
     private void loadListeners(){
         // 注册Bukkit事件监听器
-        Bukkit.getPluginManager().registerEvents(BlbiLogin.plugin, plugin);
+        // Event listener from BlbiLogin has been moved to PlayerActivityListener and registered in BlbiLogin
         Bukkit.getPluginManager().registerEvents(new PlayerSender(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerUseCommands(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(BlbiLogin.plugin), plugin);

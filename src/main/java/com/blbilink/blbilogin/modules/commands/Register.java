@@ -7,9 +7,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import static com.blbilink.blbilogin.BlbiLogin.plugin;
+import com.blbilink.blbilogin.BlbiLogin;
 
 public class Register implements CommandExecutor {
+    private final BlbiLogin plugin;
+
+    public Register(BlbiLogin plugin) {
+        this.plugin = plugin;
+    }
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) {

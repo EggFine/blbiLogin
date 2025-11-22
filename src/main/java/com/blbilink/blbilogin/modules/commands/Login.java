@@ -9,10 +9,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import static com.blbilink.blbilogin.BlbiLogin.plugin;
+import com.blbilink.blbilogin.BlbiLogin;
 
 public class Login implements CommandExecutor {
     private final LoginAction login = LoginAction.INSTANCE;
+    private final BlbiLogin plugin;
+
+    public Login(BlbiLogin plugin) {
+        this.plugin = plugin;
+    }
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         Player player = (Player) sender;
